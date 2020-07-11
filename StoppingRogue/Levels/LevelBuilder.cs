@@ -1,4 +1,6 @@
-﻿using Stride.Core.Mathematics;
+﻿using StoppingRogue.Robot;
+using StoppingRogue.Turns;
+using Stride.Core.Mathematics;
 using Stride.Engine;
 using Stride.Graphics;
 using Stride.Rendering.Sprites;
@@ -12,12 +14,14 @@ namespace StoppingRogue.Levels
         private SpriteSheet environmentSheet;
         private SpriteSheet robotSheet;
         private SpriteSheet itemSheet;
+        private ActionController actionController;
 
-        public LevelBuilder(SpriteSheet environmentSheet, SpriteSheet robotSheet, SpriteSheet itemSheet)
+        public LevelBuilder(SpriteSheet environmentSheet, SpriteSheet robotSheet, SpriteSheet itemSheet, ActionController actionController)
         {
             this.environmentSheet = environmentSheet;
             this.robotSheet = robotSheet;
             this.itemSheet = itemSheet;
+            this.actionController = actionController;
         }
 
         public Scene Build(Level level)
@@ -98,6 +102,12 @@ namespace StoppingRogue.Levels
         private void AddComponents(Entity entity, TileType tile)
         {
             AddSprite(entity, tile);
+
+            if(tile == TileType.Robot)
+            {
+                var rc = entity.GetOrCreate<RobotController>();
+                actionController.Robot = rc;
+            }
         }
 
         private void AddSprite(Entity entity, TileType tile)

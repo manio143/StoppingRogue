@@ -15,7 +15,7 @@ namespace StoppingRogue.Turns
 
             var currentTime = Game.UpdateTime.Total;
             var diff = currentTime - lastTurn;
-            if (diff > TurnSystem.TurnLenght)
+            if (diff > TurnSystem.TurnLength)
             {
                 lastTurn = currentTime;
                 TurnSystem.TurnNumber++;

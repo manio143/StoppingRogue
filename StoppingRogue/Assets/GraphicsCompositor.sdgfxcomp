@@ -78,12 +78,12 @@ SharedRenderers:
         Id: cc046ac7-f000-4d87-9cd4-6be14e343ed4
         Clear:
             Id: 4bc4b2ca-027e-4e4a-94cb-2912709bef5f
-            Color: {R: 0.40491876, G: 0.411895424, B: 0.43775, A: 1.0}
+            Color: {R: 0.40491876, G: 0.41189542, B: 0.43775, A: 1.0}
         LightProbes: false
         OpaqueRenderStage: ref!! 279a3ade-9032-4b23-9b52-2b174934fb9b
         TransparentRenderStage: ref!! 9e95906b-2640-4c19-86c2-d63cba063792
         ShadowMapRenderStages:
-            fc4d1e0de5c2b0bbc27bcf96e9a848fd: ref!! 504a1797-0591-4e11-939c-7616a4b1bfb4
+            fc4d1e0de5c2b0bbc27bcf96e9a848fd: ~(Deleted)
         GBufferRenderStage: null
         PostEffects: null
         LightShafts: null

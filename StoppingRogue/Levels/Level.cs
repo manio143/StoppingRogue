@@ -9,6 +9,6 @@ namespace StoppingRogue.Levels
         public int Width;
         public int Height;
         public TileType[,] Tiles;
-        public ActionType[] ActionPattern;
+        public Action[] ActionPattern;
     }
 }

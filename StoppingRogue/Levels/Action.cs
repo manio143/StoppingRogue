@@ -1,10 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StoppingRogue.Levels
 {
     public enum ActionType
+    {
+        Movement,
+        Laser,
+        Light,
+        Hold,
+    }
+    public enum Action
     {
         [ActionChar('-')]
         Nop,
@@ -19,7 +24,7 @@ namespace StoppingRogue.Levels
         MoveLeft,
 
         [ActionChar('L')]
-        ShootLazer,
+        ShootLaser,
         [ActionChar('F')]
         SwitchLight,
         [ActionChar('H')]

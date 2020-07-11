@@ -31,26 +31,26 @@ namespace StoppingRogue.Levels
             return lvl;
         }
 
-        private static ActionType[] ReadPattern(string[] v)
+        private static Action[] ReadPattern(string[] v)
         {
             InitializeReadActionMap();
             return String.Concat(v.Select(s => s.Trim())).Select(c => readActionMap[c]).ToArray();
         }
 
-        private static Dictionary<Char, ActionType> readActionMap;
+        private static Dictionary<Char, Action> readActionMap;
         private static void InitializeReadActionMap()
         {
             if (readActionMap != null)
                 return;
 
-            readActionMap = new Dictionary<char, ActionType>();
-            var enumFields = typeof(ActionType).GetFields(BindingFlags.Public | BindingFlags.Static);
+            readActionMap = new Dictionary<char, Action>();
+            var enumFields = typeof(Action).GetFields(BindingFlags.Public | BindingFlags.Static);
             foreach (var field in enumFields)
             {
                 var attr = field.GetCustomAttribute<ActionCharAttribute>();
                 if (attr != null)
                 {
-                    readActionMap.Add(attr.Character, (ActionType)field.GetValue(null));
+                    readActionMap.Add(attr.Character, (Action)field.GetValue(null));
                 }
             }
         }

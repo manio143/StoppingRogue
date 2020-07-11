@@ -8,7 +8,7 @@ namespace StoppingRogue.Turns
 {
     public static class TurnSystem
     {
-        public static readonly TimeSpan TurnLenght = TimeSpan.FromMilliseconds(1.0 / 3.0);
+        public static readonly TimeSpan TurnLength = TimeSpan.FromSeconds(1.0 / 2.0);
         public static int TurnNumber { get; internal set; }
         public static TimeSpan RemainingTime { get; internal set; }
 
