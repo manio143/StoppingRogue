@@ -29,6 +29,9 @@ Hierarchy:
                         Enabled: true
                     5a4f5ebf35e92ab3eb0b8a4eaaae004d: !StoppingRogue.Input.InputController,StoppingRogue
                         Id: 01970f07-ef88-4832-a8b2-dc8c20391368
+                    e8dc513b8f0403c0f285e3a62b4c354b: !StoppingRogue.DebugPhysicsShapes,StoppingRogue
+                        Id: df95a37f-3ac2-4176-9c86-440991e0a170
+                        RenderGroup: Group7
         -   Entity:
                 Id: e1f1c9e5-1a6d-4c72-aeef-fa0431376cdd
                 Name: Camera

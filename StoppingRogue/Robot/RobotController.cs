@@ -3,6 +3,7 @@ using Stride.Core.Mathematics;
 using System.Threading.Tasks;
 using System;
 using System.Diagnostics;
+using Stride.Physics;
 
 namespace StoppingRogue.Robot
 {
@@ -55,6 +56,14 @@ namespace StoppingRogue.Robot
                 advancement = Math.Min(1, advancement + fraction);
                 Debug.WriteLine("F: {0}, A: {1}", fraction, advancement);
                 Entity.Transform.Position = Interpolate(current, target, advancement);
+
+                // If you colided with anything
+                if(physics.Collisions.Count > 0)
+                {
+                    // TODO: check if the thing is a trigger!
+                    Entity.Transform.Position = current;
+                    break;
+                }
             }
         }
 
@@ -64,9 +73,11 @@ namespace StoppingRogue.Robot
             return current + (part * (target - current));
         }
 
-        public override void Update()
+        private RigidbodyComponent physics;
+        public override void Start()
         {
-            
+            physics = Entity.Get<RigidbodyComponent>();
         }
+        public override void Update() { }
     }
 }

@@ -3,6 +3,7 @@ using StoppingRogue.Turns;
 using Stride.Core.Mathematics;
 using Stride.Engine;
 using Stride.Graphics;
+using Stride.Physics;
 using Stride.Rendering.Sprites;
 using System;
 using System.ComponentModel;
@@ -108,6 +109,12 @@ namespace StoppingRogue.Levels
                 var rc = entity.GetOrCreate<RobotController>();
                 actionController.Robot = rc;
             }
+            if(HasCollider(tile))
+            {
+                var rb = entity.GetOrCreate<RigidbodyComponent>();
+                rb.ColliderShape = new BoxColliderShape(true, new Vector3(0.45f, 0.45f, 0));
+                rb.RigidBodyType = RigidBodyTypes.Kinematic;
+            }
         }
 
         private void AddSprite(Entity entity, TileType tile)
@@ -123,6 +130,51 @@ namespace StoppingRogue.Levels
                 Sheet = GetSpriteSheet(tile),
                 CurrentFrame = GetFrame(tile)
             };
+        }
+
+        private bool HasCollider(TileType tile)
+        {
+            switch (tile)
+            {
+                case TileType.WallLower:
+                case TileType.WallLowerFancy:
+                case TileType.RightFacingWall:
+                case TileType.LeftFacingWall:
+                case TileType.BackFacingWall:
+                case TileType.Door:
+                case TileType.SlotForBox:
+                case TileType.SlotForPipe:
+                case TileType.LightSwitchWall:
+                case TileType.Mainframe:
+                case TileType.Counter:
+                case TileType.CounterEdgeLeft:
+                case TileType.CounterEdgeRight:
+                case TileType.CounterVerticalLeft:
+                case TileType.CounterVerticalRight:
+                case TileType.WoodCrate:
+                case TileType.WoodBox:
+                case TileType.MetalBox:
+                case TileType.LongPipe:
+                case TileType.LongPipeVertical:
+                case TileType.CutPipe:
+                case TileType.GlassPane:
+                case TileType.HoleInFloor:
+                case TileType.Robot:
+                    return true;
+                case TileType.None:
+                case TileType.Floor:
+                case TileType.WallUpper:
+                case TileType.WallEdgeUL:
+                case TileType.WallEdgeUR:
+                case TileType.WallEdgeLL:
+                case TileType.WallEdgeLR:
+                case TileType.OpenedDoor:
+                case TileType.PressurePlate:
+                case TileType.PressurePlateWithBox:
+                case TileType.StepOnSwitch:
+                default:
+                    return false;
+            }
         }
 
         private int GetFrame(TileType tile)
