@@ -2,13 +2,9 @@
 using Stride.Engine;
 using Stride.Graphics;
 using Stride.Physics;
-using Stride.Rendering.Colors;
-using Stride.Rendering.Lights;
 using Stride.Rendering.Sprites;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StoppingRogue.Robot
@@ -34,6 +30,7 @@ namespace StoppingRogue.Robot
             lightPhysics.ColliderShape = new BoxColliderShape(true, new Vector3(0.3f, 0.4f, 0));
             lightPhysics.RigidBodyType = RigidBodyTypes.Kinematic;
             lightPhysics.CanCollideWith = CollisionFilterGroupFlags.CustomFilter1;
+            lightPhysics.CollisionGroup = CollisionFilterGroups.CustomFilter1;
             lightPhysics.Enabled = false;
 
             Entity.AddChild(lightEntity);

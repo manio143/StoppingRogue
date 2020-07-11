@@ -1,4 +1,5 @@
 ﻿using StoppingRogue.Robot;
+using StoppingRogue.Switches;
 using StoppingRogue.Turns;
 using Stride.Core.Mathematics;
 using Stride.Engine;
@@ -116,6 +117,17 @@ namespace StoppingRogue.Levels
                 var rb = entity.GetOrCreate<RigidbodyComponent>();
                 rb.ColliderShape = new BoxColliderShape(true, new Vector3(0.45f, 0.45f, 0));
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
+            }
+            if(tile == TileType.LightSwitchWall)
+            {
+                var switchEntity = new Entity();
+                var rb = switchEntity.GetOrCreate<RigidbodyComponent>();
+                rb.ColliderShape = new BoxColliderShape(true, new Vector3(0.45f, 0.45f, 0));
+                rb.RigidBodyType = RigidBodyTypes.Kinematic;
+                rb.CollisionGroup = CollisionFilterGroups.CustomFilter1;
+                rb.CanCollideWith = CollisionFilterGroupFlags.CustomFilter1;
+                switchEntity.GetOrCreate<LightSwitch>();
+                entity.AddChild(switchEntity);
             }
         }
 

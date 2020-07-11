@@ -9,6 +9,8 @@ namespace StoppingRogue.Robot
 {
     public class RobotController : SyncScript
     {
+        public Vector2 direction;
+
         public async Task ExecuteAction(Levels.Action action)
         {
             Debug.WriteLine("Execute: {0}", action);
@@ -43,7 +45,8 @@ namespace StoppingRogue.Robot
         private const double MovementDurationInSeconds = 0.3;
         private async Task Move(float y, float x)
         {
-            robotLight.UpdateTransform(new Vector2(x, y));
+            direction = new Vector2(x, y);
+            robotLight.UpdateTransform(direction);
             var offset = new Vector3(x, y, 0);
             var current = Entity.Transform.Position;
             var target = Entity.Transform.Position + offset;

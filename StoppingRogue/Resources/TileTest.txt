@@ -1,5 +1,5 @@
 SRLD1337
-Light
+Light, Movement
 13, 10
 !WWWWWWWWWW@-
 RewwlDdwwweL-
