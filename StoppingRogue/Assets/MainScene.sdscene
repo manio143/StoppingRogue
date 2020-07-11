@@ -24,6 +24,11 @@ Hierarchy:
                         Environment: 4f450412-a673-4170-a4fd-988316e3b98c:Environment
                         Robot: 8ffaad0c-ee0e-4302-b1bf-921ee2f5fd95:Robot
                         Items: 4904f18f-4e8b-48bb-a1a3-ca4693cc922e:Items
+                    d0d4e6027c65f0ce3599de58906026f3: !StoppingRogue.Demo.DemoTurn,StoppingRogue
+                        Id: 632f6456-e3a5-4dd6-b02e-bc405b820df9
+                    ca949525f6700a76c37e9e6d332bd4fa: !StoppingRogue.Turns.TurnScript,StoppingRogue
+                        Id: b21a1eab-f5bb-4e7c-8345-03c3971bfa05
+                        Enabled: true
         -   Entity:
                 Id: e1f1c9e5-1a6d-4c72-aeef-fa0431376cdd
                 Name: Camera
