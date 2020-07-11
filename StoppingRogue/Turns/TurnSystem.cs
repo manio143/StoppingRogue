@@ -1,5 +1,7 @@
 ﻿using Stride.Core.MicroThreading;
+using Stride.Engine;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace StoppingRogue.Turns
@@ -15,6 +17,20 @@ namespace StoppingRogue.Turns
         public static async Task NextTurn()
         {
             await Channel.Receive();
+        }
+
+        public static void Enable(Scene rootScene)
+        {
+            var e = rootScene.Entities.First(e => e.Get<TurnScript>() != null);
+            var ts = e.Get<TurnScript>();
+            ts.Enabled = true;
+        }
+
+        public static void Disable(Scene rootScene)
+        {
+            var e = rootScene.Entities.First(e => e.Get<TurnScript>() != null);
+            var ts = e.Get<TurnScript>();
+            ts.Enabled = false;
         }
     }
 }
