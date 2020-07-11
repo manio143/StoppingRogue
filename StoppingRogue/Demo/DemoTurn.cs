@@ -1,6 +1,7 @@
 ﻿using StoppingRogue.Turns;
 using Stride.Core.Mathematics;
 using Stride.Engine;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace StoppingRogue.Demo
@@ -11,24 +12,15 @@ namespace StoppingRogue.Demo
         public override void Start()
         {
             Script.AddTask(Increment);
-            Script.AddTask(Print);
         }
 
         private async Task Increment()
         {
-            while(true)
+            while (true)
             {
                 await TurnSystem.NextTurn();
                 turn = TurnSystem.TurnNumber;
-            }
-        }
-
-        private async Task Print()
-        {
-            while(true)
-            {
-                await Script.NextFrame();
-                DebugText.Print($"Current turn: {turn}", new Int2(5, 5));
+                Debug.WriteLine($"Current turn: {turn}");
             }
         }
     }
