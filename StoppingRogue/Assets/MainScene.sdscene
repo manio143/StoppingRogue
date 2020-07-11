@@ -7,7 +7,23 @@ Offset: {X: 0.0, Y: 0.0, Z: 0.0}
 Hierarchy:
     RootParts:
         - ref!! e1f1c9e5-1a6d-4c72-aeef-fa0431376cdd
+        - ref!! 887442cd-a2b1-48c2-9f70-30f37fda6333
     Parts:
+        -   Entity:
+                Id: 887442cd-a2b1-48c2-9f70-30f37fda6333
+                Name: DemoInitialization
+                Components:
+                    9c1a6694f6a19e915ef201f98a3f969f: !TransformComponent
+                        Id: 2b17431f-9e4c-4dc8-ba65-9be7448e6a34
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    02f5ed621a067c26bf61f584fb9677ed: !StoppingRogue.Demo.DemoScript,StoppingRogue
+                        Id: bae62a83-71c2-4e41-9133-1ea4a88adbe9
+                        Environment: 4f450412-a673-4170-a4fd-988316e3b98c:Environment
+                        Robot: 8ffaad0c-ee0e-4302-b1bf-921ee2f5fd95:Robot
+                        Items: 4904f18f-4e8b-48bb-a1a3-ca4693cc922e:Items
         -   Entity:
                 Id: e1f1c9e5-1a6d-4c72-aeef-fa0431376cdd
                 Name: Camera
@@ -23,3 +39,5 @@ Hierarchy:
                         Name: Camera
                         Projection: Orthographic
                         Slot: 89ecca81-452b-4d9c-93c6-80e208224c9e
+                    bb9d1ca8a0ce5bb2b6969cb884bed713: !StoppingRogue.Demo.DemoCameraScript,StoppingRogue
+                        Id: b401b533-4c2e-4611-95fd-46b765a0e254

@@ -1,0 +1,194 @@
+!SpriteSheet
+Id: 4f450412-a673-4170-a4fd-988316e3b98c
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Type: Sprite2D
+ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}
+Packing: {}
+Sprites:
+    43a823946591923eb2427dae78a371d5:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: None
+        TextureRegion: {X: 192, Y: 0, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    e73b77ee791b2d3856e254b6400c1707:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: Floor
+        TextureRegion: {X: 288, Y: 192, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    a3c1801243b92673537dde3b4ba0c6d9:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: WallLower
+        TextureRegion: {X: 48, Y: 144, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    cfaa51718c5414cb63bedb04a971a2c6:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: WallLowerFancy
+        TextureRegion: {X: 288, Y: 96, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    797aa24d4309c1c457b68d7436afaede:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: WallUpper
+        TextureRegion: {X: 288, Y: 48, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    52f02552f1f0697064727fcb62205dd3:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: RightFacingWall
+        TextureRegion: {X: 192, Y: 96, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    cd48f192dd1884057f286a4926649114:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: LeftFacingWall
+        TextureRegion: {X: 336, Y: 96, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    7a9dce96f4a8bae25a3e17e038ee928a:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: WallEdgeUL
+        TextureRegion: {X: 192, Y: 48, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    91a30f45b82e65c65c3fe0851c68a056:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: WallEdgeUR
+        TextureRegion: {X: 336, Y: 48, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    6ee967c61195da616dd508439a81faa9:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: WallEdgeLL
+        TextureRegion: {X: 192, Y: 240, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    b9453dd2f4ebf09deadf73e77303d61e:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: WallEdgeLR
+        TextureRegion: {X: 336, Y: 240, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    12b439fc8274413009620bb9ae01ccb7:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: BackFacingWall
+        TextureRegion: {X: 288, Y: 240, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    aabbd9810048887c2b2331163692daa9:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: Door
+        TextureRegion: {X: 144, Y: 1152, Width: 48, Height: 96}
+        Center: {X: 24.0, Y: 72.0}
+        CenterFromMiddle: false
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    9029e0175b193d0896bbf369edf3ee18:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: OpenedDoor
+        TextureRegion: {X: 96, Y: 1152, Width: 48, Height: 96}
+        Center: {X: 24.0, Y: 72.0}
+        CenterFromMiddle: false
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    e79dac2fb141cfdf130d9a82f6aacc4c:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: PressurePlate
+        TextureRegion: {X: 311, Y: 312, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    e025c1c1c26ed5408344c9aee364ea9f:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: StepOnSwitch
+        TextureRegion: {X: 363, Y: 501, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    c8f10625ab890a53f03991ee5c528b2c:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: SlotForBox
+        TextureRegion: {X: 336, Y: 1152, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    8270954c812bd85f152ef42286c36c9f:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: SlotForPipe
+        TextureRegion: {X: 336, Y: 1152, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    047d9407af3ce29909549a010a694650:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: LightSwitchWall
+        TextureRegion: {X: 48, Y: 192, Width: 48, Height: 96}
+        Center: {X: 24.0, Y: 72.0}
+        CenterFromMiddle: false
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    0e83bbf1ac18faf8c2ce562bb8855b63:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: Mainframe
+        TextureRegion: {X: 192, Y: 1080, Width: 48, Height: 72}
+        Center: {X: 24.0, Y: 48.0}
+        CenterFromMiddle: false
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    70699a512281f3dd33530779c25d479b:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: Counter
+        TextureRegion: {X: 96, Y: 1056, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    227468d12f9ee2a6d56aa229494eae10:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: CounterEdgeLeft
+        TextureRegion: {X: 48, Y: 1056, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    4f7dbf1df0e486be020a061a1a188d70:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: CounterEdgeRight
+        TextureRegion: {X: 144, Y: 1056, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    5fc74954c215dfe08adeabff9a9573ce:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: CounterVerticalLeft
+        TextureRegion: {X: 48, Y: 1008, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    c9decab1464001b5dd51a7a9d2c062b2:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: CounterVerticalRight
+        TextureRegion: {X: 144, Y: 1008, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    46c656063676d043deed64fcadec64f1:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: HoleInFloor
+        TextureRegion: {X: 336, Y: 1152, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}

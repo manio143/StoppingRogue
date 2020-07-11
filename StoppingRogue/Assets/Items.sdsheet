@@ -1,0 +1,57 @@
+!SpriteSheet
+Id: 4904f18f-4e8b-48bb-a1a3-ca4693cc922e
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Type: Sprite2D
+ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}
+Packing: {}
+Sprites:
+    da8781c1f419734363b2dcc3f709ee8c:
+        Source: !file ../Resources/wooden_crate.png
+        Name: WoodCrate
+        TextureRegion: {X: 9, Y: 19, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    860cbed60aecf8ea53a421fcab655fad:
+        Source: !file ../Resources/box_and_glass.png
+        Name: WoodBox
+        TextureRegion: {X: 48, Y: 0, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    3ebd1ddf695fcda8e8ffd5076e041544:
+        Source: !file ../Resources/box_and_glass.png
+        Name: MetalBox
+        TextureRegion: {X: 0, Y: 0, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    cd211d20d7d5bd04117f0b0d89410849:
+        Source: !file ../Resources/box_and_glass.png
+        Name: GlassPane
+        TextureRegion: {X: 96, Y: 0, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    0fac52fd10c38d827c3fed44c69e748e:
+        Source: !file ../Resources/straight-pipe.png
+        Name: LongPipe
+        TextureRegion: {X: 48, Y: 0, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    dfc89d47623d2cad04ebc9e54beef0ab:
+        Source: !file ../Resources/straight-pipe.png
+        Name: LongPipeVertical
+        TextureRegion: {X: 96, Y: 0, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    80f55b409604d25c2cc32c370db6b7b4:
+        Source: !file ../Resources/straight-pipe.png
+        Name: CutPipe
+        TextureRegion: {X: 0, Y: 0, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}

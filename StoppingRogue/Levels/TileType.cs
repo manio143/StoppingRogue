@@ -25,8 +25,14 @@ namespace StoppingRogue.Levels
         RightFacingWall,
         [TileChar('L')]
         LeftFacingWall,
-        [TileChar('E')]
-        WallEdge,
+        [TileChar('!')]
+        WallEdgeUL,
+        [TileChar('@')]
+        WallEdgeUR,
+        [TileChar('#')]
+        WallEdgeLL,
+        [TileChar('$')]
+        WallEdgeLR,
         [TileChar(';')]
         BackFacingWall,
 
@@ -52,16 +58,16 @@ namespace StoppingRogue.Levels
 
         [TileChar('M')]
         Mainframe,
-        [TileChar('m')]
-        MainframeVertical,
         [TileChar('c')]
         Counter,
         [TileChar('x')]
         CounterEdgeLeft,
         [TileChar('X')]
         CounterEdgeRight,
-        [TileChar('C')]
-        CounterVertical,
+        [TileChar('K')]
+        CounterVerticalLeft,
+        [TileChar('k')]
+        CounterVerticalRight,
 
         [TileChar('V')]
         WoodCrate,

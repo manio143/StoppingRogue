@@ -1,0 +1,16 @@
+!SpriteSheet
+Id: 8ffaad0c-ee0e-4302-b1bf-921ee2f5fd95
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Type: Sprite2D
+ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}
+Packing: {}
+Sprites:
+    fb10047dee079efa04215b2cd7c93b36:
+        Source: !file ../Resources/Robot_root.png
+        Name: Robot
+        TextureRegion: {X: 0, Y: 0, Width: 48, Height: 72}
+        Center: {X: 24.0, Y: 48.0}
+        CenterFromMiddle: false
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
