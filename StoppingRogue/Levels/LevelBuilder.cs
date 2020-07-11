@@ -108,6 +108,8 @@ namespace StoppingRogue.Levels
             {
                 var rc = entity.GetOrCreate<RobotController>();
                 actionController.Robot = rc;
+                var rl = entity.GetOrCreate<RobotLight>();
+                rl.robotSpriteSheet = robotSheet;
             }
             if(HasCollider(tile))
             {

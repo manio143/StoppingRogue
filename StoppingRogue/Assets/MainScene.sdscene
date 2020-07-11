@@ -27,8 +27,6 @@ Hierarchy:
                     3454831ae6e74e80c5e41ce7444c978c: !StoppingRogue.Turns.TurnScript,StoppingRogue
                         Id: 214b7e6c-1f0f-427a-a351-ea5cbd5b9235
                         Enabled: true
-                    5a4f5ebf35e92ab3eb0b8a4eaaae004d: !StoppingRogue.Input.InputController,StoppingRogue
-                        Id: 01970f07-ef88-4832-a8b2-dc8c20391368
                     e8dc513b8f0403c0f285e3a62b4c354b: !StoppingRogue.DebugPhysicsShapes,StoppingRogue
                         Id: df95a37f-3ac2-4176-9c86-440991e0a170
                         RenderGroup: Group7

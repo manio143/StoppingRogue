@@ -14,3 +14,11 @@ Sprites:
         CenterFromMiddle: false
         Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
         BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    bbfaef68ec949e2dea7eac2b4e841017:
+        Source: !file ../Resources/light.png
+        Name: Light
+        TextureRegion: {X: 0, Y: 0, Width: 48, Height: 72}
+        Center: {X: 24.0, Y: 24.0}
+        CenterFromMiddle: false
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}

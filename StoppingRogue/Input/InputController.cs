@@ -31,6 +31,11 @@ namespace StoppingRogue.Input
             {
                 await Script.NextFrame();
                 downKey = Input.HasDownKeys ? Input.DownKeys.First() : downKey;
+                if (!userActions.Contains(GetAction().GetActionType()))
+                {
+                    // TODO: play mistake sound
+                    downKey = null;
+                }
             }
         }
 

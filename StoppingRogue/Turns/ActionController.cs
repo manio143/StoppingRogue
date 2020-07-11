@@ -37,7 +37,7 @@ namespace StoppingRogue.Turns
                 Levels.Action action;
                 lock (BroadcastLock)
                 {
-                    action = _action.Value.action;
+                    action = _action.HasValue ? _action.Value.action : Levels.Action.Nop;
                     _action = null;
                 }
                 if (Robot != null)

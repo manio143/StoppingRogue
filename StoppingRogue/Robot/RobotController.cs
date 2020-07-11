@@ -31,7 +31,8 @@ namespace StoppingRogue.Robot
                 case Levels.Action.ShootLaser:
                     break; //TODO
                 case Levels.Action.SwitchLight:
-                    break; //TODO
+                    robotLight.Switch();
+                    return;
                 case Levels.Action.GrabRelease:
                     break; //TODO
                 default:
@@ -42,6 +43,7 @@ namespace StoppingRogue.Robot
         private const double MovementDurationInSeconds = 0.3;
         private async Task Move(float y, float x)
         {
+            robotLight.UpdateTransform(new Vector2(x, y));
             var offset = new Vector3(x, y, 0);
             var current = Entity.Transform.Position;
             var target = Entity.Transform.Position + offset;
@@ -75,10 +77,18 @@ namespace StoppingRogue.Robot
             return current + (part * (target - current));
         }
 
+        public RobotController()
+        {
+            Priority = 10;
+        }
+
         private RigidbodyComponent physics;
+        private RobotLight robotLight;
         public override void Start()
         {
             physics = Entity.Get<RigidbodyComponent>();
+            robotLight = Entity.Get<RobotLight>();
+            robotLight.UpdateTransform(new Vector2(0, -1));
         }
         public override void Update() { }
     }
