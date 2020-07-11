@@ -4,7 +4,7 @@ namespace StoppingRogue.Levels
 {
     public enum ActionType
     {
-        Movement,
+        Movement = 1,
         Laser,
         Light,
         Hold,
@@ -40,5 +40,28 @@ namespace StoppingRogue.Levels
         }
 
         public char Character { get; }
+    }
+
+    public static class ActionExtension
+    {
+        public static ActionType GetActionType(this Action action)
+        {
+            switch (action)
+            {
+                case Action.MoveUp:
+                case Action.MoveDown:
+                case Action.MoveRight:
+                case Action.MoveLeft:
+                    return ActionType.Movement;
+                case Action.ShootLaser:
+                    return ActionType.Laser;
+                case Action.SwitchLight:
+                    return ActionType.Light;
+                case Action.GrabRelease:
+                    return ActionType.Hold;
+                default:
+                    return 0;
+            }
+        }
     }
 }

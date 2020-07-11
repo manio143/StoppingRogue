@@ -16,19 +16,29 @@ namespace StoppingRogue.Levels
         public static Level Read(string[] levelContents)
         {
             VerifyMagic(levelContents[0]);
-            GetSize(levelContents[1], out var width, out var height);
-            var tileMap = ReadTiles(width, height, levelContents[2..(3 + height)]);
-            var pattern = ReadPattern(levelContents[(2 + height)..]);
+            var userActions = GetUserActions(levelContents[1]);
+            GetSize(levelContents[2], out var width, out var height);
+            var tileMap = ReadTiles(width, height, levelContents[3..(4 + height)]);
+            var pattern = ReadPattern(levelContents[(3 + height)..]);
 
             var lvl = new Level
             {
                 Width = width,
                 Height = height,
                 Tiles = tileMap,
-                ActionPattern = pattern
+                ActionPattern = pattern,
+                UserActions = userActions,
             };
 
             return lvl;
+        }
+
+        private static ActionType[] GetUserActions(string v)
+        {
+            return v.Split(",").Select(s => s.Trim())
+                .Select(s => (ActionType)Enum.Parse(typeof(ActionType), s))
+                .Concat(new ActionType[] { 0 })
+                .ToArray();
         }
 
         private static Action[] ReadPattern(string[] v)

@@ -1,4 +1,6 @@
-﻿using StoppingRogue.Levels;
+﻿using StoppingRogue.Input;
+using StoppingRogue.Levels;
+using StoppingRogue.Robot;
 using StoppingRogue.Turns;
 using Stride.Engine;
 using Stride.Graphics;
@@ -18,11 +20,19 @@ namespace StoppingRogue.Demo
         public override void Start()
         {
             level = LevelReader.Read("Resources/TileTest.txt");
+            
             var actionController = Entity.GetOrCreate<ActionController>();
             var builder = new LevelBuilder(Environment, Robot, Items, actionController);
+            
             var scene = builder.Build(level);
-
             this.Entity.Scene.Children.Add(scene);
+
+            var robotBrain = Entity.GetOrCreate<RobotBrain>();
+            robotBrain.actions = level.ActionPattern;
+            robotBrain.userActions = level.UserActions;
+
+            var inputController = Entity.GetOrCreate<InputController>();
+            inputController.userActions = level.UserActions;
         }
     }
 }

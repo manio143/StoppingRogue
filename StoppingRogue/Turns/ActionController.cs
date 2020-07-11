@@ -10,9 +10,18 @@ namespace StoppingRogue.Turns
 {
     public class ActionController : AsyncScript
     {
-        public static EventKey<Levels.Action> ActionEvent = new EventKey<Levels.Action>(eventName: "Action");
-
-        private EventReceiver<Levels.Action> ActionReceiver = new EventReceiver<Levels.Action>(ActionEvent);
+        private static (bool user, Levels.Action action)? _action;
+        private static object BroadcastLock = new object();
+        public static void Broadcast(Levels.Action action, bool user)
+        {
+            lock(BroadcastLock)
+            {
+                if (_action == null)
+                    _action = (user, action);
+                else if(_action.Value.user && !user)
+                    _action = (user, action);
+            }
+        }
 
         public RobotController Robot;
 
@@ -25,7 +34,12 @@ namespace StoppingRogue.Turns
                 await Script.NextFrame();
                 await Script.NextFrame();
 
-                var action = await ActionReceiver.ReceiveAsync();
+                Levels.Action action;
+                lock (BroadcastLock)
+                {
+                    action = _action.Value.action;
+                    _action = null;
+                }
                 if (Robot != null)
                     await Robot.ExecuteAction(action);
             }

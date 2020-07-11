@@ -1,4 +1,5 @@
-﻿using StoppingRogue.Turns;
+﻿using StoppingRogue.Levels;
+using StoppingRogue.Turns;
 using Stride.Engine;
 using Stride.Input;
 using System.Linq;
@@ -8,15 +9,18 @@ namespace StoppingRogue.Input
 {
     public class InputController : AsyncScript
     {
-        //TODO limit actions
+        public ActionType[] userActions;
         private Keys? downKey;
         public override async Task Execute()
         {
+            this.Priority = 10;
             Script.AddTask(ProcessInput);
             while (true)
             {
                 await TurnSystem.NextTurn();
-                BroadCastAction();
+                var action = GetAction();
+                if(userActions.Contains(action.GetActionType()))
+                    ActionController.Broadcast(action, user: true);
                 downKey = null;
             }
         }
@@ -30,25 +34,26 @@ namespace StoppingRogue.Input
             }
         }
 
-        private void BroadCastAction()
+        private Action GetAction()
         {
             switch (downKey)
             {
                 case Keys.W:
-                    ActionController.ActionEvent.Broadcast(Levels.Action.MoveUp);
-                    break;
+                    return Action.MoveUp;
                 case Keys.S:
-                    ActionController.ActionEvent.Broadcast(Levels.Action.MoveDown);
-                    break;
+                    return Action.MoveDown;
                 case Keys.A:
-                    ActionController.ActionEvent.Broadcast(Levels.Action.MoveLeft);
-                    break;
+                    return Action.MoveLeft;
                 case Keys.D:
-                    ActionController.ActionEvent.Broadcast(Levels.Action.MoveRight);
-                    break;
+                    return Action.MoveRight;
+                case Keys.F:
+                    return Action.SwitchLight;
+                case Keys.L:
+                    return Action.ShootLaser;
+                case Keys.H:
+                    return Action.GrabRelease;
                 default:
-                    ActionController.ActionEvent.Broadcast(Levels.Action.Nop);
-                    break;
+                    return Action.Nop;
             }
         }
     }

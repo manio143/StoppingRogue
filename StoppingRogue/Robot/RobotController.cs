@@ -11,6 +11,7 @@ namespace StoppingRogue.Robot
     {
         public async Task ExecuteAction(Levels.Action action)
         {
+            Debug.WriteLine("Execute: {0}", action);
             switch (action)
             {
                 case Levels.Action.Nop:
@@ -38,7 +39,7 @@ namespace StoppingRogue.Robot
             }
         }
 
-        private const double MovementDurationInSeconds = 0.4;
+        private const double MovementDurationInSeconds = 0.3;
         private async Task Move(float y, float x)
         {
             var offset = new Vector3(x, y, 0);
@@ -47,14 +48,14 @@ namespace StoppingRogue.Robot
             var currentTime = Game.UpdateTime.Total;
             var targetTime = currentTime + TimeSpan.FromSeconds(MovementDurationInSeconds);
             var advancement = 0.0;
-            while(currentTime < targetTime)
+            while(targetTime - currentTime > TimeSpan.FromSeconds(0.05))
             {
                 await Script.NextFrame();
                 var diff = Game.UpdateTime.Elapsed;
                 currentTime += diff;
                 var fraction = Math.Abs(diff.TotalSeconds / MovementDurationInSeconds);
                 advancement = Math.Min(1, advancement + fraction);
-                Debug.WriteLine("F: {0}, A: {1}", fraction, advancement);
+                //Debug.WriteLine("F: {0}, A: {1}", fraction, advancement);
                 Entity.Transform.Position = Interpolate(current, target, advancement);
 
                 // If you colided with anything
@@ -62,9 +63,10 @@ namespace StoppingRogue.Robot
                 {
                     // TODO: check if the thing is a trigger!
                     Entity.Transform.Position = current;
-                    break;
+                    return;
                 }
             }
+            Entity.Transform.Position = target;
         }
 
         private Vector3 Interpolate(Vector3 current, Vector3 target, double advancement)
