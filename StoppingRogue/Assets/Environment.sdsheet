@@ -65,7 +65,7 @@ Sprites:
     91a30f45b82e65c65c3fe0851c68a056:
         Source: !file ../Resources/Yellow_free_48x48.png
         Name: WallEdgeUR
-        TextureRegion: {X: 336, Y: 48, Width: 48, Height: 48}
+        TextureRegion: {X: 0, Y: 0, Width: 0, Height: 0}
         Center: {X: 0.0, Y: 0.0}
         Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
         BorderColor: {R: 0, G: 0, B: 0, A: 0}
@@ -123,14 +123,14 @@ Sprites:
     c8f10625ab890a53f03991ee5c528b2c:
         Source: !file ../Resources/Yellow_free_48x48.png
         Name: SlotForBox
-        TextureRegion: {X: 336, Y: 1152, Width: 48, Height: 48}
+        TextureRegion: {X: 0, Y: 1200, Width: 48, Height: 48}
         Center: {X: 0.0, Y: 0.0}
         Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
         BorderColor: {R: 0, G: 0, B: 0, A: 0}
     8270954c812bd85f152ef42286c36c9f:
         Source: !file ../Resources/Yellow_free_48x48.png
         Name: SlotForPipe
-        TextureRegion: {X: 336, Y: 1152, Width: 48, Height: 48}
+        TextureRegion: {X: 48, Y: 1200, Width: 48, Height: 48}
         Center: {X: 0.0, Y: 0.0}
         Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
         BorderColor: {R: 0, G: 0, B: 0, A: 0}
@@ -189,6 +189,28 @@ Sprites:
         Source: !file ../Resources/Yellow_free_48x48.png
         Name: HoleInFloor
         TextureRegion: {X: 336, Y: 1152, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    6ee352038d63c5dc6ebcc2f8e00e5abd:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: LightSwitchWallCompleted
+        TextureRegion: {X: 0, Y: 192, Width: 48, Height: 96}
+        Center: {X: 24.0, Y: 72.0}
+        CenterFromMiddle: false
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    fdfee80aa59b77437a29fc2c813839de:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: SlotForBoxCompleted
+        TextureRegion: {X: 0, Y: 1152, Width: 48, Height: 48}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    e188643d318ecfef4d6ef1a2d2c85040:
+        Source: !file ../Resources/Yellow_free_48x48.png
+        Name: SlotForPipeCompleted
+        TextureRegion: {X: 48, Y: 1152, Width: 48, Height: 48}
         Center: {X: 0.0, Y: 0.0}
         Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
         BorderColor: {R: 0, G: 0, B: 0, A: 0}

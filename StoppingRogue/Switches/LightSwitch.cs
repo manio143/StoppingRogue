@@ -2,6 +2,7 @@
 using Stride.Core;
 using Stride.Engine;
 using Stride.Engine.Design;
+using Stride.Rendering.Sprites;
 using System;
 using System.ComponentModel;
 
@@ -17,6 +18,7 @@ namespace StoppingRogue.Switches
             get => active;
             set
             {
+                if (active) return;
                 active = value;
                 if (active)
                 {
@@ -24,7 +26,7 @@ namespace StoppingRogue.Switches
                         throw new InvalidOperationException();
                     taskComponent.Completed = true;
 
-                    //TODO: change color
+                    (Entity.GetParent().Get<SpriteComponent>().SpriteProvider as SpriteFromSheet).CurrentFrame = 26;
                 }
             }
         }
