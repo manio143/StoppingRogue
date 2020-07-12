@@ -58,6 +58,7 @@ Hierarchy:
                         Environment: 4f450412-a673-4170-a4fd-988316e3b98c:Environment
                         Robot: 8ffaad0c-ee0e-4302-b1bf-921ee2f5fd95:Robot
                         Items: 4904f18f-4e8b-48bb-a1a3-ca4693cc922e:Items
+                        Camera: ref!! e8f5aef6-e815-4a0b-855e-db9ca1f39792
                     3454831ae6e74e80c5e41ce7444c978c: !StoppingRogue.Turns.TurnScript,StoppingRogue
                         Id: 214b7e6c-1f0f-427a-a351-ea5cbd5b9235
                         Enabled: true
@@ -79,5 +80,5 @@ Hierarchy:
                         Name: Camera
                         Projection: Orthographic
                         Slot: 89ecca81-452b-4d9c-93c6-80e208224c9e
-                    bb9d1ca8a0ce5bb2b6969cb884bed713: !StoppingRogue.Demo.DemoCameraScript,StoppingRogue
-                        Id: b401b533-4c2e-4611-95fd-46b765a0e254
+                    f1a161b271bb3ced491aaa2df2c63a24: !StoppingRogue.Robot.RobotCameraFollower,StoppingRogue
+                        Id: d4f03af3-707b-4b35-a6fc-78089689efbb

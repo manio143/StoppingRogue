@@ -33,11 +33,12 @@ namespace StoppingRogue.Levels
             this.actionController = actionController;
         }
 
-        public Scene Build(Level level)
+        public Scene Build(Level level, out Entity robot)
         {
             var scene = new Scene();
             var switchSetups = new List<(Entity, bool, Int2)>();
             var doors = new Dictionary<Int2, Entity>();
+            robot = null;
             for (int line = 0; line < level.Tiles.GetLength(1); line++)
             {
                 for (int col = 0; col < level.Tiles.GetLength(0); col++)
@@ -92,6 +93,9 @@ namespace StoppingRogue.Levels
                         {
                             doors.Add(new Int2(col, line), entity);
                         }
+
+                        if (tile == TileType.Robot)
+                            robot = entity;
                     }
                 }
             }

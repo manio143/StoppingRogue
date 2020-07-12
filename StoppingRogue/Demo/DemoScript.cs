@@ -15,6 +15,7 @@ namespace StoppingRogue.Demo
         public SpriteSheet Environment { get; set; }
         public SpriteSheet Robot { get; set; }
         public SpriteSheet Items { get; set; }
+        public CameraComponent Camera { get; set; }
 
         private Level level;
         public override void Start()
@@ -24,7 +25,7 @@ namespace StoppingRogue.Demo
             var actionController = Entity.GetOrCreate<ActionController>();
             var builder = new LevelBuilder(Environment, Robot, Items, actionController);
             
-            var scene = builder.Build(level);
+            var scene = builder.Build(level, out var robot);
             this.Entity.Scene.Children.Add(scene);
 
             var robotBrain = Entity.GetOrCreate<RobotBrain>();
@@ -33,6 +34,8 @@ namespace StoppingRogue.Demo
 
             var inputController = Entity.GetOrCreate<InputController>();
             inputController.userActions = level.UserActions;
+
+            Camera.Entity.Get<RobotCameraFollower>().Robot = robot;
         }
     }
 }
