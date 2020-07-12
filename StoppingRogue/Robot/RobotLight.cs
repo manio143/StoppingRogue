@@ -34,18 +34,6 @@ namespace StoppingRogue.Robot
             lightPhysics.Enabled = false;
 
             Entity.AddChild(lightEntity);
-
-            Script.AddTask(CheckLightCollision);
-            Switch();
-        }
-
-        private async Task CheckLightCollision()
-        {
-            while(true)
-            {
-                await lightPhysics.NewCollision();
-                Debug.WriteLine("Light colided!");
-            }
         }
 
         public void Switch()

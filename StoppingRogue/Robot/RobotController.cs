@@ -36,7 +36,8 @@ namespace StoppingRogue.Robot
                     robotLight.Switch();
                     return;
                 case Levels.Action.GrabRelease:
-                    break; //TODO
+                    robotHolder.GrabRelease(direction);
+                    return;
                 default:
                     break;
             }
@@ -87,11 +88,13 @@ namespace StoppingRogue.Robot
 
         private RigidbodyComponent physics;
         private RobotLight robotLight;
+        private RobotHolder robotHolder;
         public override void Start()
         {
             physics = Entity.Get<RigidbodyComponent>();
             robotLight = Entity.Get<RobotLight>();
             robotLight.UpdateTransform(new Vector2(0, -1));
+            robotHolder = Entity.Get<RobotHolder>();
         }
         public override void Update() { }
     }

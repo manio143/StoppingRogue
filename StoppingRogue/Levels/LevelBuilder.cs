@@ -1,4 +1,5 @@
-﻿using StoppingRogue.Robot;
+﻿using StoppingRogue.Items;
+using StoppingRogue.Robot;
 using StoppingRogue.Switches;
 using StoppingRogue.Turns;
 using Stride.Core.Mathematics;
@@ -69,7 +70,6 @@ namespace StoppingRogue.Levels
                         AddComponents(entity, tile);
 
                         scene.Entities.Add(entity);
-
                     }
                 }
             }
@@ -111,23 +111,50 @@ namespace StoppingRogue.Levels
                 actionController.Robot = rc;
                 var rl = entity.GetOrCreate<RobotLight>();
                 rl.robotSpriteSheet = robotSheet;
+                entity.GetOrCreate<RobotHolder>();
             }
             if(HasCollider(tile))
             {
                 var rb = entity.GetOrCreate<RigidbodyComponent>();
-                rb.ColliderShape = new BoxColliderShape(true, new Vector3(0.45f, 0.45f, 0));
+                rb.ColliderShapes.Add(new BoxColliderShapeDesc()
+                {
+                    Is2D = true,
+                    Size = new Vector3(0.45f, 0.45f, 0),
+                });
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
+                rb.CollisionGroup = CollisionFilterGroups.DefaultFilter;
+                rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter;
             }
             if(tile == TileType.LightSwitchWall)
             {
                 var switchEntity = new Entity();
                 var rb = switchEntity.GetOrCreate<RigidbodyComponent>();
-                rb.ColliderShape = new BoxColliderShape(true, new Vector3(0.45f, 0.45f, 0));
+                rb.ColliderShapes.Add(new BoxColliderShapeDesc()
+                {
+                    Is2D = true,
+                    Size = new Vector3(0.45f, 0.45f, 0),
+                });
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
                 rb.CollisionGroup = CollisionFilterGroups.CustomFilter1;
                 rb.CanCollideWith = CollisionFilterGroupFlags.CustomFilter1;
                 switchEntity.GetOrCreate<LightSwitch>();
                 entity.AddChild(switchEntity);
+            }
+            if(IsItem(tile))
+            {
+                var holdableEntity = new Entity();
+                var rb = holdableEntity.GetOrCreate<RigidbodyComponent>();
+                rb.ColliderShapes.Add(new BoxColliderShapeDesc()
+                {
+                    Is2D = true,
+                    Size = new Vector3(0.45f, 0.45f, 0),
+                });
+                rb.RigidBodyType = RigidBodyTypes.Kinematic;
+                rb.CollisionGroup = CollisionFilterGroups.CustomFilter2;
+                rb.CanCollideWith = CollisionFilterGroupFlags.CustomFilter2;
+                var item = holdableEntity.GetOrCreate<ItemComponent>();
+                item.ItemType = GetItemType(tile);
+                entity.AddChild(holdableEntity);
             }
         }
 
@@ -188,6 +215,96 @@ namespace StoppingRogue.Levels
                 case TileType.StepOnSwitch:
                 default:
                     return false;
+            }
+        }
+        private bool IsItem(TileType tile)
+        {
+            switch (tile)
+            {
+                case TileType.WoodBox:
+                case TileType.MetalBox:
+                case TileType.CutPipe:
+                    return true;
+                case TileType.WallLower:
+                case TileType.WallLowerFancy:
+                case TileType.RightFacingWall:
+                case TileType.LeftFacingWall:
+                case TileType.BackFacingWall:
+                case TileType.Door:
+                case TileType.SlotForBox:
+                case TileType.SlotForPipe:
+                case TileType.LightSwitchWall:
+                case TileType.Mainframe:
+                case TileType.Counter:
+                case TileType.CounterEdgeLeft:
+                case TileType.CounterEdgeRight:
+                case TileType.CounterVerticalLeft:
+                case TileType.CounterVerticalRight:
+                case TileType.WoodCrate:
+                case TileType.LongPipe:
+                case TileType.LongPipeVertical:
+                case TileType.GlassPane:
+                case TileType.HoleInFloor:
+                case TileType.Robot:
+                case TileType.None:
+                case TileType.Floor:
+                case TileType.WallUpper:
+                case TileType.WallEdgeUL:
+                case TileType.WallEdgeUR:
+                case TileType.WallEdgeLL:
+                case TileType.WallEdgeLR:
+                case TileType.OpenedDoor:
+                case TileType.PressurePlate:
+                case TileType.PressurePlateWithBox:
+                case TileType.StepOnSwitch:
+                default:
+                    return false;
+            }
+        }
+        private Item GetItemType(TileType tile)
+        {
+            switch (tile)
+            {
+                case TileType.WoodBox:
+                    return Item.WoodBox;
+                case TileType.MetalBox:
+                    return Item.MetalBox;
+                case TileType.CutPipe:
+                    return Item.CutPipe;
+                case TileType.WallLower:
+                case TileType.WallLowerFancy:
+                case TileType.RightFacingWall:
+                case TileType.LeftFacingWall:
+                case TileType.BackFacingWall:
+                case TileType.Door:
+                case TileType.SlotForBox:
+                case TileType.SlotForPipe:
+                case TileType.LightSwitchWall:
+                case TileType.Mainframe:
+                case TileType.Counter:
+                case TileType.CounterEdgeLeft:
+                case TileType.CounterEdgeRight:
+                case TileType.CounterVerticalLeft:
+                case TileType.CounterVerticalRight:
+                case TileType.WoodCrate:
+                case TileType.LongPipe:
+                case TileType.LongPipeVertical:
+                case TileType.GlassPane:
+                case TileType.HoleInFloor:
+                case TileType.Robot:
+                case TileType.None:
+                case TileType.Floor:
+                case TileType.WallUpper:
+                case TileType.WallEdgeUL:
+                case TileType.WallEdgeUR:
+                case TileType.WallEdgeLL:
+                case TileType.WallEdgeLR:
+                case TileType.OpenedDoor:
+                case TileType.PressurePlate:
+                case TileType.PressurePlateWithBox:
+                case TileType.StepOnSwitch:
+                default:
+                    throw new InvalidOperationException();
             }
         }
 

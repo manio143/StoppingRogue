@@ -1,9 +1,9 @@
 SRLD1337
-Light, Movement
+Light, Movement, Hold
 13, 10
 !WWWWWWWWWW@-
 RewwlDdwwweL-
-R       K kL-
+R  B    K kL-
 RrH     xMXL-
 RVVV       L-
 RPP       GL-
@@ -11,4 +11,4 @@ R    BQ    L-
 RpUY    TJFL-
 Rp    v    L-
 #;;;;;;;;;;$-
-WD-DS-DS-DD-WL-SS-AH-AA-AS-H
+--------------
