@@ -30,6 +30,8 @@ namespace StoppingRogue.Robot
                 Is2D = true,
                 Size = new Vector3(0.2f, 0.2f, 0),
             });
+            rigidBody.CollisionGroup = CollisionFilterGroups.DefaultFilter;
+            rigidBody.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter;
 
             var logic = projectile.GetOrCreate<ProjectileComponent>();
             logic.direction = direction;

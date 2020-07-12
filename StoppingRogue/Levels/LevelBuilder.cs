@@ -218,6 +218,30 @@ namespace StoppingRogue.Levels
                     expl.PostExplosion += () => entity.Scene = null;
                 }
             }
+            if(tile == TileType.PressurePlate || tile == TileType.StepOnSwitch)
+            {
+                var switchComp = entity.GetOrCreate<SwitchComponent>();
+                // switchComp.OnSwitch...
+                // if inverted pressureplate switchComp.Positive = false
+                if(tile == TileType.PressurePlate)
+                {
+                    entity.GetOrCreate<PressurePlate>();
+                }
+                else
+                {
+                    entity.GetOrCreate<StepOnSwitch>();
+                }
+
+                var rb = entity.GetOrCreate<RigidbodyComponent>();
+                rb.ColliderShapes.Add(new BoxColliderShapeDesc()
+                {
+                    Is2D = true,
+                    Size = new Vector3(0.45f, 0.45f, 0),
+                });
+                rb.RigidBodyType = RigidBodyTypes.Kinematic;
+                rb.CollisionGroup = CollisionFilterGroups.SensorTrigger;
+                rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter;
+            }
         }
 
         private void AddSprite(Entity entity, TileType tile)

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System;
 using System.Diagnostics;
 using Stride.Physics;
+using System.Linq;
 
 namespace StoppingRogue.Robot
 {
@@ -72,7 +73,9 @@ namespace StoppingRogue.Robot
                 // If you colided with anything
                 if(physics.Collisions.Count > 0)
                 {
-                    // TODO: check if the thing is a trigger!
+                    if (physics.Collisions.All(c => c.ColliderA.CollisionGroup == CollisionFilterGroups.SensorTrigger || c.ColliderB.CollisionGroup == CollisionFilterGroups.SensorTrigger))
+                        continue;
+
                     Entity.Transform.Position = current;
                     IsMoving = false;
                     return;
