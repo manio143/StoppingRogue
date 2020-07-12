@@ -10,8 +10,11 @@ using Stride.Graphics;
 using Stride.Physics;
 using Stride.Rendering.Sprites;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace StoppingRogue.Levels
 {
@@ -33,6 +36,8 @@ namespace StoppingRogue.Levels
         public Scene Build(Level level)
         {
             var scene = new Scene();
+            var switchSetups = new List<(Entity, bool, Int2)>();
+            var doors = new Dictionary<Int2, Entity>();
             for (int line = 0; line < level.Tiles.GetLength(1); line++)
             {
                 for (int col = 0; col < level.Tiles.GetLength(0); col++)
@@ -53,10 +58,15 @@ namespace StoppingRogue.Levels
 
                         scene.Entities.Add(plate);
                         scene.Entities.Add(box);
+                        if (level.SwitchMapping.ContainsKey(new Int2(col, line)))
+                        {
+                            var (p, d) = level.SwitchMapping[new Int2(col, line)];
+                            switchSetups.Add((plate, p, d));
+                        }
                     }
                     else
                     {
-                        if(IsMovable(tile))
+                        if (IsMovable(tile))
                         {
                             var floor = new Entity();
                             SetPosition(floor, col, line);
@@ -73,9 +83,33 @@ namespace StoppingRogue.Levels
                         AddComponents(entity, tile);
 
                         scene.Entities.Add(entity);
+                        if (level.SwitchMapping.ContainsKey(new Int2(col, line)))
+                        {
+                            var (p, d) = level.SwitchMapping[new Int2(col, line)];
+                            switchSetups.Add((entity, p, d));
+                        }
+                        else if (level.SwitchMapping.Any(kvp => kvp.Value.Item2 == new Int2(col, line)))
+                        {
+                            doors.Add(new Int2(col, line), entity);
+                        }
                     }
                 }
             }
+
+            foreach (var (swe, pos, dp) in switchSetups)
+            {
+                var swit = swe.Get<SwitchComponent>();
+                if (swit == null)
+                    throw new InvalidDataException();
+                swit.Positive = pos;
+                var door = doors[dp].Get<DoorComponent>();
+                if (door == null)
+                    throw new InvalidDataException();
+                swit.OnSwitch += (b) => { 
+                    if (b) door.Open(); else door.Close(); 
+                };
+            }
+
             return scene;
         }
 
@@ -147,7 +181,7 @@ namespace StoppingRogue.Levels
             {
                 var door = entity.GetOrCreate<DoorComponent>();
             }
-            if(tile == TileType.LightSwitchWall)
+            if (tile == TileType.LightSwitchWall)
             {
                 var switchEntity = new Entity();
                 var rb = switchEntity.GetOrCreate<RigidbodyComponent>();
@@ -159,14 +193,14 @@ namespace StoppingRogue.Levels
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
                 rb.CollisionGroup = CollisionFilterGroups.CustomFilter1;
                 rb.CanCollideWith = CollisionFilterGroupFlags.CustomFilter1;
-                
+
                 var ls = switchEntity.GetOrCreate<LightSwitch>();
                 var task = switchEntity.GetOrCreate<TaskComponent>();
                 task.Type = TaskType.SwitchLightOn;
                 ls.taskComponent = task;
                 entity.AddChild(switchEntity);
             }
-            if(IsItem(tile))
+            if (IsItem(tile))
             {
                 var holdableEntity = new Entity();
                 var rb = holdableEntity.GetOrCreate<RigidbodyComponent>();
@@ -182,7 +216,7 @@ namespace StoppingRogue.Levels
                 item.ItemType = GetItemType(tile);
                 entity.AddChild(holdableEntity);
             }
-            if(IsDestructible(tile))
+            if (IsDestructible(tile))
             {
                 var destr = entity.GetOrCreate<DestructableComponent>();
 
@@ -190,7 +224,7 @@ namespace StoppingRogue.Levels
                 destr.OnDestruct += expl.Explode;
                 destr.OnDestruct += () => Debug.WriteLine($"Entity '{entity.Name}' destroyed");
 
-                if(tile == TileType.Mainframe)
+                if (tile == TileType.Mainframe)
                 {
                     var mf = entity.GetOrCreate<MainframeComponent>();
                     var task = entity.GetOrCreate<TaskComponent>();
@@ -218,12 +252,12 @@ namespace StoppingRogue.Levels
                     expl.PostExplosion += () => entity.Scene = null;
                 }
             }
-            if(tile == TileType.PressurePlate || tile == TileType.StepOnSwitch)
+            if (tile == TileType.PressurePlate || tile == TileType.StepOnSwitch)
             {
                 var switchComp = entity.GetOrCreate<SwitchComponent>();
                 // switchComp.OnSwitch...
                 // if inverted pressureplate switchComp.Positive = false
-                if(tile == TileType.PressurePlate)
+                if (tile == TileType.PressurePlate)
                 {
                     entity.GetOrCreate<PressurePlate>();
                 }

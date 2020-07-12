@@ -1,6 +1,5 @@
 ﻿using StoppingRogue.Robot;
 using Stride.Engine;
-using Stride.Graphics;
 using Stride.Core.Mathematics;
 using Stride.Physics;
 using System;
@@ -27,6 +26,8 @@ namespace StoppingRogue.Switches
             var sprite = Entity.Get<SpriteComponent>().SpriteProvider as SpriteFromSheet;
             sprite.CurrentFrame = 13;
 
+            //TODO door sound
+
         }
         public void Close()
         {
@@ -42,6 +43,8 @@ namespace StoppingRogue.Switches
 
             var sprite = Entity.Get<SpriteComponent>().SpriteProvider as SpriteFromSheet;
             sprite.CurrentFrame = 12;
+            
+            //TODO door sound
         }
 
         public override async Task Execute()

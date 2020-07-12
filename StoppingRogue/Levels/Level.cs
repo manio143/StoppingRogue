@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Stride.Core.Mathematics;
 using System.Collections.Generic;
-using System.Text;
 
 namespace StoppingRogue.Levels
 {
@@ -11,5 +10,6 @@ namespace StoppingRogue.Levels
         public TileType[,] Tiles;
         public Action[] ActionPattern;
         public ActionType[] UserActions;
+        public Dictionary<Int2,(bool,Int2)> SwitchMapping;
     }
 }

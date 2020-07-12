@@ -10,11 +10,12 @@ namespace StoppingRogue.Switches
     {
         public bool Positive { get; set; } = true;
         public event Action<bool> OnSwitch;
-        public bool State { get; set; }
+        public bool State { get; private set; }
 
         public void Switch()
         {
             Debug.WriteLine($"Switch toggled on '{Entity.Name}'");
+            State = !State;
             if (Positive)
                 OnSwitch?.Invoke(State);
             else

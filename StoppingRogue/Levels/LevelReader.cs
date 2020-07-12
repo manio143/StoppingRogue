@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Stride.Core.Mathematics;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,7 +20,8 @@ namespace StoppingRogue.Levels
             var userActions = GetUserActions(levelContents[1]);
             GetSize(levelContents[2], out var width, out var height);
             var tileMap = ReadTiles(width, height, levelContents[3..(4 + height)]);
-            var pattern = ReadPattern(levelContents[(3 + height)..]);
+            var switchLogic = ReadSwitchLogic(levelContents[3 + height]);
+            var pattern = ReadPattern(levelContents[(4 + height)..]);
 
             var lvl = new Level
             {
@@ -28,9 +30,33 @@ namespace StoppingRogue.Levels
                 Tiles = tileMap,
                 ActionPattern = pattern,
                 UserActions = userActions,
+                SwitchMapping = switchLogic,
             };
 
             return lvl;
+        }
+
+        private static Dictionary<Int2, (bool, Int2)> ReadSwitchLogic(string v)
+        {
+            var dict = new Dictionary<Int2, (bool, Int2)>();
+            foreach(var (position,positive,door) in v.Split(";").Select(s => {
+                s = s.Trim();
+                var positive_ = s.Contains('+');
+                var split = positive_ ? s.Split('+') : s.Split('-');
+                return (ReadInt2(split[0]), positive_, ReadInt2(split[1]));
+                }))
+            {
+                dict.Add(position, (positive, door));
+            }
+            return dict;
+        }
+
+        private static Int2 ReadInt2(string v)
+        {
+            var split = v.Split(',');
+            var x = Int32.Parse(split[0].Substring(1));
+            var y = Int32.Parse(split[1].Substring(0, split[1].Length - 1));
+            return new Int2(x, y);
         }
 
         private static ActionType[] GetUserActions(string v)
