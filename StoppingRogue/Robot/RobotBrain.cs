@@ -12,16 +12,19 @@ namespace StoppingRogue.Robot
         public ActionType[] userActions;
         public Levels.Action[] actions;
         private int index;
-        private int cycle;
+
+        public int Cycles { get; private set; }
         public override async Task Execute()
         {
             this.Priority = 30;
             while (true)
             {
-                await TurnSystem.NextTurn();
+                NextAction = GetAction();
+                if (await TurnSystem.NextTurn())
+                    continue;
                 await Script.NextFrame();
 
-                var action = GetAction();
+                var action = NextAction;
                 if (action != Levels.Action.Nop)
                     ActionController.Broadcast(action, user: false);
                 IncrementIndex();
@@ -29,9 +32,12 @@ namespace StoppingRogue.Robot
         }
 
         private static Random random = new Random();
+
+        public Levels.Action NextAction { get; private set; }
+
         private Levels.Action GetAction()
         {
-            var probability = GetProbability(cycle);
+            var probability = GetProbability(Cycles);
             if (random.NextDouble() < probability)
             {
                 var values = Enum.GetValues(typeof(Levels.Action));
@@ -43,10 +49,16 @@ namespace StoppingRogue.Robot
             }
         }
 
+        public void Reset()
+        {
+            Cycles = 0;
+            index = 0;
+        }
+
         private double GetProbability(int cycle)
         {
             cycle = Math.Min(10, cycle);
-            return cycle * 0.05;
+            return cycle * 0.04;
         }
 
         private void IncrementIndex()
@@ -55,7 +67,7 @@ namespace StoppingRogue.Robot
             if (index >= actions.Length)
             {
                 index = 0;
-                cycle++;
+                Cycles++;
             }
         }
     }

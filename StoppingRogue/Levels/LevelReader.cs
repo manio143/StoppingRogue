@@ -39,11 +39,11 @@ namespace StoppingRogue.Levels
         private static Dictionary<Int2, (bool, Int2)> ReadSwitchLogic(string v)
         {
             var dict = new Dictionary<Int2, (bool, Int2)>();
-            foreach(var (position,positive,door) in v.Split(";").Select(s => {
+            foreach(var (position,positive,door) in v.Split(";", StringSplitOptions.RemoveEmptyEntries).Select(s => {
                 s = s.Trim();
                 var positive_ = s.Contains('+');
                 var split = positive_ ? s.Split('+') : s.Split('-');
-                return (ReadInt2(split[0]), positive_, ReadInt2(split[1]));
+                return (ReadInt2(split[0].Trim()), positive_, ReadInt2(split[1].Trim()));
                 }))
             {
                 dict.Add(position, (positive, door));
@@ -54,8 +54,8 @@ namespace StoppingRogue.Levels
         private static Int2 ReadInt2(string v)
         {
             var split = v.Split(',');
-            var x = Int32.Parse(split[0].Substring(1));
-            var y = Int32.Parse(split[1].Substring(0, split[1].Length - 1));
+            var x = Int32.Parse(split[0].Substring(1).Trim());
+            var y = Int32.Parse(split[1].Substring(0, split[1].Length - 1).Trim());
             return new Int2(x, y);
         }
 
@@ -138,7 +138,7 @@ namespace StoppingRogue.Levels
 
         private static void VerifyMagic(string v)
         {
-            if (v != "SRLD1337")
+            if (v.Trim() != "SRLD1337")
                 throw new InvalidDataException("Invalid Magic string for level.");
         }
     }

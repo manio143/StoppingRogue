@@ -1,0 +1,155 @@
+!UIPageAsset
+Id: e731ca5f-378d-486e-9398-10aee0776e88
+SerializedVersion: {Stride: 2.1.0.1}
+Tags: []
+Design:
+    Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
+Hierarchy:
+    RootParts:
+        - !StackPanel ref!! 4e5dde1a-15d4-4e49-a14a-f69b03b0cee3
+    Parts:
+        -   UIElement: !UniformGrid
+                Id: 11710b75-4568-40f5-9b5b-6cf8c7794cf1
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {Top: 15.0, Bottom: 30.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Children:
+                    54ad0eb6382f205e67883b27cb2bb4ad: !ImageElement ref!! fd530b43-5423-4009-8066-f5cb3f955ab7
+                    d4e9088a2e32920021394d70f8460d09: !ImageElement ref!! 52329fe9-4227-43b0-9a82-a6d1f8f6e2ec
+                    cf9c871ddc1acc820e4c5fae7e19d454: !ImageElement ref!! a27cfca1-d76f-42a0-a0b3-3710d434eb1b
+                    07f4dc7649dee0e1ebe11d7cb6f2d019: !ImageElement ref!! 5df53983-5159-4423-98c4-d596ce692b07
+                    8bf46daab1569abe4b6ac570fbe71eea: !ImageElement ref!! dad7bd6f-4835-411e-b786-d5004a216ad6
+                Columns: 5
+        -   UIElement: !TextBlock
+                Id: 24785e7b-98e2-4a3e-8fc4-a33f64ac9d83
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {Bottom: 30.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: Results
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 40.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+                TextAlignment: Center
+        -   UIElement: !StackPanel
+                Id: 4e5dde1a-15d4-4e49-a14a-f69b03b0cee3
+                DependencyProperties: {}
+                BackgroundColor: {R: 72, G: 48, B: 22, A: 170}
+                Width: 400.0
+                Height: 400.0
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Children:
+                    5bb4b43516d5b9a75127ed98d5b59f8b: !TextBlock ref!! 24785e7b-98e2-4a3e-8fc4-a33f64ac9d83
+                    5ec6deba5993cd25c6cf0695d7e017db: !TextBlock ref!! c28ecfff-8888-48ab-b4e2-b904e4088f10
+                    9928811906a535d7874330d3fd74f444: !UniformGrid ref!! 11710b75-4568-40f5-9b5b-6cf8c7794cf1
+                    12e5cf0efa1c882f781d799bc52b589e: !Button ref!! d30be97d-65b8-4e2a-b8aa-85a5b77ff89f
+        -   UIElement: !ImageElement
+                Id: 52329fe9-4227-43b0-9a82-a6d1f8f6e2ec
+                DependencyProperties:
+                    b833f9a191d5f2ebef5e4f0c1f37d3b0~GridBase.ColumnPropertyKey: 1
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Source: !SpriteFromSheet
+                    Sheet: null
+                    CurrentFrame: 6
+                Color: {R: 255, G: 255, B: 255, A: 255}
+                StretchType: None
+        -   UIElement: !ImageElement
+                Id: 5df53983-5159-4423-98c4-d596ce692b07
+                DependencyProperties:
+                    0a2952e79ad256b3fa9bb7965062a9ba~GridBase.ColumnPropertyKey: 3
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Color: {R: 255, G: 255, B: 255, A: 255}
+        -   UIElement: !TextBlock
+                Id: 96cc0a1b-4c2f-4a7d-a2c0-5116a8644695
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: Continue
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !ImageElement
+                Id: a27cfca1-d76f-42a0-a0b3-3710d434eb1b
+                DependencyProperties:
+                    9902ffe5f24d7ee48af94dcd46794856~GridBase.ColumnPropertyKey: 2
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Color: {R: 255, G: 255, B: 255, A: 255}
+        -   UIElement: !TextBlock
+                Id: c28ecfff-8888-48ab-b4e2-b904e4088f10
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {Left: 10.0, Right: 10.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: Description - how did it go
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+                WrapText: true
+        -   UIElement: !Button
+                Id: d30be97d-65b8-4e2a-b8aa-85a5b77ff89f
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                DrawLayerNumber: 2
+                Width: 180.0
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Content: !TextBlock ref!! 96cc0a1b-4c2f-4a7d-a2c0-5116a8644695
+                PressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 12
+                NotPressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+                MouseOverImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+        -   UIElement: !ImageElement
+                Id: dad7bd6f-4835-411e-b786-d5004a216ad6
+                DependencyProperties:
+                    a9489d59a65dc08a43dba70676debbe4~GridBase.ColumnPropertyKey: 4
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Color: {R: 255, G: 255, B: 255, A: 255}
+        -   UIElement: !ImageElement
+                Id: fd530b43-5423-4009-8066-f5cb3f955ab7
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Source: !SpriteFromSheet
+                    Sheet: null
+                Color: {R: 255, G: 255, B: 255, A: 255}

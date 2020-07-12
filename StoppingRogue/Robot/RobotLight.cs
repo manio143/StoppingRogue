@@ -37,6 +37,7 @@ namespace StoppingRogue.Robot
             lightPhysics.Enabled = false;
 
             Entity.AddChild(lightEntity);
+            EnabledState = false;
         }
 
         public void Switch()

@@ -10,7 +10,26 @@ Hierarchy:
         - ref!! 887442cd-a2b1-48c2-9f70-30f37fda6333
         - ref!! 664dee53-bcbc-4a84-9568-19d886f0cc3b
         - ref!! 11a5df00-f50d-4773-8cc6-e9d380220f41
+        - ref!! 7b7bdb57-7e41-4281-830b-39a54ef5bc70
+        - ref!! 056930d0-a6fa-4b9c-a3f1-57af39541ad2
     Parts:
+        -   Entity:
+                Id: 056930d0-a6fa-4b9c-a3f1-57af39541ad2
+                Name: Loader
+                Components:
+                    1f601dc770b219f619d3307424ab5a9a: !TransformComponent
+                        Id: 27848749-0c43-40d2-9be1-1131ce68280e
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    71afaa34bd779422393762ae8f5b8f3b: !StoppingRogue.Levels.LevelSelection,StoppingRogue
+                        Id: 2f14e40f-cc1d-409d-ba5a-cf184e2fce74
+                        Environment: 4f450412-a673-4170-a4fd-988316e3b98c:Environment
+                        Robot: 8ffaad0c-ee0e-4302-b1bf-921ee2f5fd95:Robot
+                        Items: 4904f18f-4e8b-48bb-a1a3-ca4693cc922e:Items
+                        Camera: ref!! e8f5aef6-e815-4a0b-855e-db9ca1f39792
+                        UIScript: ref!! 43553b8e-7eb3-4705-8a7a-2e7dc65ba310
         -   Entity:
                 Id: 11a5df00-f50d-4773-8cc6-e9d380220f41
                 Name: Skybox light
@@ -40,9 +59,30 @@ Hierarchy:
                         Children: {}
                     36f407a1267cd046b1f4c93873665798: !UIComponent
                         Id: 67435fe9-5461-4c07-8e59-23cb19f35fe6
-                        Page: d7d484f0-0137-4b69-9d28-826e8a887d01:GamePage
+                        Page: null
                         Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
                         Size: {X: 1.28, Y: 0.72, Z: 1.0}
+                    79c48a7a74834f22710dab84b2a137fe: !StoppingRogue.UIScript,StoppingRogue
+                        Id: 43553b8e-7eb3-4705-8a7a-2e7dc65ba310
+                        GamePage: d7d484f0-0137-4b69-9d28-826e8a887d01:GamePage
+                        GameResult: e731ca5f-378d-486e-9398-10aee0776e88:GameResult
+                        LevelSelection: a8e16e49-fc15-4bed-93bc-0b4800a564b8:LevelSelection
+                        UISheet: null
+                        Loader: ref!! 2f14e40f-cc1d-409d-ba5a-cf184e2fce74
+                        NumberOfLevels: 5
+        -   Entity:
+                Id: 7b7bdb57-7e41-4281-830b-39a54ef5bc70
+                Name: TurnSystem
+                Components:
+                    b8a7c7825171b37a9383dd7ee99bc34c: !TransformComponent
+                        Id: 556485a8-9ae4-4a7a-9eee-4a4685f38fac
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    0085feaf3153ae0e815903701bf39dbd: !StoppingRogue.Turns.TurnScript,StoppingRogue
+                        Id: 0d3d8030-3d58-4ac6-ba8d-84dfbc3f919a
+                        Enabled: false
         -   Entity:
                 Id: 887442cd-a2b1-48c2-9f70-30f37fda6333
                 Name: DemoInitialization
@@ -53,15 +93,6 @@ Hierarchy:
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
-                    02f5ed621a067c26bf61f584fb9677ed: !StoppingRogue.Demo.DemoScript,StoppingRogue
-                        Id: bae62a83-71c2-4e41-9133-1ea4a88adbe9
-                        Environment: 4f450412-a673-4170-a4fd-988316e3b98c:Environment
-                        Robot: 8ffaad0c-ee0e-4302-b1bf-921ee2f5fd95:Robot
-                        Items: 4904f18f-4e8b-48bb-a1a3-ca4693cc922e:Items
-                        Camera: ref!! e8f5aef6-e815-4a0b-855e-db9ca1f39792
-                    3454831ae6e74e80c5e41ce7444c978c: !StoppingRogue.Turns.TurnScript,StoppingRogue
-                        Id: 214b7e6c-1f0f-427a-a351-ea5cbd5b9235
-                        Enabled: true
                     e8dc513b8f0403c0f285e3a62b4c354b: !StoppingRogue.DebugPhysicsShapes,StoppingRogue
                         Id: df95a37f-3ac2-4176-9c86-440991e0a170
                         RenderGroup: Group7

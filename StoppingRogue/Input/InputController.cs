@@ -10,6 +10,8 @@ namespace StoppingRogue.Input
     public class InputController : AsyncScript
     {
         public ActionType[] userActions;
+        public Action NextAction { get; private set; }
+
         private Keys? downKey;
         public override async Task Execute()
         {
@@ -17,8 +19,9 @@ namespace StoppingRogue.Input
             Script.AddTask(ProcessInput);
             while (true)
             {
-                await TurnSystem.NextTurn();
-                var action = GetAction();
+                if (await TurnSystem.NextTurn())
+                    continue;
+                var action = NextAction;
                 if(userActions.Contains(action.GetActionType()))
                     ActionController.Broadcast(action, user: true);
                 downKey = null;
@@ -36,6 +39,7 @@ namespace StoppingRogue.Input
                     // TODO: play mistake sound
                     downKey = null;
                 }
+                NextAction = GetAction();
             }
         }
 

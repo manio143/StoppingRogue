@@ -8,15 +8,21 @@ namespace StoppingRogue.Turns
 {
     public static class TurnSystem
     {
-        public static readonly TimeSpan TurnLength = TimeSpan.FromSeconds(1.0 / 2.5);
+        public static readonly TimeSpan TurnLength = TimeSpan.FromSeconds(.6);
         public static int TurnNumber { get; internal set; }
         public static TimeSpan RemainingTime { get; internal set; }
 
-        internal static Channel<bool> Channel { get; } =
-        new Channel<bool> { Preference = ChannelPreference.PreferSender };
-        public static async Task NextTurn()
+        internal static Channel<bool> Channel { get; private set; }
+        public static ChannelMicroThreadAwaiter<bool> NextTurn()
         {
-            await Channel.Receive();
+            return Channel.Receive();
+        }
+
+        public static void Reset()
+        {
+            while (Channel?.Balance < 0)
+                Channel?.Send(true);
+            Channel = new Channel<bool> { Preference = ChannelPreference.PreferSender };
         }
 
         public static void Enable(Scene rootScene)

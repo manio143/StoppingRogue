@@ -30,7 +30,8 @@ namespace StoppingRogue.Turns
             this.Priority = 50;
             while(true)
             {
-                await TurnSystem.NextTurn();
+                if (await TurnSystem.NextTurn())
+                    continue;
                 await Script.NextFrame();
                 await Script.NextFrame();
 

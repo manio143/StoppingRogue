@@ -14,4 +14,7 @@ OutputGroupDirectories: {}
 ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
-RootAssets: []
+RootAssets:
+    - 3b72c188-61f7-4cdc-bb86-006d7e427850:LVL3
+    - d74ff731-8692-4401-9b85-3d31ff4be9bb:LVL2
+    - e130c39c-2324-44c1-a45f-7a78c943fc43:LVL1

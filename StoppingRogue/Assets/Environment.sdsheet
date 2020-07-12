@@ -207,7 +207,7 @@ Sprites:
         Center: {X: 0.0, Y: 0.0}
         Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
         BorderColor: {R: 0, G: 0, B: 0, A: 0}
-    e188643d318ecfef4d6ef1a2d2c85040:
+    e288643d318ecfef4d6ef1a2d2c85040:
         Source: !file ../Resources/Yellow_free_48x48.png
         Name: SlotForPipeCompleted
         TextureRegion: {X: 48, Y: 1152, Width: 48, Height: 48}

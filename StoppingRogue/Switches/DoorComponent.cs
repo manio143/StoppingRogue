@@ -8,7 +8,7 @@ using Stride.Rendering.Sprites;
 
 namespace StoppingRogue.Switches
 {
-    public class DoorComponent : AsyncScript
+    public class DoorComponent : ScriptComponent
     {
         public void Open()
         {
@@ -45,34 +45,6 @@ namespace StoppingRogue.Switches
             sprite.CurrentFrame = 12;
             
             //TODO door sound
-        }
-
-        public override async Task Execute()
-        {
-            var physics = Entity.Get<RigidbodyComponent>();
-            while(true)
-            {
-                var collision = await physics.NewCollision();
-
-                if (collision.ColliderA.CollisionGroup != CollisionFilterGroups.SensorTrigger
-                    && collision.ColliderB.CollisionGroup != CollisionFilterGroups.SensorTrigger)
-                    continue;
-
-                var other = collision.ColliderA == physics ? collision.ColliderB.Entity : collision.ColliderA.Entity;
-
-                var robotCtrl = other.Get<RobotController>();
-                if (robotCtrl == null)
-                    continue;
-
-                var offset = robotCtrl.direction.Y;
-                if (offset > 0) offset *= 2;
-                else offset -= 0.5f;
-                var targetY = (float)Math.Round(other.Transform.Position.Y + offset);
-                while (robotCtrl.IsMoving)
-                    await Script.NextFrame();
-
-                other.Transform.Position.Y = targetY;
-            }
         }
     }
 }

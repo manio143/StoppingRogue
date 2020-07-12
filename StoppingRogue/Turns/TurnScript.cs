@@ -15,11 +15,14 @@ namespace StoppingRogue.Turns
 
             var currentTime = Game.UpdateTime.Total;
             var diff = currentTime - lastTurn;
+            if (diff > TimeSpan.FromSeconds(1))
+                diff = TimeSpan.FromSeconds(1);
             if (diff > TurnSystem.TurnLength)
             {
                 lastTurn = currentTime;
                 TurnSystem.TurnNumber++;
-                TurnSystem.Channel.Send(false);
+                while(TurnSystem.Channel.Balance < 0)
+                    TurnSystem.Channel.Send(false);
                 TurnSystem.RemainingTime -= diff;
             }
         }

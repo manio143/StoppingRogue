@@ -76,3 +76,24 @@ Sprites:
         Center: {X: 0.0, Y: 0.0}
         Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
         BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    2de729139ae83f6e10aefdb697969219:
+        Source: !file ../Resources/UIElements.png
+        Name: Star
+        TextureRegion: {X: 200, Y: 25, Width: 25, Height: 25}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    119bfdf57ac2205845260a6dae778c9b:
+        Source: !file ../Resources/UIElements.png
+        Name: ButtonActive
+        TextureRegion: {X: 0, Y: 100, Width: 100, Height: 50}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    44981dc658982f022cd64a6a6af26257:
+        Source: !file ../Resources/UIElements.png
+        Name: ButtonInactive
+        TextureRegion: {X: 100, Y: 100, Width: 100, Height: 50}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}

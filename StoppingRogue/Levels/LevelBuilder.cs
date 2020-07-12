@@ -47,12 +47,12 @@ namespace StoppingRogue.Levels
                     if (tile == TileType.PressurePlateWithBox)
                     {
                         var plate = new Entity();
-                        SetPosition(plate, col, line);
+                        SetPosition(plate, col, line, tile);
                         plate.Name = $"({col}, {line}) {TileType.PressurePlate}";
                         AddComponents(plate, TileType.PressurePlate);
 
                         var box = new Entity();
-                        SetPosition(box, col, line);
+                        SetPosition(box, col, line, tile);
                         box.Name = $"({col}, {line}) {TileType.WoodBox}";
                         AddComponents(box, TileType.WoodBox);
                         //TODO: box may need Z higher
@@ -70,7 +70,7 @@ namespace StoppingRogue.Levels
                         if (IsMovable(tile))
                         {
                             var floor = new Entity();
-                            SetPosition(floor, col, line);
+                            SetPosition(floor, col, line, tile);
                             floor.Name = $"({col}, {line}) {TileType.Floor}";
 
                             AddComponents(floor, TileType.Floor);
@@ -78,7 +78,7 @@ namespace StoppingRogue.Levels
                             scene.Entities.Add(floor);
                         }
                         var entity = new Entity();
-                        SetPosition(entity, col, line);
+                        SetPosition(entity, col, line, tile);
                         entity.Name = $"({col}, {line}) {tile}";
 
                         AddComponents(entity, tile);
@@ -135,10 +135,10 @@ namespace StoppingRogue.Levels
             }
         }
 
-        private void SetPosition(Entity entity, int col, int line)
+        private void SetPosition(Entity entity, int col, int line, TileType tile)
         {
             var transform = entity.GetOrCreate<TransformComponent>();
-            transform.Position = new Vector3(col, -line, 0);
+            transform.Position = new Vector3(col, -line, ZPos(tile));
             transform.Scale = (Vector3)new Vector2(1 / 0.48f);
         }
 
@@ -199,7 +199,7 @@ namespace StoppingRogue.Levels
                 rb.CanCollideWith = CollisionFilterGroupFlags.CustomFilter1;
 
                 var ls = switchEntity.GetOrCreate<LightSwitch>();
-                var task = switchEntity.GetOrCreate<TaskComponent>();
+                var task = entity.GetOrCreate<TaskComponent>();
                 task.Type = TaskType.SwitchLightOn;
                 ls.taskComponent = task;
                 entity.AddChild(switchEntity);
@@ -244,7 +244,7 @@ namespace StoppingRogue.Levels
                         var cutPipe = new Entity();
                         var col = (int)entity.Transform.Position.X;
                         var line = -(int)entity.Transform.Position.Y;
-                        SetPosition(cutPipe, col, line);
+                        SetPosition(cutPipe, col, line, TileType.CutPipe);
                         entity.Name = $"({col}, {line}) {TileType.CutPipe}";
                         AddComponents(cutPipe, TileType.CutPipe);
 
@@ -306,6 +306,52 @@ namespace StoppingRogue.Levels
                 CurrentFrame = GetFrame(tile)
             };
         }
+        public float ZPos(TileType tile)
+        {
+            switch (tile)
+            {
+                case TileType.WallUpper:
+                case TileType.OpenedDoor:
+                    return 0.003f;
+                case TileType.Robot:
+                    return 0.002f;
+                case TileType.WoodBox:
+                case TileType.MetalBox:
+                case TileType.CutPipe:
+                    return 0.001f;
+                case TileType.WallLower:
+                case TileType.WallLowerFancy:
+                case TileType.Door:
+                case TileType.RightFacingWall:
+                case TileType.LeftFacingWall:
+                case TileType.BackFacingWall:
+                case TileType.LightSwitchWall:
+                case TileType.SlotForBox:
+                case TileType.SlotForPipe:
+                case TileType.Mainframe:
+                case TileType.Counter:
+                case TileType.CounterEdgeLeft:
+                case TileType.CounterEdgeRight:
+                case TileType.CounterVerticalLeft:
+                case TileType.CounterVerticalRight:
+                case TileType.WoodCrate:
+                case TileType.LongPipe:
+                case TileType.LongPipeVertical:
+                case TileType.GlassPane:
+                case TileType.HoleInFloor:
+                case TileType.None:
+                case TileType.Floor:
+                case TileType.WallEdgeUL:
+                case TileType.WallEdgeUR:
+                case TileType.WallEdgeLL:
+                case TileType.WallEdgeLR:
+                case TileType.PressurePlate:
+                case TileType.PressurePlateWithBox:
+                case TileType.StepOnSwitch:
+                default:
+                    return 0;
+            }
+        }
 
         private bool HasCollider(TileType tile)
         {
@@ -313,6 +359,7 @@ namespace StoppingRogue.Levels
             {
                 case TileType.WallLower:
                 case TileType.WallLowerFancy:
+                case TileType.WallUpper:
                 case TileType.RightFacingWall:
                 case TileType.LeftFacingWall:
                 case TileType.BackFacingWall:
@@ -338,7 +385,6 @@ namespace StoppingRogue.Levels
                     return true;
                 case TileType.None:
                 case TileType.Floor:
-                case TileType.WallUpper:
                 case TileType.WallEdgeUL:
                 case TileType.WallEdgeUR:
                 case TileType.WallEdgeLL:

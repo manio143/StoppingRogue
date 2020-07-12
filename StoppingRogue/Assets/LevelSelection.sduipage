@@ -1,0 +1,200 @@
+!UIPageAsset
+Id: a8e16e49-fc15-4bed-93bc-0b4800a564b8
+SerializedVersion: {Stride: 2.1.0.1}
+Tags: []
+Design:
+    Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
+Hierarchy:
+    RootParts:
+        - !StackPanel ref!! 457f0393-1fc9-444f-a5b1-a5023a593f00
+    Parts:
+        -   UIElement: !Button
+                Id: 174a513b-e615-49f3-8524-d5ce9dd9dd23
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                DrawLayerNumber: 2
+                Margin: {}
+                Content: !TextBlock ref!! d8c9807c-8923-4ca9-bbe0-1d529844770d
+                PressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 12
+                NotPressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+                MouseOverImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+        -   UIElement: !Button
+                Id: 20e049b9-2969-48f4-86cd-1d7e7edf1b0a
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                DrawLayerNumber: 2
+                Margin: {}
+                Content: !TextBlock ref!! e8957eea-4e9a-457c-8c9a-1187dbbe0051
+                PressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 12
+                NotPressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+                MouseOverImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+        -   UIElement: !TextBlock
+                Id: 2c0c1e74-2c9b-4f4f-9dcd-6ced2298c89b
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
+                Margin: {}
+                Text: Click me!
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: 362fb220-0027-41f1-8e14-6cd4c2b969de
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 400.0
+                Margin: {Bottom: 20.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: Complete the tasks before robot takes over completely
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+                WrapText: true
+        -   UIElement: !Button
+                Id: 3ecd6acf-0011-44a1-b675-c11ea621fecf
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                DrawLayerNumber: 2
+                Margin: {}
+                Content: !TextBlock ref!! 653d5fee-8de7-4513-9592-941ad850435a
+                PressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 12
+                NotPressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+                MouseOverImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+        -   UIElement: !Button
+                Id: 45573f7b-7120-414d-a093-5f4359522da8
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                DrawLayerNumber: 2
+                Margin: {}
+                Content: !TextBlock ref!! d4f98105-e352-441c-a17f-49c22cc572d3
+                PressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 12
+                NotPressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+                MouseOverImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+        -   UIElement: !StackPanel
+                Id: 457f0393-1fc9-444f-a5b1-a5023a593f00
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Children:
+                    324f5f0fa239f0f8e3c8e1ca9d4b582d: !TextBlock ref!! 460f360d-d4f4-4e5d-9f7e-04cadb2e99e1
+                    27896a9399dec0db1a8f1f1b23820121: !TextBlock ref!! 362fb220-0027-41f1-8e14-6cd4c2b969de
+                    cf6263009e21e743bbe049c8353f1fbd: !StackPanel ref!! 55503298-3a64-4038-9e6d-e50b3e686de6
+        -   UIElement: !TextBlock
+                Id: 460f360d-d4f4-4e5d-9f7e-04cadb2e99e1
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {Top: 150.0, Bottom: 40.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: Stopping the Rogue
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 50.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+                TextAlignment: Center
+        -   UIElement: !StackPanel
+                Id: 55503298-3a64-4038-9e6d-e50b3e686de6
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 150.0
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Name: Buttons
+                Children:
+                    110bb090fc34f48767522454f9767a72: !Button ref!! 45573f7b-7120-414d-a093-5f4359522da8
+                    54b99882859f0d3166f4419eadfcc8f9: !Button ref!! c62d8d30-311b-472c-b8d6-8a1750acb820
+                    022abdf0f8a5ab2edace2092c0800340: !Button ref!! 20e049b9-2969-48f4-86cd-1d7e7edf1b0a
+                    5122e4dda99be50a97251dc9d9bbad0f: !Button ref!! 174a513b-e615-49f3-8524-d5ce9dd9dd23
+                    0fa0ef290f5f8a88f9e998cdb153f497: !Button ref!! 3ecd6acf-0011-44a1-b675-c11ea621fecf
+        -   UIElement: !TextBlock
+                Id: 653d5fee-8de7-4513-9592-941ad850435a
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
+                Margin: {}
+                Text: Click me!
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !Button
+                Id: c62d8d30-311b-472c-b8d6-8a1750acb820
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                DrawLayerNumber: 2
+                Margin: {}
+                Content: !TextBlock ref!! 2c0c1e74-2c9b-4f4f-9dcd-6ced2298c89b
+                PressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 12
+                NotPressedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+                MouseOverImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 11
+        -   UIElement: !TextBlock
+                Id: d4f98105-e352-441c-a17f-49c22cc572d3
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
+                Margin: {}
+                Text: Click me!
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: d8c9807c-8923-4ca9-bbe0-1d529844770d
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
+                Margin: {}
+                Text: Click me!
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: e8957eea-4e9a-457c-8c9a-1187dbbe0051
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
+                Margin: {}
+                Text: Click me!
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
