@@ -1,0 +1,293 @@
+!UIPageAsset
+Id: d7d484f0-0137-4b69-9d28-826e8a887d01
+SerializedVersion: {Stride: 2.1.0.1}
+Tags: []
+Design:
+    Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
+Hierarchy:
+    RootParts:
+        - !Grid ref!! 416acdda-d388-4155-b5e6-d6ca97a8f7cd
+    Parts:
+        -   UIElement: !Border
+                Id: 029b157f-549a-4ac5-adf4-eb6d1a582f59
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Padding: {}
+                Content: !ImageElement ref!! 5d57225c-d636-4fbd-8781-52740129a370
+                BorderColor: {R: 255, G: 0, B: 0, A: 255}
+                BorderThickness: {Left: 5.0, Top: 5.0, Right: 5.0, Bottom: 5.0}
+        -   UIElement: !Border
+                Id: 2aed3034-b61c-4d70-96a6-4ddebe19959b
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Padding: {}
+                Content: !ImageElement ref!! 7019e76e-cad1-4791-82f9-16d668bc374e
+                BorderColor: {R: 255, G: 0, B: 0, A: 255}
+                BorderThickness: {Left: 5.0, Top: 5.0, Right: 5.0, Bottom: 5.0}
+        -   UIElement: !Border
+                Id: 3bab0eaa-e375-4362-83e6-c31c0207409c
+                DependencyProperties: {}
+                BackgroundColor: {R: 255, G: 0, B: 0, A: 0}
+                Margin: {Left: 10.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Padding: {}
+                Content: !Border ref!! 2aed3034-b61c-4d70-96a6-4ddebe19959b
+                BorderColor: {R: 20, G: 232, B: 0, A: 255}
+                BorderThickness: {Left: 5.0, Top: 5.0, Right: 5.0, Bottom: 5.0}
+        -   UIElement: !Grid
+                Id: 416acdda-d388-4155-b5e6-d6ca97a8f7cd
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Children:
+                    8d507f8099dacab3a7d35d97737ac7b0: !StackPanel ref!! edcad1d8-f434-4de0-8f7e-8245161b4e96
+                    8f6acf4687939e181127aaf6b24820f2: !TextBlock ref!! 6f412b07-c710-4b8b-9380-0091c478ad25
+                    1a5d6abb617c9b55659440fa2218ffe0: !StackPanel ref!! cf191b43-3ec9-4a6f-8ebd-3f3c751aab76
+                RowDefinitions: {}
+                ColumnDefinitions:
+                    d5cb466f35e8938e8202b48bee18969f:
+                        MaximumSize: 3.4028235E+38
+                    cc4df9734dc625012d1b431f134df9d4:
+                        MaximumSize: 3.4028235E+38
+                    cc51f392bf897cb555b6cb6dc5b0e6f1:
+                        MaximumSize: 3.4028235E+38
+                LayerDefinitions: {}
+        -   UIElement: !ImageElement
+                Id: 5d57225c-d636-4fbd-8781-52740129a370
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Source: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 6
+                Color: {R: 255, G: 255, B: 255, A: 255}
+                StretchType: None
+        -   UIElement: !TextBlock
+                Id: 61f337d7-e3bb-4d52-bbae-9e7d260a48de
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 100}
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: Put pipe into blue slot
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: 6f412b07-c710-4b8b-9380-0091c478ad25
+                DependencyProperties:
+                    05c45faf79fcb6b11ca9a25b48962d83~GridBase.ColumnPropertyKey: 1
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 50}
+                Width: 150.0
+                HorizontalAlignment: Center
+                VerticalAlignment: Top
+                Margin: {Top: 30.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: 00:00
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 50.0
+                TextColor: {R: 176, G: 38, B: 38, A: 255}
+        -   UIElement: !ImageElement
+                Id: 7019e76e-cad1-4791-82f9-16d668bc374e
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Source: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 2
+                Color: {R: 255, G: 255, B: 255, A: 255}
+                StretchType: None
+        -   UIElement: !StackPanel
+                Id: 716ecbeb-765c-4f7d-985d-00263a468643
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Children:
+                    5f0ba8c9358900035e8d1dd067decb12: !ToggleButton ref!! a907d105-d05a-4d36-aad9-1b0ea560afdd
+                    0c595377358999f2ba45ff361300acda: !TextBlock ref!! 61f337d7-e3bb-4d52-bbae-9e7d260a48de
+                Orientation: Horizontal
+        -   UIElement: !Border
+                Id: 7250ce87-f761-4bbd-ab06-be7cd434d085
+                DependencyProperties: {}
+                BackgroundColor: {R: 255, G: 0, B: 0, A: 0}
+                Margin: {Left: 10.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Padding: {}
+                Content: !Border ref!! 97199151-ef3b-46cd-a813-c9f4df8f53c2
+                BorderColor: {R: 20, G: 232, B: 0, A: 255}
+                BorderThickness: {Left: 5.0, Top: 5.0, Right: 5.0, Bottom: 5.0}
+        -   UIElement: !ImageElement
+                Id: 73744c72-aedf-4b10-b2cf-8f7f1d2750b7
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Source: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                Color: {R: 255, G: 255, B: 255, A: 255}
+                StretchType: None
+        -   UIElement: !Border
+                Id: 97199151-ef3b-46cd-a813-c9f4df8f53c2
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Padding: {}
+                Content: !ImageElement ref!! a0cf337b-96d2-4472-b43e-6eea615fdb94
+                BorderColor: {R: 255, G: 0, B: 0, A: 255}
+                BorderThickness: {Left: 5.0, Top: 5.0, Right: 5.0, Bottom: 5.0}
+        -   UIElement: !ImageElement
+                Id: a0cf337b-96d2-4472-b43e-6eea615fdb94
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Source: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 4
+                Color: {R: 255, G: 255, B: 255, A: 255}
+                StretchType: None
+        -   UIElement: !ToggleButton
+                Id: a907d105-d05a-4d36-aad9-1b0ea560afdd
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                DrawLayerNumber: 2
+                CanBeHitByUser: false
+                Width: 25.0
+                Height: 25.0
+                HorizontalAlignment: Left
+                Margin: {Left: 10.0, Right: 8.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                CheckedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 9
+                UncheckedImage: !SpriteFromSheet
+                    Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
+                    CurrentFrame: 8
+                IndeterminateImage: !SpriteFromSheet
+                    Sheet: null
+        -   UIElement: !StackPanel
+                Id: cb74c1a0-c5cb-4c41-8837-297e44b8eb5b
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {Top: 20.0, Bottom: 20.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Children:
+                    e61891809a94cb06f12a09376abf6283: !Border ref!! f0c2fe5c-278f-4eb9-b97e-440692a2586f
+                    99c708494b6c9109d96ab1cc35199718: !Border ref!! 3bab0eaa-e375-4362-83e6-c31c0207409c
+                    7df6372ecc5995375dcaab57f4ca4354: !Border ref!! 7250ce87-f761-4bbd-ab06-be7cd434d085
+                    e57995ff0da342f60112af1644282b56: !Border ref!! fccbf8be-a374-4a3f-a746-af0827f156e9
+                Orientation: Horizontal
+        -   UIElement: !StackPanel
+                Id: cf191b43-3ec9-4a6f-8ebd-3f3c751aab76
+                DependencyProperties:
+                    91a6bd554be8f8d87ff0069c9fd16f56~GridBase.ColumnPropertyKey: 2
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Right
+                Margin: {Top: 90.0, Right: 50.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Children:
+                    251b6f620f382669ffddb97477433dd9: !TextBlock ref!! d87ce4bc-372d-4fb1-9a6b-1b70f3febeef
+                    e8965e45d23ddfe637ffe46b502fab61: !StackPanel ref!! 716ecbeb-765c-4f7d-985d-00263a468643
+        -   UIElement: !TextBlock
+                Id: d87ce4bc-372d-4fb1-9a6b-1b70f3febeef
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 100}
+                Width: 110.0
+                HorizontalAlignment: Left
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: 'Tasks:'
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 30.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !Border
+                Id: e7a9594f-b666-4948-9e33-c5613205dd75
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Padding: {}
+                Content: !ImageElement ref!! 73744c72-aedf-4b10-b2cf-8f7f1d2750b7
+                BorderColor: {R: 255, G: 0, B: 0, A: 255}
+                BorderThickness: {Left: 5.0, Top: 5.0, Right: 5.0, Bottom: 5.0}
+        -   UIElement: !StackPanel
+                Id: edcad1d8-f434-4de0-8f7e-8245161b4e96
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                VerticalAlignment: Top
+                Margin: {Left: 20.0, Right: 20.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Children:
+                    b98ecbebf314419d46e926d6e7fa1cfe: !StackPanel ref!! cb74c1a0-c5cb-4c41-8837-297e44b8eb5b
+        -   UIElement: !Border
+                Id: f0c2fe5c-278f-4eb9-b97e-440692a2586f
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Margin: {Left: 10.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Padding: {}
+                Content: !Border ref!! e7a9594f-b666-4948-9e33-c5613205dd75
+                BorderColor: {R: 20, G: 232, B: 0, A: 255}
+                BorderThickness: {Left: 5.0, Top: 5.0, Right: 5.0, Bottom: 5.0}
+        -   UIElement: !Border
+                Id: fccbf8be-a374-4a3f-a746-af0827f156e9
+                DependencyProperties: {}
+                BackgroundColor: {R: 255, G: 0, B: 0, A: 0}
+                Margin: {Left: 10.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Padding: {}
+                Content: !Border ref!! 029b157f-549a-4ac5-adf4-eb6d1a582f59
+                BorderColor: {R: 20, G: 232, B: 0, A: 255}
+                BorderThickness: {Left: 5.0, Top: 5.0, Right: 5.0, Bottom: 5.0}

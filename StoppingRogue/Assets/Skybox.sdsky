@@ -1,0 +1,5 @@
+!SkyboxAsset
+Id: 9e0d9747-a76f-423d-a56e-be7752d22534
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+CubeMap: 0f5370a2-8402-4e65-8cba-a0167cdc363c:skybox_texture_ldr

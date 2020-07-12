@@ -1,0 +1,78 @@
+!SpriteSheet
+Id: 0803c17a-aded-410a-9bf4-9d7b506e167a
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Type: Sprite2D
+ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}
+Packing: {}
+Sprites:
+    6db62c894ef8d19fa20fb1014a18ea03:
+        Source: !file ../Resources/UIElements.png
+        Name: MoveActive
+        TextureRegion: {X: 0, Y: 0, Width: 50, Height: 50}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    3fb58b3f9530c77b98e4aa870eeb292e:
+        Source: !file ../Resources/UIElements.png
+        Name: MoveInactive
+        TextureRegion: {X: 0, Y: 50, Width: 50, Height: 50}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    fb71c6905371613eb08e8315f7d0224e:
+        Source: !file ../Resources/UIElements.png
+        Name: HoldActive
+        TextureRegion: {X: 50, Y: 0, Width: 50, Height: 50}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    55ca0ff8b4031a6d92343be1aca4b7fd:
+        Source: !file ../Resources/UIElements.png
+        Name: HoldInactive
+        TextureRegion: {X: 50, Y: 50, Width: 50, Height: 50}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    bb8271d1dc575f59a8f67580ce5c2dd8:
+        Source: !file ../Resources/UIElements.png
+        Name: LaserActive
+        TextureRegion: {X: 100, Y: 0, Width: 50, Height: 50}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    7a0835cd34acb3f56ae619f201fd29cf:
+        Source: !file ../Resources/UIElements.png
+        Name: LaserInactive
+        TextureRegion: {X: 100, Y: 50, Width: 50, Height: 50}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    4e6c6946ba6d230d4d8ccb5891baf69f:
+        Source: !file ../Resources/UIElements.png
+        Name: LightActive
+        TextureRegion: {X: 150, Y: 0, Width: 50, Height: 50}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    87282f3aeb5e78aae95365f64505f7f9:
+        Source: !file ../Resources/UIElements.png
+        Name: LightInactive
+        TextureRegion: {X: 150, Y: 50, Width: 50, Height: 50}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    b0af8424b9fac05a73d8e60a62202e72:
+        Source: !file ../Resources/UIElements.png
+        Name: CheckFalse
+        TextureRegion: {X: 200, Y: 0, Width: 25, Height: 25}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    1fc1f894613c728b963813b0d77d8d37:
+        Source: !file ../Resources/UIElements.png
+        Name: CheckTrue
+        TextureRegion: {X: 225, Y: 0, Width: 25, Height: 25}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}

@@ -8,7 +8,41 @@ Hierarchy:
     RootParts:
         - ref!! e1f1c9e5-1a6d-4c72-aeef-fa0431376cdd
         - ref!! 887442cd-a2b1-48c2-9f70-30f37fda6333
+        - ref!! 664dee53-bcbc-4a84-9568-19d886f0cc3b
+        - ref!! 11a5df00-f50d-4773-8cc6-e9d380220f41
     Parts:
+        -   Entity:
+                Id: 11a5df00-f50d-4773-8cc6-e9d380220f41
+                Name: Skybox light
+                Components:
+                    3ac36d5440318321c8e26c2c45dd1e6a: !TransformComponent
+                        Id: 115e42b9-e8ab-41a5-8930-61c0512d6f74
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    64978d7246d20799e059ee53fdf5bf0f: !LightComponent
+                        Id: b7f622e5-d245-4084-94e7-6489f6baef77
+                        Type: !LightSkybox
+                            Skybox: 9e0d9747-a76f-423d-a56e-be7752d22534:Skybox
+                    a010f24e3f43388aaafab8029b2893b2: !BackgroundComponent
+                        Id: ac1a2227-3220-4bd5-b8e6-6f335e8715e1
+                        Texture: 0f5370a2-8402-4e65-8cba-a0167cdc363c:skybox_texture_ldr
+        -   Entity:
+                Id: 664dee53-bcbc-4a84-9568-19d886f0cc3b
+                Name: UI
+                Components:
+                    3798bb290f924aca886f58d8e74755b8: !TransformComponent
+                        Id: d7cb760f-1397-4105-ae35-de11623aefe3
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    36f407a1267cd046b1f4c93873665798: !UIComponent
+                        Id: 67435fe9-5461-4c07-8e59-23cb19f35fe6
+                        Page: d7d484f0-0137-4b69-9d28-826e8a887d01:GamePage
+                        Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
+                        Size: {X: 1.28, Y: 0.72, Z: 1.0}
         -   Entity:
                 Id: 887442cd-a2b1-48c2-9f70-30f37fda6333
                 Name: DemoInitialization
