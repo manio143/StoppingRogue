@@ -1,36 +1,13 @@
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
+# Visual Studio 16
 VisualStudioVersion = 16.0.0.0
 MinimumVisualStudioVersion = 16.0.0.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoppingRogue.Windows", "StoppingRogue.Windows\StoppingRogue.Windows.csproj", "{401E2EB1-1730-49EB-B8C5-A874383BEC9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoppingRogue.Windows", "StoppingRogue.Windows\StoppingRogue.Windows.csproj", "{401E2EB1-1730-49EB-B8C5-A874383BEC9F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoppingRogue", "StoppingRogue\StoppingRogue.csproj", "{77823C2A-6CE9-454C-9316-2009EAFBF253}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoppingRogue", "StoppingRogue\StoppingRogue.csproj", "{77823C2A-6CE9-454C-9316-2009EAFBF253}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoppingRogue.Linux", "StoppingRogue.Linux\StoppingRogue.Linux.csproj", "{19DF374E-8E2F-445C-A7E7-EBBF1B717372}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoppingRogue.Linux", "StoppingRogue.Linux\StoppingRogue.Linux.csproj", "{19DF374E-8E2F-445C-A7E7-EBBF1B717372}"
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{401E2EB1-1730-49EB-B8C5-A874383BEC9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{401E2EB1-1730-49EB-B8C5-A874383BEC9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{401E2EB1-1730-49EB-B8C5-A874383BEC9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{401E2EB1-1730-49EB-B8C5-A874383BEC9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77823C2A-6CE9-454C-9316-2009EAFBF253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77823C2A-6CE9-454C-9316-2009EAFBF253}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77823C2A-6CE9-454C-9316-2009EAFBF253}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77823C2A-6CE9-454C-9316-2009EAFBF253}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19DF374E-8E2F-445C-A7E7-EBBF1B717372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19DF374E-8E2F-445C-A7E7-EBBF1B717372}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19DF374E-8E2F-445C-A7E7-EBBF1B717372}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19DF374E-8E2F-445C-A7E7-EBBF1B717372}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3B4DECEC-D71B-46C2-B156-2D3295D97471}
-	EndGlobalSection
 EndGlobal

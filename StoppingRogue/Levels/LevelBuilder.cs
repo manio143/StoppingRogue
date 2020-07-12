@@ -163,15 +163,35 @@ namespace StoppingRogue.Levels
             if(IsDestructible(tile))
             {
                 var destr = entity.GetOrCreate<DestructableComponent>();
-                if(tile == TileType.Mainframe)
-                {
-                    // Add MainframeComponent
-                    // Set the OnDesctruct to its method
-                }
 
                 var expl = entity.GetOrCreate<ExplosionComponent>();
                 destr.OnDestruct += expl.Explode;
                 destr.OnDestruct += () => Debug.WriteLine($"Entity '{entity.Name}' destroyed");
+
+                if(tile == TileType.Mainframe)
+                {
+                    // Add MainframeComponent
+                    // Set the PostExplosion to its method
+                }
+                else if (tile == TileType.LongPipe || tile == TileType.LongPipeVertical)
+                {
+                    expl.PostExplosion += () =>
+                    {
+                        var cutPipe = new Entity();
+                        var col = (int)entity.Transform.Position.X;
+                        var line = -(int)entity.Transform.Position.Y;
+                        SetPosition(cutPipe, col, line);
+                        entity.Name = $"({col}, {line}) {TileType.CutPipe}";
+                        AddComponents(cutPipe, TileType.CutPipe);
+
+                        entity.Scene.Entities.Add(cutPipe);
+                        entity.Scene = null;
+                    };
+                }
+                else
+                {
+                    expl.PostExplosion += () => entity.Scene = null;
+                }
             }
         }
 
@@ -332,6 +352,8 @@ namespace StoppingRogue.Levels
                 case TileType.Mainframe:
                 case TileType.WoodCrate:
                 case TileType.GlassPane:
+                case TileType.LongPipe:
+                case TileType.LongPipeVertical:
                     return true;
                 case TileType.CutPipe:
                 case TileType.MetalBox:
@@ -349,8 +371,6 @@ namespace StoppingRogue.Levels
                 case TileType.CounterEdgeRight:
                 case TileType.CounterVerticalLeft:
                 case TileType.CounterVerticalRight:
-                case TileType.LongPipe:
-                case TileType.LongPipeVertical:
                 case TileType.HoleInFloor:
                 case TileType.Robot:
                 case TileType.None:
