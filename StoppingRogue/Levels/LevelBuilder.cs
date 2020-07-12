@@ -108,7 +108,7 @@ namespace StoppingRogue.Levels
         {
             AddSprite(entity, tile);
 
-            if(tile == TileType.Robot)
+            if (tile == TileType.Robot)
             {
                 var rc = entity.GetOrCreate<RobotController>();
                 actionController.Robot = rc;
@@ -118,7 +118,7 @@ namespace StoppingRogue.Levels
                 var rls = entity.GetOrCreate<RobotLaser>();
                 rls.itemSpriteSheet = itemSheet;
             }
-            if(HasCollider(tile))
+            if (HasCollider(tile))
             {
                 var rb = entity.GetOrCreate<RigidbodyComponent>();
                 rb.ColliderShapes.Add(new BoxColliderShapeDesc()
@@ -128,7 +128,24 @@ namespace StoppingRogue.Levels
                 });
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
                 rb.CollisionGroup = CollisionFilterGroups.DefaultFilter;
+                rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter | CollisionFilterGroupFlags.SensorTrigger;
+            }
+            if (tile == TileType.OpenedDoor)
+            {
+                var rb = entity.GetOrCreate<RigidbodyComponent>();
+                rb.ColliderShapes.Add(new BoxColliderShapeDesc()
+                {
+                    Is2D = true,
+                    Size = new Vector3(0.45f, 0.70f, 0),
+                    LocalOffset = new Vector3(0, 0.35f, 0),
+                });
+                rb.RigidBodyType = RigidBodyTypes.Kinematic;
+                rb.CollisionGroup = CollisionFilterGroups.SensorTrigger;
                 rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter;
+            }
+            if (tile == TileType.Door || tile == TileType.OpenedDoor)
+            {
+                var door = entity.GetOrCreate<DoorComponent>();
             }
             if(tile == TileType.LightSwitchWall)
             {

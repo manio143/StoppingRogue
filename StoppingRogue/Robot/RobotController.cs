@@ -46,10 +46,12 @@ namespace StoppingRogue.Robot
             }
         }
 
+        public bool IsMoving { get; private set; }
         private const double MovementDurationInSeconds = 0.3;
         private async Task Move(float y, float x)
         {
             direction = new Vector2(x, y);
+            IsMoving = true;
             robotLight.UpdateTransform(direction);
             var offset = new Vector3(x, y, 0);
             var current = Entity.Transform.Position;
@@ -72,10 +74,12 @@ namespace StoppingRogue.Robot
                 {
                     // TODO: check if the thing is a trigger!
                     Entity.Transform.Position = current;
+                    IsMoving = false;
                     return;
                 }
             }
             Entity.Transform.Position = target;
+            IsMoving = false;
         }
 
         private Vector3 Interpolate(Vector3 current, Vector3 target, double advancement)
