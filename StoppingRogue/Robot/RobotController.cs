@@ -9,7 +9,7 @@ namespace StoppingRogue.Robot
 {
     public class RobotController : SyncScript
     {
-        public Vector2 direction;
+        public Vector2 direction = new Vector2(0, -1); //down
 
         public async Task ExecuteAction(Levels.Action action)
         {
@@ -31,7 +31,10 @@ namespace StoppingRogue.Robot
                     await Move(0, -1);
                     return;
                 case Levels.Action.ShootLaser:
-                    break; //TODO
+                    if (robotHolder.IsHolding || robotLight.EnabledState)
+                        return;
+                    robotLaser.ShootLaser(direction);
+                    return;
                 case Levels.Action.SwitchLight:
                     robotLight.Switch();
                     return;
@@ -39,7 +42,7 @@ namespace StoppingRogue.Robot
                     robotHolder.GrabRelease(direction);
                     return;
                 default:
-                    break;
+                    throw new NotImplementedException();
             }
         }
 
@@ -89,12 +92,15 @@ namespace StoppingRogue.Robot
         private RigidbodyComponent physics;
         private RobotLight robotLight;
         private RobotHolder robotHolder;
+        private RobotLaser robotLaser;
         public override void Start()
         {
             physics = Entity.Get<RigidbodyComponent>();
             robotLight = Entity.Get<RobotLight>();
-            robotLight.UpdateTransform(new Vector2(0, -1));
             robotHolder = Entity.Get<RobotHolder>();
+            robotLaser = Entity.Get<RobotLaser>();
+            
+            robotLight.UpdateTransform(direction);
         }
         public override void Update() { }
     }

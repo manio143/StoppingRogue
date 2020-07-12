@@ -1,4 +1,5 @@
-﻿using StoppingRogue.Items;
+﻿using StoppingRogue.Destructable;
+using StoppingRogue.Items;
 using StoppingRogue.Robot;
 using StoppingRogue.Switches;
 using StoppingRogue.Turns;
@@ -9,6 +10,7 @@ using Stride.Physics;
 using Stride.Rendering.Sprites;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace StoppingRogue.Levels
 {
@@ -112,6 +114,8 @@ namespace StoppingRogue.Levels
                 var rl = entity.GetOrCreate<RobotLight>();
                 rl.robotSpriteSheet = robotSheet;
                 entity.GetOrCreate<RobotHolder>();
+                var rls = entity.GetOrCreate<RobotLaser>();
+                rls.itemSpriteSheet = itemSheet;
             }
             if(HasCollider(tile))
             {
@@ -155,6 +159,19 @@ namespace StoppingRogue.Levels
                 var item = holdableEntity.GetOrCreate<ItemComponent>();
                 item.ItemType = GetItemType(tile);
                 entity.AddChild(holdableEntity);
+            }
+            if(IsDestructible(tile))
+            {
+                var destr = entity.GetOrCreate<DestructableComponent>();
+                if(tile == TileType.Mainframe)
+                {
+                    // Add MainframeComponent
+                    // Set the OnDesctruct to its method
+                }
+
+                var expl = entity.GetOrCreate<ExplosionComponent>();
+                destr.OnDestruct += expl.Explode;
+                destr.OnDestruct += () => Debug.WriteLine($"Entity '{entity.Name}' destroyed");
             }
         }
 
@@ -305,6 +322,50 @@ namespace StoppingRogue.Levels
                 case TileType.StepOnSwitch:
                 default:
                     throw new InvalidOperationException();
+            }
+        }
+        private bool IsDestructible(TileType tile)
+        {
+            switch (tile)
+            {
+                case TileType.WoodBox:
+                case TileType.Mainframe:
+                case TileType.WoodCrate:
+                case TileType.GlassPane:
+                    return true;
+                case TileType.CutPipe:
+                case TileType.MetalBox:
+                case TileType.WallLower:
+                case TileType.WallLowerFancy:
+                case TileType.RightFacingWall:
+                case TileType.LeftFacingWall:
+                case TileType.BackFacingWall:
+                case TileType.Door:
+                case TileType.SlotForBox:
+                case TileType.SlotForPipe:
+                case TileType.LightSwitchWall:
+                case TileType.Counter:
+                case TileType.CounterEdgeLeft:
+                case TileType.CounterEdgeRight:
+                case TileType.CounterVerticalLeft:
+                case TileType.CounterVerticalRight:
+                case TileType.LongPipe:
+                case TileType.LongPipeVertical:
+                case TileType.HoleInFloor:
+                case TileType.Robot:
+                case TileType.None:
+                case TileType.Floor:
+                case TileType.WallUpper:
+                case TileType.WallEdgeUL:
+                case TileType.WallEdgeUR:
+                case TileType.WallEdgeLL:
+                case TileType.WallEdgeLR:
+                case TileType.OpenedDoor:
+                case TileType.PressurePlate:
+                case TileType.PressurePlateWithBox:
+                case TileType.StepOnSwitch:
+                default:
+                    return false;
             }
         }
 

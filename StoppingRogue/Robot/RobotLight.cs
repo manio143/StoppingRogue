@@ -15,6 +15,9 @@ namespace StoppingRogue.Robot
         private Entity lightEntity;
         private SpriteComponent lightSprite;
         private RigidbodyComponent lightPhysics;
+
+        public bool EnabledState { get; private set; }
+
         public override void Start()
         {
             lightEntity = new Entity();
@@ -40,6 +43,7 @@ namespace StoppingRogue.Robot
         {
             lightSprite.Enabled = !lightSprite.Enabled;
             lightPhysics.Enabled = !lightPhysics.Enabled;
+            this.EnabledState = !EnabledState;
         }
 
         public void UpdateTransform(Vector2 direction)
