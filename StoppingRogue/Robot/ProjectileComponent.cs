@@ -33,6 +33,7 @@ namespace StoppingRogue.Robot
 
             if(destructable != null)
             {
+                Debug.WriteLine($"Projectile destroyed '{other.Name}'");
                 destructable.Destruct();
             }
 

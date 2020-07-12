@@ -2,6 +2,7 @@
 using StoppingRogue.Items;
 using StoppingRogue.Robot;
 using StoppingRogue.Switches;
+using StoppingRogue.Tasks;
 using StoppingRogue.Turns;
 using Stride.Core.Mathematics;
 using Stride.Engine;
@@ -141,7 +142,11 @@ namespace StoppingRogue.Levels
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
                 rb.CollisionGroup = CollisionFilterGroups.CustomFilter1;
                 rb.CanCollideWith = CollisionFilterGroupFlags.CustomFilter1;
-                switchEntity.GetOrCreate<LightSwitch>();
+                
+                var ls = switchEntity.GetOrCreate<LightSwitch>();
+                var task = switchEntity.GetOrCreate<TaskComponent>();
+                task.Type = TaskType.SwitchLightOn;
+                ls.taskComponent = task;
                 entity.AddChild(switchEntity);
             }
             if(IsItem(tile))
@@ -170,8 +175,11 @@ namespace StoppingRogue.Levels
 
                 if(tile == TileType.Mainframe)
                 {
-                    // Add MainframeComponent
-                    // Set the PostExplosion to its method
+                    var mf = entity.GetOrCreate<MainframeComponent>();
+                    var task = entity.GetOrCreate<TaskComponent>();
+                    task.Type = TaskType.DestroyMainrfame;
+                    mf.taskComponent = task;
+                    expl.PostExplosion += mf.Destroy;
                 }
                 else if (tile == TileType.LongPipe || tile == TileType.LongPipeVertical)
                 {
