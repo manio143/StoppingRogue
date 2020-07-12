@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using StoppingRogue.Switches;
 using StoppingRogue.Destructable;
 using System.Diagnostics;
+using StoppingRogue.Tasks;
+using StoppingRogue.Items;
 
 namespace StoppingRogue.Robot
 {
@@ -49,9 +51,29 @@ namespace StoppingRogue.Robot
             {
                 Entity.Transform.GetWorldTransformation(out var globalPos, out _, out _);
                 var hit = physics.Simulation.Raycast(globalPos, globalPos + (Vector3)direction, CollisionFilterGroups.DefaultFilter);
-                // Don't allow releasing the item on something else
-                if (hit.Collider?.Entity != null && hit.Collider.Entity.Get<PressurePlate>() == null)
+
+                var slot = hit.Collider?.Entity.Get<SlotComponent>();
+                // Don't allow releasing the item on something with a default colider
+                if (hit.Collider?.Entity != null
+                    && hit.Collider.Entity.Get<PressurePlate>() == null
+                    && slot == null)
                     return;
+
+                if(slot != null)
+                {
+                    var item = grabbedEntity.Get<ItemComponent>()?.ItemType;
+                    if (item == null)
+                        return;
+
+                    if (slot.taskComponent.Completed == false 
+                        && slot.ItemType == item.Value)
+                    {
+                        slot.Fill(item.Value);
+                        Entity.RemoveChild(grabbedEntity);
+                        grabbedEntity = null;
+                    }
+                    return;
+                }
 
                 Entity.RemoveChild(grabbedEntity);
                 grabbedEntity = grabbedEntity.Clone();

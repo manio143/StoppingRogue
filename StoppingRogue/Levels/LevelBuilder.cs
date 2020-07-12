@@ -212,9 +212,10 @@ namespace StoppingRogue.Levels
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
                 rb.CollisionGroup = CollisionFilterGroups.CustomFilter2;
                 rb.CanCollideWith = CollisionFilterGroupFlags.CustomFilter2;
-                var item = holdableEntity.GetOrCreate<ItemComponent>();
-                item.ItemType = GetItemType(tile);
                 entity.AddChild(holdableEntity);
+                
+                var item = entity.GetOrCreate<ItemComponent>();
+                item.ItemType = GetItemType(tile);
             }
             if (IsDestructible(tile))
             {
@@ -275,6 +276,15 @@ namespace StoppingRogue.Levels
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
                 rb.CollisionGroup = CollisionFilterGroups.SensorTrigger;
                 rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter;
+            }
+            if(tile == TileType.SlotForBox || tile == TileType.SlotForPipe)
+            {
+                var task = entity.GetOrCreate<TaskComponent>();
+                task.Type = tile == TileType.SlotForBox ? TaskType.FillBoxSlot : TaskType.FillPipeSlot;
+
+                var slot = entity.GetOrCreate<SlotComponent>();
+                slot.taskComponent = task;
+                slot.ItemType = tile == TileType.SlotForBox ? Item.MetalBox : Item.CutPipe;
             }
         }
 
