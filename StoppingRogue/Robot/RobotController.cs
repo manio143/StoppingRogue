@@ -5,10 +5,11 @@ using System;
 using System.Diagnostics;
 using Stride.Physics;
 using System.Linq;
+using Stride.Rendering.Sprites;
 
 namespace StoppingRogue.Robot
 {
-    public class RobotController : SyncScript
+    public class RobotController : StartupScript
     {
         public Vector2 direction = new Vector2(0, -1); //down
 
@@ -54,6 +55,8 @@ namespace StoppingRogue.Robot
             direction = new Vector2(x, y);
             IsMoving = true;
             robotLight.UpdateTransform(direction);
+            UpdateSprite(direction);
+
             var offset = new Vector3(x, y, 0);
             var current = Entity.Transform.Position;
             var target = Entity.Transform.Position + offset;
@@ -100,15 +103,35 @@ namespace StoppingRogue.Robot
         private RobotLight robotLight;
         private RobotHolder robotHolder;
         private RobotLaser robotLaser;
+        private SpriteFromSheet spriteProvider;
         public override void Start()
         {
             physics = Entity.Get<RigidbodyComponent>();
             robotLight = Entity.Get<RobotLight>();
             robotHolder = Entity.Get<RobotHolder>();
             robotLaser = Entity.Get<RobotLaser>();
+            spriteProvider = Entity.Get<SpriteComponent>().SpriteProvider as SpriteFromSheet;
             
             robotLight.UpdateTransform(direction);
+            UpdateSprite(direction);
         }
-        public override void Update() { }
+
+        public void UpdateSprite(Vector2 direction)
+        {
+            if(direction.X == 0)
+            {
+                if(direction.Y > 0) //up
+                    spriteProvider.CurrentFrame = 2;
+                else //down
+                    spriteProvider.CurrentFrame = 0;
+            }
+            else
+            {
+                if (direction.X > 0) //right
+                    spriteProvider.CurrentFrame = 4;
+                else //left
+                    spriteProvider.CurrentFrame = 3;
+            }
+        }
     }
 }

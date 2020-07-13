@@ -14,6 +14,7 @@ using Stride.UI.Controls;
 using Stride.UI.Panels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -68,6 +69,7 @@ namespace StoppingRogue
 
         public override void Update()
         {
+            DebugHacks();
             if (state == UIState.InGame)
             {
                 var timeLeft = TurnSystem.RemainingTime;
@@ -142,6 +144,16 @@ namespace StoppingRogue
                     UpdateActions(actions[2], ActionType.Laser, nextUserAction, nextRobotAction, 4);
                     UpdateActions(actions[3], ActionType.Light, nextUserAction, nextRobotAction, 6);
                 }
+            }
+        }
+
+        [Conditional("DEBUG")]
+        private void DebugHacks()
+        {
+            if(Input.IsKeyPressed(Stride.Input.Keys.F1))
+            {
+                completedLevels = NumberOfLevels;
+                CreateLevelSelection();
             }
         }
 

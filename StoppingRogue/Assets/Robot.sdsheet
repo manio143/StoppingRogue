@@ -8,7 +8,7 @@ Packing: {}
 Sprites:
     fb10047dee079efa04215b2cd7c93b36:
         Source: !file ../Resources/Robot_root.png
-        Name: Robot
+        Name: RobotFront
         TextureRegion: {X: 0, Y: 0, Width: 48, Height: 72}
         Center: {X: 24.0, Y: 48.0}
         CenterFromMiddle: false
@@ -19,6 +19,30 @@ Sprites:
         Name: Light
         TextureRegion: {X: 0, Y: 0, Width: 48, Height: 72}
         Center: {X: 24.0, Y: 24.0}
+        CenterFromMiddle: false
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    295062a7ea229cb531e03fd36d98e116:
+        Source: !file ../Resources/Robot_root.png
+        Name: RobotBack
+        TextureRegion: {X: 48, Y: 0, Width: 48, Height: 72}
+        Center: {X: 24.0, Y: 48.0}
+        CenterFromMiddle: false
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    982a67a216fc2fbbef8e70b5817d3427:
+        Source: !file ../Resources/Robot_root.png
+        Name: RobotLeft
+        TextureRegion: {X: 96, Y: 0, Width: 48, Height: 72}
+        Center: {X: 24.0, Y: 48.0}
+        CenterFromMiddle: false
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}
+    108c2df0d2474f2ab805bcaa05abdf7d:
+        Source: !file ../Resources/Robot_root.png
+        Name: RobotRight
+        TextureRegion: {X: 144, Y: 0, Width: 48, Height: 72}
+        Center: {X: 24.0, Y: 48.0}
         CenterFromMiddle: false
         Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
         BorderColor: {R: 0, G: 0, B: 0, A: 0}

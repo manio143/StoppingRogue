@@ -49,7 +49,9 @@ namespace StoppingRogue.Robot
 
         public void UpdateTransform(Vector2 direction)
         {
-            lightEntity.Transform.Position = (Vector3)direction / 2.0f;
+            lightEntity.Transform.Position = new Vector3(direction.X / 2.0f, direction.Y / 2.0f, 0); 
+                // FIXME: Light should be under robot when facing up
+            
             var rotationAngle = (float)(Math.Atan(direction.X / direction.Y) + Math.PI);
             if (direction == new Vector2(0, 1))
                 rotationAngle = 0;
