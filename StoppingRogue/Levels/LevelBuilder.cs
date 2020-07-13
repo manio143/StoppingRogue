@@ -18,105 +18,133 @@ using System.Linq;
 
 namespace StoppingRogue.Levels
 {
+    /// <summary>
+    /// This class is responsible for creating a <see cref="Scene"/> from a <see cref="Level"/> description.
+    /// </summary>
     public class LevelBuilder
     {
         private SpriteSheet environmentSheet;
         private SpriteSheet robotSheet;
         private SpriteSheet itemSheet;
-        private ActionController actionController;
 
+        /// <summary>
+        /// Initializes new builder.
+        /// </summary>
+        /// <param name="environmentSheet">Environment tiles</param>
+        /// <param name="robotSheet">Robot sprites</param>
+        /// <param name="itemSheet">Item sprites</param>
         public LevelBuilder(SpriteSheet environmentSheet, SpriteSheet robotSheet, SpriteSheet itemSheet, ActionController actionController)
         {
             this.environmentSheet = environmentSheet;
             this.robotSheet = robotSheet;
             this.itemSheet = itemSheet;
-            this.actionController = actionController;
         }
 
+        /// <summary>
+        /// Generates entities in a new scene.
+        /// </summary>
+        /// <param name="level">Level description</param>
+        /// <param name="robot">Robot entity</param>
+        /// <returns>A scene to be added to the root scene.</returns>
         public Scene Build(Level level, out Entity robot)
         {
             var scene = new Scene();
+
+            // Create collections to later link switches with doors
             var switchSetups = new List<(Entity, bool, Int2)>();
             var doors = new Dictionary<Int2, Entity>();
+
+            // out params have to be initialized
             robot = null;
+
             for (int line = 0; line < level.Tiles.GetLength(1); line++)
-            {
                 for (int col = 0; col < level.Tiles.GetLength(0); col++)
                 {
                     var tile = level.Tiles[col, line];
+
                     if (tile == TileType.PressurePlateWithBox)
                     {
-                        var plate = new Entity();
-                        SetPosition(plate, col, line, tile);
-                        plate.Name = $"({col}, {line}) {TileType.PressurePlate}";
-                        AddComponents(plate, TileType.PressurePlate);
-
-                        var box = new Entity();
-                        SetPosition(box, col, line, tile);
-                        box.Name = $"({col}, {line}) {TileType.WoodBox}";
-                        AddComponents(box, TileType.WoodBox);
-                        //TODO: box may need Z higher
+                        // The only tile that describes two entities
+                        var plate = InitializeEntity(line, col, TileType.PressurePlate);
+                        var box = InitializeEntity(line, col, TileType.WoodBox);
 
                         scene.Entities.Add(plate);
                         scene.Entities.Add(box);
-                        if (level.SwitchMapping.ContainsKey(new Int2(col, line)))
-                        {
-                            var (p, d) = level.SwitchMapping[new Int2(col, line)];
-                            switchSetups.Add((plate, p, d));
-                        }
+
+                        TryAddSwitchOrDoor(level, switchSetups, doors, line, col, plate);
                     }
                     else
                     {
+                        // If entity can move away (or get destroyed),
+                        // put floor underneath it
                         if (IsMovable(tile))
                         {
-                            var floor = new Entity();
-                            SetPosition(floor, col, line, tile);
-                            floor.Name = $"({col}, {line}) {TileType.Floor}";
-
-                            AddComponents(floor, TileType.Floor);
-
+                            var floor = InitializeEntity(line, col, TileType.Floor);
                             scene.Entities.Add(floor);
                         }
-                        var entity = new Entity();
-                        SetPosition(entity, col, line, tile);
-                        entity.Name = $"({col}, {line}) {tile}";
 
-                        AddComponents(entity, tile);
+                        Entity entity = InitializeEntity(line, col, tile);
 
                         scene.Entities.Add(entity);
-                        if (level.SwitchMapping.ContainsKey(new Int2(col, line)))
-                        {
-                            var (p, d) = level.SwitchMapping[new Int2(col, line)];
-                            switchSetups.Add((entity, p, d));
-                        }
-                        else if (level.SwitchMapping.Any(kvp => kvp.Value.Item2 == new Int2(col, line)))
-                        {
-                            doors.Add(new Int2(col, line), entity);
-                        }
+
+                        TryAddSwitchOrDoor(level, switchSetups, doors, line, col, entity);
 
                         if (tile == TileType.Robot)
                             robot = entity;
                     }
                 }
-            }
 
-            foreach (var (swe, pos, dp) in switchSetups)
-            {
-                var swit = swe.Get<SwitchComponent>();
-                if (swit == null)
-                    throw new InvalidDataException();
-                swit.Positive = pos;
-                var door = doors[dp].Get<DoorComponent>();
-                if (door == null)
-                    throw new InvalidDataException();
-                swit.OnSwitch += (b) => { 
-                    if (b) door.Open(); else door.Close(); 
-                };
-            }
+            ConnectSwitchesToDoors(switchSetups, doors);
 
             return scene;
         }
 
+        private static void ConnectSwitchesToDoors(List<(Entity, bool, Int2)> switchSetups, Dictionary<Int2, Entity> doors)
+        {
+            foreach (var (swe, pos, dp) in switchSetups)
+            {
+                var swit = swe.Get<SwitchComponent>() ?? throw new InvalidDataException();
+
+                swit.Positive = pos;
+
+                var door = doors[dp].Get<DoorComponent>() ?? throw new InvalidDataException();
+
+                swit.OnSwitch += (b) =>
+                {
+                    if (b) door.Open(); else door.Close();
+                };
+            }
+        }
+
+        /// <summary>
+        /// Checks if the entity is on the switch mapping and populates <paramref name="switchSetups"/> and <paramref name="doors"/> accordingly.
+        /// </summary>
+        private static void TryAddSwitchOrDoor(Level level, List<(Entity, bool, Int2)> switchSetups, Dictionary<Int2, Entity> doors, int line, int col, Entity entity)
+        {
+            var vec = new Int2(col, line);
+            if (level.SwitchMapping.ContainsKey(vec))
+            {
+                var (p, d) = level.SwitchMapping[vec];
+                switchSetups.Add((entity, p, d));
+            }
+            else if (level.SwitchMapping.Any(kvp => kvp.Value.Item2 == vec))
+            {
+                doors.Add(vec, entity);
+            }
+        }
+
+        private Entity InitializeEntity(int line, int col, TileType tile)
+        {
+            var entity = new Entity();
+            SetPosition(entity, col, line, tile);
+            entity.Name = $"({col}, {line}) {tile}";
+            AddComponents(entity, tile);
+            return entity;
+        }
+
+        /// <summary>
+        /// Can it be move away from its current position?
+        /// </summary>
         private bool IsMovable(TileType tile)
         {
             switch (tile)
@@ -139,9 +167,16 @@ namespace StoppingRogue.Levels
         {
             var transform = entity.GetOrCreate<TransformComponent>();
             transform.Position = new Vector3(col, -line, ZPos(tile));
+
+            // Each tile is 48px wide. At pixel to unit scale 1/100.
+            // This way each tile is one unit wide in game.
             transform.Scale = (Vector3)new Vector2(1 / 0.48f);
         }
 
+        /// <summary>
+        /// Adds components to the <paramref name="entity"/> based on tile type.
+        /// </summary>
+        /// <remarks>This should be abstracted into somethign prettier.</remarks>
         private void AddComponents(Entity entity, TileType tile)
         {
             AddSprite(entity, tile);
@@ -149,11 +184,11 @@ namespace StoppingRogue.Levels
             if (tile == TileType.Robot)
             {
                 var rc = entity.GetOrCreate<RobotController>();
-                actionController.Robot = rc;
                 var rl = entity.GetOrCreate<RobotLight>();
-                rl.robotSpriteSheet = robotSheet;
-                entity.GetOrCreate<RobotHolder>();
                 var rls = entity.GetOrCreate<RobotLaser>();
+                entity.GetOrCreate<RobotHolder>();
+                
+                rl.robotSpriteSheet = robotSheet;
                 rls.itemSpriteSheet = itemSheet;
             }
             if (HasCollider(tile))
@@ -195,11 +230,13 @@ namespace StoppingRogue.Levels
                     Size = new Vector3(0.45f, 0.45f, 0),
                 });
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
+                // CustomFilter1 reacts with RobotLight
                 rb.CollisionGroup = CollisionFilterGroups.CustomFilter1;
                 rb.CanCollideWith = CollisionFilterGroupFlags.CustomFilter1;
 
                 var ls = switchEntity.GetOrCreate<LightSwitch>();
                 var task = entity.GetOrCreate<TaskComponent>();
+
                 task.Type = TaskType.SwitchLightOn;
                 ls.taskComponent = task;
                 entity.AddChild(switchEntity);
@@ -214,10 +251,11 @@ namespace StoppingRogue.Levels
                     Size = new Vector3(0.45f, 0.45f, 0),
                 });
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
+                // CustomFilter2 reacts with raycast in RobotHolder
                 rb.CollisionGroup = CollisionFilterGroups.CustomFilter2;
                 rb.CanCollideWith = CollisionFilterGroupFlags.CustomFilter2;
                 entity.AddChild(holdableEntity);
-                
+
                 var item = entity.GetOrCreate<ItemComponent>();
                 item.ItemType = GetItemType(tile);
             }
@@ -241,15 +279,12 @@ namespace StoppingRogue.Levels
                 {
                     expl.PostExplosion += () =>
                     {
-                        var cutPipe = new Entity();
                         var col = (int)entity.Transform.Position.X;
                         var line = -(int)entity.Transform.Position.Y;
-                        SetPosition(cutPipe, col, line, TileType.CutPipe);
-                        entity.Name = $"({col}, {line}) {TileType.CutPipe}";
-                        AddComponents(cutPipe, TileType.CutPipe);
+                        var cutPipe = InitializeEntity(line, col, TileType.CutPipe);
 
                         entity.Scene.Entities.Add(cutPipe);
-                        entity.Scene = null;
+                        entity.Scene = null; // remove long pipe from scene
                     };
                 }
                 else
@@ -260,16 +295,10 @@ namespace StoppingRogue.Levels
             if (tile == TileType.PressurePlate || tile == TileType.StepOnSwitch)
             {
                 var switchComp = entity.GetOrCreate<SwitchComponent>();
-                // switchComp.OnSwitch...
-                // if inverted pressureplate switchComp.Positive = false
                 if (tile == TileType.PressurePlate)
-                {
                     entity.GetOrCreate<PressurePlate>();
-                }
                 else
-                {
                     entity.GetOrCreate<StepOnSwitch>();
-                }
 
                 var rb = entity.GetOrCreate<RigidbodyComponent>();
                 rb.ColliderShapes.Add(new BoxColliderShapeDesc()
@@ -278,10 +307,11 @@ namespace StoppingRogue.Levels
                     Size = new Vector3(0.45f, 0.45f, 0),
                 });
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
+                // Sensor trigger allows RobotController to step on it
                 rb.CollisionGroup = CollisionFilterGroups.SensorTrigger;
                 rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter;
             }
-            if(tile == TileType.SlotForBox || tile == TileType.SlotForPipe)
+            if (tile == TileType.SlotForBox || tile == TileType.SlotForPipe)
             {
                 var task = entity.GetOrCreate<TaskComponent>();
                 task.Type = tile == TileType.SlotForBox ? TaskType.FillBoxSlot : TaskType.FillPipeSlot;
@@ -306,6 +336,10 @@ namespace StoppingRogue.Levels
                 CurrentFrame = GetFrame(tile)
             };
         }
+
+        /// <summary>
+        /// Some entities should always be displayed above others.
+        /// </summary>
         public float ZPos(TileType tile)
         {
             switch (tile)
@@ -319,40 +353,14 @@ namespace StoppingRogue.Levels
                 case TileType.MetalBox:
                 case TileType.CutPipe:
                     return 0.001f;
-                case TileType.WallLower:
-                case TileType.WallLowerFancy:
-                case TileType.Door:
-                case TileType.RightFacingWall:
-                case TileType.LeftFacingWall:
-                case TileType.BackFacingWall:
-                case TileType.LightSwitchWall:
-                case TileType.SlotForBox:
-                case TileType.SlotForPipe:
-                case TileType.Mainframe:
-                case TileType.Counter:
-                case TileType.CounterEdgeLeft:
-                case TileType.CounterEdgeRight:
-                case TileType.CounterVerticalLeft:
-                case TileType.CounterVerticalRight:
-                case TileType.WoodCrate:
-                case TileType.LongPipe:
-                case TileType.LongPipeVertical:
-                case TileType.GlassPane:
-                case TileType.HoleInFloor:
-                case TileType.None:
-                case TileType.Floor:
-                case TileType.WallEdgeUL:
-                case TileType.WallEdgeUR:
-                case TileType.WallEdgeLL:
-                case TileType.WallEdgeLR:
-                case TileType.PressurePlate:
-                case TileType.PressurePlateWithBox:
-                case TileType.StepOnSwitch:
                 default:
                     return 0;
             }
         }
 
+        /// <summary>
+        /// A tile with a collider blocks robot from entering it.
+        /// </summary>
         private bool HasCollider(TileType tile)
         {
             switch (tile)
@@ -383,20 +391,14 @@ namespace StoppingRogue.Levels
                 case TileType.HoleInFloor:
                 case TileType.Robot:
                     return true;
-                case TileType.None:
-                case TileType.Floor:
-                case TileType.WallEdgeUL:
-                case TileType.WallEdgeUR:
-                case TileType.WallEdgeLL:
-                case TileType.WallEdgeLR:
-                case TileType.OpenedDoor:
-                case TileType.PressurePlate:
-                case TileType.PressurePlateWithBox:
-                case TileType.StepOnSwitch:
                 default:
                     return false;
             }
         }
+
+        /// <summary>
+        /// Items can be picked up.
+        /// </summary>
         private bool IsItem(TileType tile)
         {
             switch (tile)
@@ -405,38 +407,6 @@ namespace StoppingRogue.Levels
                 case TileType.MetalBox:
                 case TileType.CutPipe:
                     return true;
-                case TileType.WallLower:
-                case TileType.WallLowerFancy:
-                case TileType.RightFacingWall:
-                case TileType.LeftFacingWall:
-                case TileType.BackFacingWall:
-                case TileType.Door:
-                case TileType.SlotForBox:
-                case TileType.SlotForPipe:
-                case TileType.LightSwitchWall:
-                case TileType.Mainframe:
-                case TileType.Counter:
-                case TileType.CounterEdgeLeft:
-                case TileType.CounterEdgeRight:
-                case TileType.CounterVerticalLeft:
-                case TileType.CounterVerticalRight:
-                case TileType.WoodCrate:
-                case TileType.LongPipe:
-                case TileType.LongPipeVertical:
-                case TileType.GlassPane:
-                case TileType.HoleInFloor:
-                case TileType.Robot:
-                case TileType.None:
-                case TileType.Floor:
-                case TileType.WallUpper:
-                case TileType.WallEdgeUL:
-                case TileType.WallEdgeUR:
-                case TileType.WallEdgeLL:
-                case TileType.WallEdgeLR:
-                case TileType.OpenedDoor:
-                case TileType.PressurePlate:
-                case TileType.PressurePlateWithBox:
-                case TileType.StepOnSwitch:
                 default:
                     return false;
             }
@@ -451,42 +421,14 @@ namespace StoppingRogue.Levels
                     return Item.MetalBox;
                 case TileType.CutPipe:
                     return Item.CutPipe;
-                case TileType.WallLower:
-                case TileType.WallLowerFancy:
-                case TileType.RightFacingWall:
-                case TileType.LeftFacingWall:
-                case TileType.BackFacingWall:
-                case TileType.Door:
-                case TileType.SlotForBox:
-                case TileType.SlotForPipe:
-                case TileType.LightSwitchWall:
-                case TileType.Mainframe:
-                case TileType.Counter:
-                case TileType.CounterEdgeLeft:
-                case TileType.CounterEdgeRight:
-                case TileType.CounterVerticalLeft:
-                case TileType.CounterVerticalRight:
-                case TileType.WoodCrate:
-                case TileType.LongPipe:
-                case TileType.LongPipeVertical:
-                case TileType.GlassPane:
-                case TileType.HoleInFloor:
-                case TileType.Robot:
-                case TileType.None:
-                case TileType.Floor:
-                case TileType.WallUpper:
-                case TileType.WallEdgeUL:
-                case TileType.WallEdgeUR:
-                case TileType.WallEdgeLL:
-                case TileType.WallEdgeLR:
-                case TileType.OpenedDoor:
-                case TileType.PressurePlate:
-                case TileType.PressurePlateWithBox:
-                case TileType.StepOnSwitch:
                 default:
                     throw new InvalidOperationException();
             }
         }
+
+        /// <summary>
+        /// Destructable entities can be destroyed with the laser.
+        /// </summary>
         private bool IsDestructible(TileType tile)
         {
             switch (tile)
@@ -498,40 +440,14 @@ namespace StoppingRogue.Levels
                 case TileType.LongPipe:
                 case TileType.LongPipeVertical:
                     return true;
-                case TileType.CutPipe:
-                case TileType.MetalBox:
-                case TileType.WallLower:
-                case TileType.WallLowerFancy:
-                case TileType.RightFacingWall:
-                case TileType.LeftFacingWall:
-                case TileType.BackFacingWall:
-                case TileType.Door:
-                case TileType.SlotForBox:
-                case TileType.SlotForPipe:
-                case TileType.LightSwitchWall:
-                case TileType.Counter:
-                case TileType.CounterEdgeLeft:
-                case TileType.CounterEdgeRight:
-                case TileType.CounterVerticalLeft:
-                case TileType.CounterVerticalRight:
-                case TileType.HoleInFloor:
-                case TileType.Robot:
-                case TileType.None:
-                case TileType.Floor:
-                case TileType.WallUpper:
-                case TileType.WallEdgeUL:
-                case TileType.WallEdgeUR:
-                case TileType.WallEdgeLL:
-                case TileType.WallEdgeLR:
-                case TileType.OpenedDoor:
-                case TileType.PressurePlate:
-                case TileType.PressurePlateWithBox:
-                case TileType.StepOnSwitch:
                 default:
                     return false;
             }
         }
 
+        /// <summary>
+        /// Tile frame in its sprite sheet.
+        /// </summary>
         private int GetFrame(TileType tile)
         {
             switch (tile)
@@ -612,6 +528,9 @@ namespace StoppingRogue.Levels
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Tiles sprite sheet.
+        /// </summary>
         private SpriteSheet GetSpriteSheet(TileType tile)
         {
             switch (tile)

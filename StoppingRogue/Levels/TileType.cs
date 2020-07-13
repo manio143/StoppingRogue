@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StoppingRogue.Levels
 {
+    /// <summary>
+    /// Entity type description, used to create a <see cref="Level"/>.
+    /// </summary>
     public enum TileType
     {
         /// <summary>
@@ -92,6 +93,9 @@ namespace StoppingRogue.Levels
         Robot,
     }
 
+    /// <summary>
+    /// Describes <see cref="TileType"/> serialization and user input key.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
     sealed class TileCharAttribute : Attribute
     {

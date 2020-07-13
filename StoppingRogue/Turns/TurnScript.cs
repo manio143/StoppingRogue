@@ -3,6 +3,9 @@ using System;
 
 namespace StoppingRogue.Turns
 {
+    /// <summary>
+    /// Updates the <see cref="TurnSystem"/> and manages turns.
+    /// </summary>
     public class TurnScript : SyncScript
     {
         private TimeSpan lastTurn;
@@ -21,8 +24,11 @@ namespace StoppingRogue.Turns
             {
                 lastTurn = currentTime;
                 TurnSystem.TurnNumber++;
+
+                // wake up all that wait for a new turn
                 while(TurnSystem.Channel.Balance < 0)
                     TurnSystem.Channel.Send(false);
+
                 TurnSystem.RemainingTime -= diff;
             }
         }

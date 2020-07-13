@@ -3,17 +3,29 @@ using Stride.Core;
 using Stride.Engine;
 using Stride.Rendering.Sprites;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StoppingRogue.Tasks
 {
+    /// <summary>
+    /// A slot for an item.
+    /// </summary>
     [DataContract]
     public class SlotComponent : EntityComponent
     {
+        /// <summary>
+        /// Associated task.
+        /// </summary>
         public TaskComponent taskComponent;
+
+        /// <summary>
+        /// Type of accepted item.
+        /// </summary>
         public Item ItemType { get; set; }
 
+        /// <summary>
+        /// Fill slot with an item to complete the task.
+        /// </summary>
+        /// <param name="item"></param>
         public void Fill(Item item)
         {
             VerifyConsistency();

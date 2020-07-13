@@ -2,6 +2,9 @@
 
 namespace StoppingRogue.Levels
 {
+    /// <summary>
+    /// Categorizes <see cref="Action"/>.
+    /// </summary>
     public enum ActionType
     {
         Movement = 1,
@@ -9,6 +12,10 @@ namespace StoppingRogue.Levels
         Light,
         Hold,
     }
+
+    /// <summary>
+    /// What the robot can do.
+    /// </summary>
     public enum Action
     {
         [ActionChar('-')]
@@ -31,6 +38,9 @@ namespace StoppingRogue.Levels
         GrabRelease,
     }
 
+    /// <summary>
+    /// Describes <see cref="Action"/> serialization and user input key.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
     sealed class ActionCharAttribute : Attribute
     {
@@ -44,6 +54,9 @@ namespace StoppingRogue.Levels
 
     public static class ActionExtension
     {
+        /// <summary>
+        /// Maps <see cref="Action"/> to its <see cref="ActionType"/>.
+        /// </summary>
         public static ActionType GetActionType(this Action action)
         {
             switch (action)

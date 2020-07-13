@@ -5,11 +5,13 @@ using StoppingRogue.Turns;
 using Stride.Engine;
 using Stride.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StoppingRogue.Demo
 {
+    /// <summary>
+    /// Superseded by <see cref="Levels.LevelSelection"/>.
+    /// </summary>
+    [Obsolete]
     public class DemoScript : StartupScript
     {
         public SpriteSheet Environment { get; set; }
@@ -30,7 +32,6 @@ namespace StoppingRogue.Demo
 
             var robotBrain = Entity.GetOrCreate<RobotBrain>();
             robotBrain.actions = level.ActionPattern;
-            robotBrain.userActions = level.UserActions;
 
             var inputController = Entity.GetOrCreate<InputController>();
             inputController.userActions = level.UserActions;

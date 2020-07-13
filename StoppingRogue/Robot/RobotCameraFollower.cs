@@ -6,27 +6,38 @@ using System.Threading.Tasks;
 
 namespace StoppingRogue.Robot
 {
+    /// <summary>
+    /// Moves the camera as the robot moves.
+    /// </summary>
     public class RobotCameraFollower : AsyncScript
     {
         [DataMemberIgnore]
         public Entity Robot;
 
+        // offset from the robot's position
         private const float offsetX = 3;
         private const float offsetY = -1;
+
         public override async Task Execute()
         {
             while(true)
             {
                 await Script.NextFrame();
+
                 if (Robot == null)
                     continue;
+
                 await FollowRobot();
-                
             }
         }
 
+        /// <summary>
+        /// Move smoothly towards the robot.
+        /// </summary>
         public async Task FollowRobot()
         {
+            // I tried to get smooth following (no jitters)
+            // but I got something a little different
             var speed = 3f;
             var currentX = Entity.Transform.Position.X;
             var currentY = Entity.Transform.Position.Y;

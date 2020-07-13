@@ -16,18 +16,24 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace StoppingRogue
 {
+    /// <summary>
+    /// The UI manager and high level logic invoker.
+    /// </summary>
     public class UIScript : SyncScript
     {
         private EventReceiver tasksCompleted = new EventReceiver(TaskProcessor.AllTasksCompleted);
 
+        // UI pages
         public UIPage GamePage;
         public UIPage GameResult;
         public UIPage LevelSelection;
+
         private UIComponent UI;
+
+        // Sprite sheet for UI elements
         public SpriteSheet UISheet;
 
         [DataMemberIgnore]
@@ -35,7 +41,11 @@ namespace StoppingRogue
         [DataMemberIgnore]
         public RobotBrain robotBrain;
 
+        /// <summary>
+        /// The level loader component.
+        /// </summary>
         public LevelSelection Loader;
+
         private List<TaskComponent> tasks = new List<TaskComponent>();
 
         enum UIState { InGame, GameResult, LevelSelection }
@@ -46,20 +56,29 @@ namespace StoppingRogue
         private int completedLevels = 0;
         private int currentLevel;
 
+        /// <summary>
+        /// How many levels are available?
+        /// </summary>
+        /// <remarks><see cref="LevelSelection"/> page needs to have that many buttons.</remarks>
         public int NumberOfLevels { get; set; }
 
         public override void Start()
         {
             UI = Entity.Get<UIComponent>();
             CreateLevelSelection();
-            
+
+            // Setup returning to level selection menu from game result
             var continueBtn = (GameResult.RootElement as Panel).Children[3] as Button;
             continueBtn.Click += (sender, args) =>
             {
+                // remove all entities
                 foreach (var entity in Entity.Scene.Children[0].Entities)
                     entity.Scene = null;
                 Entity.Scene.Children.RemoveAt(0);
+
+                // update available levels
                 CreateLevelSelection();
+
                 UI.Page = LevelSelection;
                 state = UIState.LevelSelection;
             };
@@ -73,20 +92,19 @@ namespace StoppingRogue
             if (state == UIState.InGame)
             {
                 var timeLeft = TurnSystem.RemainingTime;
-                Result result = Result.None;
-                if (tasksCompleted.TryReceive())
-                {
-                    result = Result.Success;
-                }
-                else if (timeLeft.Ticks < 0)
-                {
-                    result = Result.Failure;
-                }
+
+                // is the game over
+                Result result = tasksCompleted.TryReceive()
+                    ? Result.Success
+                    : timeLeft.Ticks < 0
+                    ? Result.Failure
+                    : Result.None;
 
                 if (result != Result.None)
                 {
-                    var cyclesLeft = 10 - robotBrain.Cycles;
-                    var starsNum = (int)Math.Max(1, Math.Floor(cyclesLeft / 2.0));
+                    // update GameResult page
+                    var cyclesLeft = 5 - robotBrain.Cycles;
+                    var starsNum = Math.Max(1, cyclesLeft);
                     var message = result == Result.Failure
                         ? "The robot became sentient and took over the world!"
                         : "You have succesfully completed all tasks";
@@ -100,13 +118,11 @@ namespace StoppingRogue
                     {
                         if (stars[i].Source == null)
                             stars[i].Source = new SpriteFromSheet
-                            {
-                                Sheet = UISheet,
-                                CurrentFrame = 10
-                            };
+                            { Sheet = UISheet, CurrentFrame = 10 };
                         stars[i].Visibility = i < starsNum ? Visibility.Visible : Visibility.Hidden;
                     }
 
+                    // Unlock next level
                     if (result == Result.Success)
                         completedLevels = Math.Max(completedLevels, currentLevel + 1);
 
@@ -117,6 +133,7 @@ namespace StoppingRogue
                 }
                 else
                 {
+                    // update Game UI
                     var nextUserAction = inputController.NextAction.GetActionType();
                     var nextRobotAction = robotBrain.NextAction.GetActionType();
 
@@ -150,13 +167,18 @@ namespace StoppingRogue
         [Conditional("DEBUG")]
         private void DebugHacks()
         {
-            if(Input.IsKeyPressed(Stride.Input.Keys.F1))
+            if (Input.IsKeyPressed(Stride.Input.Keys.F1))
             {
+                // quick access to all levels
                 completedLevels = NumberOfLevels;
                 CreateLevelSelection();
             }
         }
 
+        /// <summary>
+        /// Displays a green frame around next user action, and red frame around
+        /// next robot action.
+        /// </summary>
         private void UpdateActions(Border action, ActionType act, ActionType nextUserAction, ActionType nextRobotAction, int activeFrame)
         {
             var userBorder = action;
@@ -166,6 +188,8 @@ namespace StoppingRogue
                 ? new Color(0x14, 0xe8, 0, 0xff) : new Color(0, 0, 0, 0);
             robotBorder.BorderColor = nextRobotAction == act
                 ? new Color(0xef, 0, 0, 0xff) : new Color(0, 0, 0, 0);
+
+            // if action is not available for the user choose a greyed out icon
             (image.Source as SpriteFromSheet).CurrentFrame = inputController.userActions.Contains(act)
                 ? activeFrame : activeFrame + 1;
         }
@@ -187,6 +211,10 @@ namespace StoppingRogue
             }
         }
 
+        private static bool firstInit = true;
+        /// <summary>
+        /// Update <see cref="LevelSelection"/> buttons.
+        /// </summary>
         public void CreateLevelSelection()
         {
             var root = (LevelSelection.RootElement as Panel).Children.Last() as Panel;
@@ -194,29 +222,38 @@ namespace StoppingRogue
             {
                 var button = root.Children[i] as Button;
                 var text = button.Content as TextBlock;
-                text.Text = (i + 1).ToString();
-                text.HorizontalAlignment = HorizontalAlignment.Center;
-                text.VerticalAlignment = VerticalAlignment.Center;
+
+                // available level are given orange sprite
+                // the rest grey ones
                 button.IsEnabled = i <= completedLevels;
                 (button.NotPressedImage as SpriteFromSheet).CurrentFrame =
                     i <= completedLevels ? 11 : 12;
                 (button.MouseOverImage as SpriteFromSheet).CurrentFrame =
                     i <= completedLevels ? 11 : 12;
-                button.ClickMode = ClickMode.Release;
-                int capture = i;
-                button.Click += (sender, args) =>
+
+                if (firstInit)
                 {
-                    if (state == UIState.InGame)
-                        return;
-                    Loader.LoadLevel(capture + 1);
-                    currentLevel = capture;
-                    state = UIState.InGame;
-                    UI.Page = GamePage;
-                    PopulateTasks();
-                };
+                    text.Text = (i + 1).ToString();
+                    button.ClickMode = ClickMode.Release;
+                    int capture = i;
+                    button.Click += (sender, args) =>
+                    {
+                        if (state == UIState.InGame)
+                            return;
+                        Loader.LoadLevel(capture + 1);
+                        currentLevel = capture;
+                        state = UIState.InGame;
+                        UI.Page = GamePage;
+                        PopulateTasks();
+                    };
+                }
             }
+            firstInit = false;
         }
 
+        /// <summary>
+        /// Find entities with tasks and create a list of those.
+        /// </summary>
         private void PopulateTasks()
         {
             tasks.Clear();

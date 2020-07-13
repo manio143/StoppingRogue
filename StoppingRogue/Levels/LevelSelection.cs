@@ -4,13 +4,12 @@ using StoppingRogue.Turns;
 using Stride.Core.IO;
 using Stride.Engine;
 using Stride.Graphics;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace StoppingRogue.Levels
 {
+    /// <summary>
+    /// Manages the instantiation of levels.
+    /// </summary>
     public class LevelSelection : ScriptComponent
     {
         public SpriteSheet Environment { get; set; }
@@ -20,13 +19,16 @@ namespace StoppingRogue.Levels
         public UIScript UIScript { get; set; }
 
         private Level level;
+
+        /// <summary>
+        /// Load level asset, build scene, setup dependencies.
+        /// </summary>
         public void LoadLevel(int levelNumber)
         {
-            string lvl;
-            using (var stream = Content.FileProvider.OpenStream($"LVL{levelNumber}", VirtualFileMode.Open, VirtualFileAccess.Read))
-            using (var reader = new StreamReader(stream))
-                lvl = reader.ReadToEnd();
-            level = LevelReader.Read(lvl.Split('\n'));
+            // Read RawAsset by its URI
+            using (var stream = Content.FileProvider
+                .OpenStream($"LVL{levelNumber}", VirtualFileMode.Open, VirtualFileAccess.Read))
+                level = LevelReader.Read(stream);
 
             var actionController = Entity.GetOrCreate<ActionController>();
             var builder = new LevelBuilder(Environment, Robot, Items, actionController);
@@ -34,9 +36,10 @@ namespace StoppingRogue.Levels
             var scene = builder.Build(level, out var robot);
             this.Entity.Scene.Children.Add(scene);
 
+            actionController.Robot = robot.Get<RobotController>();
+
             var robotBrain = Entity.GetOrCreate<RobotBrain>();
             robotBrain.actions = level.ActionPattern;
-            robotBrain.userActions = level.UserActions;
             robotBrain.Reset();
 
             var inputController = Entity.GetOrCreate<InputController>();
@@ -46,7 +49,7 @@ namespace StoppingRogue.Levels
 
             TurnSystem.Reset();
             TurnSystem.Enable(Entity.Scene);
-            TurnSystem.RemainingTime = level.ActionPattern.Length * TurnSystem.TurnLength * 10;
+            TurnSystem.RemainingTime = level.ActionPattern.Length * TurnSystem.TurnLength * 5;
 
             UIScript.inputController = inputController;
             UIScript.robotBrain = robotBrain;

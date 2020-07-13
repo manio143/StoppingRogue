@@ -1,15 +1,18 @@
-﻿using StoppingRogue.Robot;
-using Stride.Engine;
+﻿using Stride.Engine;
 using Stride.Core.Mathematics;
 using Stride.Physics;
-using System;
-using System.Threading.Tasks;
 using Stride.Rendering.Sprites;
 
 namespace StoppingRogue.Switches
 {
+    /// <summary>
+    /// Controls a door entity.
+    /// </summary>
     public class DoorComponent : ScriptComponent
     {
+        /// <summary>
+        /// Open door - set sensor collision and opened sprite.
+        /// </summary>
         public void Open()
         {
             var rb = Entity.Get<RigidbodyComponent>();
@@ -29,6 +32,10 @@ namespace StoppingRogue.Switches
             //TODO door sound
 
         }
+
+        /// <summary>
+        /// Close door - set default collision and closed sprite.
+        /// </summary>
         public void Close()
         {
             var rb = Entity.Get<RigidbodyComponent>();

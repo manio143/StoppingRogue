@@ -8,10 +8,20 @@ using System;
 
 namespace StoppingRogue.Robot
 {
+    /// <summary>
+    /// Allows shooting laser
+    /// </summary>
     [DataContract]
     public class RobotLaser : EntityComponent
     {
+        /// <summary>
+        /// Sprite sheet for the laser sprite.
+        /// </summary>
         public SpriteSheet itemSpriteSheet;
+
+        /// <summary>
+        /// Create a projectile that moves in <paramref name="direction"/>.
+        /// </summary>
         public void ShootLaser(Vector2 direction)
         {
             var projectile = new Entity();
@@ -31,6 +41,7 @@ namespace StoppingRogue.Robot
                 Size = new Vector3(0.2f, 0.2f, 0),
             });
             rigidBody.CollisionGroup = CollisionFilterGroups.DefaultFilter;
+            // don't collide with sensors and others
             rigidBody.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter;
 
             var logic = projectile.GetOrCreate<ProjectileComponent>();

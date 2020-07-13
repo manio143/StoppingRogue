@@ -7,25 +7,51 @@ using System.Threading.Tasks;
 
 namespace StoppingRogue.Input
 {
+    /// <summary>
+    /// Receives user input and broadcasts actions to <see cref="ActionController"/>.
+    /// </summary>
     public class InputController : AsyncScript
     {
+        /// <summary>
+        /// Available actions. Always includes (<see cref="ActionType"/>)0.
+        /// </summary>
         public ActionType[] userActions;
+
+        /// <summary>
+        /// User selected action to be broadcast on the next turn.
+        /// </summary>
         public Action NextAction { get; private set; }
 
+        /// <summary>
+        /// Currently pressed key.
+        /// </summary>
         private Keys? downKey;
+
         public override async Task Execute()
         {
-            this.Priority = 10;
             Script.AddTask(ProcessInput);
             while (true)
             {
                 if (await TurnSystem.NextTurn())
+                {
+                    Reset();
                     continue;
+                }
+
                 var action = NextAction;
+
+                // Check if the action is allowed before broadcasting it.
                 if(userActions.Contains(action.GetActionType()))
                     ActionController.Broadcast(action, user: true);
-                downKey = null;
+
+                Reset();
             }
+        }
+
+        private void Reset()
+        {
+            downKey = null;
+            NextAction = Action.Nop;
         }
 
         private async Task ProcessInput()
@@ -33,16 +59,25 @@ namespace StoppingRogue.Input
             while(true)
             {
                 await Script.NextFrame();
+
+                // Read new input, if there's none, preserve previous value.
                 downKey = Input.HasDownKeys ? Input.DownKeys.First() : downKey;
+                
                 if (!userActions.Contains(GetAction().GetActionType()))
                 {
                     // TODO: play mistake sound
                     downKey = null;
                 }
+                
                 NextAction = GetAction();
             }
         }
 
+        /// <summary>
+        /// Converts pressed <see cref="Keys"/> to <see cref="Action"/> according to
+        /// the action's <see cref="ActionCharAttribute"/>.
+        /// </summary>
+        /// <returns></returns>
         private Action GetAction()
         {
             switch (downKey)

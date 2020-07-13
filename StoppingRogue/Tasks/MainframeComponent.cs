@@ -6,11 +6,20 @@ using System;
 
 namespace StoppingRogue.Tasks
 {
+    /// <summary>
+    /// Provides <see cref="Destroy"/> for a <see cref="DestructableComponent"/>.
+    /// </summary>
     [DataContract]
     public class MainframeComponent : EntityComponent
     {
+        /// <summary>
+        /// Associated task.
+        /// </summary>
         public TaskComponent taskComponent;
 
+        /// <summary>
+        /// Completes the task and changes the sprite.
+        /// </summary>
         public void Destroy()
         {
             if (taskComponent.Type != TaskType.DestroyMainrfame)
@@ -18,7 +27,6 @@ namespace StoppingRogue.Tasks
 
             taskComponent.Completed = true;
 
-            //TODO replace my sprite and remove destructable component
             (Entity.Get<SpriteComponent>().SpriteProvider as SpriteFromSheet).CurrentFrame = 20;
             Entity.Remove<DestructableComponent>();
         }

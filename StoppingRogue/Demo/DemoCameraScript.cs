@@ -3,6 +3,9 @@ using Stride.Core.Mathematics;
 
 namespace StoppingRogue.Demo
 {
+    /// <summary>
+    /// Allows camera to be controlled using arrow keys.
+    /// </summary>
     public class DemoCameraScript : SyncScript
     {
         public override void Update()

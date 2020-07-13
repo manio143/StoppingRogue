@@ -1,17 +1,20 @@
 ﻿using StoppingRogue.Robot;
 using Stride.Engine;
-using Stride.Engine.Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StoppingRogue.Turns
 {
+    /// <summary>
+    /// Receives actions from <see cref="Input.InputController"/> and <see cref="RobotBrain"/>.
+    /// </summary>
     public class ActionController : AsyncScript
     {
         private static (bool user, Levels.Action action)? _action;
         private static object BroadcastLock = new object();
+
+        /// <summary>
+        /// Broadcast an action. Robot's actions have priority over user actions.
+        /// </summary>
         public static void Broadcast(Levels.Action action, bool user)
         {
             lock(BroadcastLock)
@@ -23,16 +26,20 @@ namespace StoppingRogue.Turns
             }
         }
 
+        /// <summary>
+        /// Robot to be controlled.
+        /// </summary>
         public RobotController Robot;
 
         public override async Task Execute()
         {
-            this.Priority = 50;
             while(true)
             {
                 if (await TurnSystem.NextTurn())
                     continue;
-                await Script.NextFrame();
+
+                // Wait one frame before executing the action to make sure
+                // actions have been broadcasted
                 await Script.NextFrame();
 
                 Levels.Action action;

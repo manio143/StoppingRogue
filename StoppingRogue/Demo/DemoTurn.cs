@@ -1,11 +1,13 @@
 ﻿using StoppingRogue.Turns;
-using Stride.Core.Mathematics;
 using Stride.Engine;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace StoppingRogue.Demo
 {
+    /// <summary>
+    /// Prints to Debug output every turn. Meant to show TurnSystem usage.
+    /// </summary>
     public class DemoTurn : StartupScript
     {
         int turn;
