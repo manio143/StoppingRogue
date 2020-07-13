@@ -119,6 +119,10 @@ namespace StoppingRogue.Robot
             return current + (part * (target - current));
         }
 
+        public RobotController()
+        {
+            this.Priority = 10; // has to run after other components
+        }
 
         private RigidbodyComponent physics;
         private RobotLight robotLight;
