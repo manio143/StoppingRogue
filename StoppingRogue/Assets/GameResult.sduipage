@@ -56,13 +56,14 @@ Hierarchy:
                 DependencyProperties:
                     b833f9a191d5f2ebef5e4f0c1f37d3b0~GridBase.ColumnPropertyKey: 1
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 25.0
+                Height: 25.0
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
                 Margin: {}
                 MaximumWidth: 3.4028235E+38
                 MaximumHeight: 3.4028235E+38
                 MaximumDepth: 3.4028235E+38
-                Source: !SpriteFromSheet
-                    Sheet: null
-                    CurrentFrame: 6
                 Color: {R: 255, G: 255, B: 255, A: 255}
                 StretchType: None
         -   UIElement: !ImageElement
@@ -70,6 +71,10 @@ Hierarchy:
                 DependencyProperties:
                     0a2952e79ad256b3fa9bb7965062a9ba~GridBase.ColumnPropertyKey: 3
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 25.0
+                Height: 25.0
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
                 Margin: {}
                 MaximumWidth: 3.4028235E+38
                 MaximumHeight: 3.4028235E+38
@@ -94,6 +99,10 @@ Hierarchy:
                 DependencyProperties:
                     9902ffe5f24d7ee48af94dcd46794856~GridBase.ColumnPropertyKey: 2
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 25.0
+                Height: 25.0
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
                 Margin: {}
                 MaximumWidth: 3.4028235E+38
                 MaximumHeight: 3.4028235E+38
@@ -137,6 +146,10 @@ Hierarchy:
                 DependencyProperties:
                     a9489d59a65dc08a43dba70676debbe4~GridBase.ColumnPropertyKey: 4
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 25.0
+                Height: 25.0
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
                 Margin: {}
                 MaximumWidth: 3.4028235E+38
                 MaximumHeight: 3.4028235E+38
@@ -146,10 +159,12 @@ Hierarchy:
                 Id: fd530b43-5423-4009-8066-f5cb3f955ab7
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                Width: 25.0
+                Height: 25.0
+                HorizontalAlignment: Center
+                VerticalAlignment: Center
                 Margin: {}
                 MaximumWidth: 3.4028235E+38
                 MaximumHeight: 3.4028235E+38
                 MaximumDepth: 3.4028235E+38
-                Source: !SpriteFromSheet
-                    Sheet: null
                 Color: {R: 255, G: 255, B: 255, A: 255}

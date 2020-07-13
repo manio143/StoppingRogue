@@ -42,7 +42,7 @@ namespace StoppingRogue
 
         enum Result { None, Success, Failure }
 
-        private int completedLevels = 2;
+        private int completedLevels = 0;
         private int currentLevel;
 
         public int NumberOfLevels { get; set; }
@@ -84,7 +84,7 @@ namespace StoppingRogue
                 if (result != Result.None)
                 {
                     var cyclesLeft = 10 - robotBrain.Cycles;
-                    var starsNum = (int)Math.Floor(cyclesLeft / 2.0);
+                    var starsNum = (int)Math.Max(1, Math.Floor(cyclesLeft / 2.0));
                     var message = result == Result.Failure
                         ? "The robot became sentient and took over the world!"
                         : "You have succesfully completed all tasks";
@@ -185,7 +185,6 @@ namespace StoppingRogue
                 text.Text = (i + 1).ToString();
                 text.HorizontalAlignment = HorizontalAlignment.Center;
                 text.VerticalAlignment = VerticalAlignment.Center;
-                button.Margin = new Thickness(10, 10, 10, 10);
                 button.IsEnabled = i <= completedLevels;
                 (button.NotPressedImage as SpriteFromSheet).CurrentFrame =
                     i <= completedLevels ? 11 : 12;
