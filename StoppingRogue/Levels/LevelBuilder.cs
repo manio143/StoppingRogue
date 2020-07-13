@@ -201,7 +201,22 @@ namespace StoppingRogue.Levels
                 });
                 rb.RigidBodyType = RigidBodyTypes.Kinematic;
                 rb.CollisionGroup = CollisionFilterGroups.DefaultFilter;
-                rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter | CollisionFilterGroupFlags.SensorTrigger;
+                rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter
+                    | CollisionFilterGroupFlags.SensorTrigger
+                    // Hole
+                    | CollisionFilterGroupFlags.CustomFilter3;
+            }
+            if(tile == TileType.HoleInFloor)
+            {
+                var rb = entity.GetOrCreate<RigidbodyComponent>();
+                rb.ColliderShapes.Add(new BoxColliderShapeDesc()
+                {
+                    Is2D = true,
+                    Size = new Vector3(0.45f, 0.45f, 0),
+                });
+                rb.RigidBodyType = RigidBodyTypes.Kinematic;
+                rb.CollisionGroup = CollisionFilterGroups.CustomFilter3;
+                rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter;
             }
             if (tile == TileType.OpenedDoor)
             {
@@ -289,7 +304,10 @@ namespace StoppingRogue.Levels
                 }
                 else
                 {
-                    expl.PostExplosion += () => entity.Scene = null;
+                    expl.PostExplosion += () =>
+                    {
+                        entity.Scene = null;
+                    };
                 }
             }
             if (tile == TileType.PressurePlate || tile == TileType.StepOnSwitch)
@@ -388,7 +406,6 @@ namespace StoppingRogue.Levels
                 case TileType.LongPipeVertical:
                 case TileType.CutPipe:
                 case TileType.GlassPane:
-                case TileType.HoleInFloor:
                 case TileType.Robot:
                     return true;
                 default:

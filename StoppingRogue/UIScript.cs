@@ -104,7 +104,9 @@ namespace StoppingRogue
                 {
                     // update GameResult page
                     var cyclesLeft = 5 - robotBrain.Cycles;
-                    var starsNum = Math.Max(1, cyclesLeft);
+                    var starsNum = result == Result.Success
+                        ? Math.Max(1, cyclesLeft)
+                        : 0;
                     var message = result == Result.Failure
                         ? "The robot became sentient and took over the world!"
                         : "You have succesfully completed all tasks";

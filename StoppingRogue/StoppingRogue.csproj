@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <None Update="Resources\TileTest.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>
