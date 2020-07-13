@@ -13,6 +13,7 @@ namespace StoppingRogue.Turns
         public static TimeSpan RemainingTime { get; internal set; }
 
         internal static Channel<bool> Channel { get; private set; }
+            = new Channel<bool> { Preference = ChannelPreference.PreferSender };
         public static ChannelMicroThreadAwaiter<bool> NextTurn()
         {
             return Channel.Receive();
@@ -22,7 +23,6 @@ namespace StoppingRogue.Turns
         {
             while (Channel?.Balance < 0)
                 Channel?.Send(true);
-            Channel = new Channel<bool> { Preference = ChannelPreference.PreferSender };
         }
 
         public static void Enable(Scene rootScene)
