@@ -26,8 +26,7 @@ namespace StoppingRogue.Levels
         public void LoadLevel(int levelNumber)
         {
             // Read RawAsset by its URI
-            using (var stream = Content.FileProvider
-                .OpenStream($"LVL{levelNumber}", VirtualFileMode.Open, VirtualFileAccess.Read))
+            using (var stream = Content.OpenAsStream($"LVL{levelNumber}", StreamFlags.None))
                 level = LevelReader.Read(stream);
 
             var actionController = Entity.GetOrCreate<ActionController>();
