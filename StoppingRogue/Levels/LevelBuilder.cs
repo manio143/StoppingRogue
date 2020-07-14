@@ -151,6 +151,8 @@ namespace StoppingRogue.Levels
                 case TileType.LongPipeVertical:
                 case TileType.CutPipe:
                 case TileType.GlassPane:
+                case TileType.Door:
+                case TileType.OpenedDoor:
                 case TileType.Robot:
                     return true;
                 default:
