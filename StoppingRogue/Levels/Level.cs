@@ -34,8 +34,8 @@ namespace StoppingRogue.Levels
         public ActionType[] UserActions;
 
         /// <summary>
-        /// Connection between a switch and a door, with a positive/negative switch flag.
+        /// Connection between a switch and doors, with a positive/negative switch flag.
         /// </summary>
-        public Dictionary<Int2,(bool,Int2)> SwitchMapping;
+        public Dictionary<Int2,List<(bool,Int2)>> SwitchMapping;
     }
 }

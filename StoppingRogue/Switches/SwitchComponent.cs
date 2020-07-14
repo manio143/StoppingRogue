@@ -1,6 +1,7 @@
 ﻿using Stride.Core;
 using Stride.Engine;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace StoppingRogue.Switches
@@ -12,14 +13,10 @@ namespace StoppingRogue.Switches
     public class SwitchComponent : EntityComponent
     {
         /// <summary>
-        /// If not positive, it reports the negated state.
+        /// List of doors this switch affects and wether the state should be used positive.
         /// </summary>
-        public bool Positive { get; set; } = true;
-
-        /// <summary>
-        /// On switch state change.
-        /// </summary>
-        public event Action<bool> OnSwitch;
+        public List<(bool, DoorComponent)> Doors { get; }
+            = new List<(bool, DoorComponent)>();
 
         /// <summary>
         /// Switch state.
@@ -33,10 +30,14 @@ namespace StoppingRogue.Switches
         {
             Debug.WriteLine($"Switch toggled on '{Entity.Name}'");
             State = !State;
-            if (Positive)
-                OnSwitch?.Invoke(State);
-            else
-                OnSwitch?.Invoke(!State);
+            foreach (var (positive, door) in Doors)
+            {
+                var change = positive ? State : !State;
+                if (change)
+                    door.Open();
+                else
+                    door.Close();
+            }
         }
     }
 }

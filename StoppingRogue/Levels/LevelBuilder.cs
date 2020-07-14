@@ -105,14 +105,9 @@ namespace StoppingRogue.Levels
             {
                 var swit = swe.Get<SwitchComponent>() ?? throw new InvalidDataException();
 
-                swit.Positive = pos;
-
                 var door = doors[dp].Get<DoorComponent>() ?? throw new InvalidDataException();
 
-                swit.OnSwitch += (b) =>
-                {
-                    if (b) door.Open(); else door.Close();
-                };
+                swit.Doors.Add((pos, door));
             }
         }
 
@@ -124,10 +119,10 @@ namespace StoppingRogue.Levels
             var vec = new Int2(col, line);
             if (level.SwitchMapping.ContainsKey(vec))
             {
-                var (p, d) = level.SwitchMapping[vec];
-                switchSetups.Add((entity, p, d));
+                var dops = level.SwitchMapping[vec];
+                switchSetups.AddRange(dops.Select(dp => (entity, dp.Item1, dp.Item2)));
             }
-            else if (level.SwitchMapping.Any(kvp => kvp.Value.Item2 == vec))
+            else if (level.SwitchMapping.Any(kvp => kvp.Value.Any(dp => dp.Item2 == vec)))
             {
                 doors.Add(vec, entity);
             }

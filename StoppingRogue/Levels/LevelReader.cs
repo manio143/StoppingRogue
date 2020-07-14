@@ -63,9 +63,9 @@ namespace StoppingRogue.Levels
         /// Reads switch mapping in format "IpI[;IpI]", where I is Int2, p is +/- boolean.
         /// </summary>
         /// <example>(0,0)+(3,5);(10,4)-(8,2)</example>
-        private static Dictionary<Int2, (bool, Int2)> ReadSwitchLogic(string v)
+        private static Dictionary<Int2, List<(bool, Int2)>> ReadSwitchLogic(string v)
         {
-            var dict = new Dictionary<Int2, (bool, Int2)>();
+            var dict = new Dictionary<Int2, List<(bool, Int2)>>();
             foreach(var (position,positive,door) in v.Split(";", StringSplitOptions.RemoveEmptyEntries).Select(s => {
                 s = s.Trim();
                 var positive_ = s.Contains('+');
@@ -73,7 +73,9 @@ namespace StoppingRogue.Levels
                 return (ReadInt2(split[0].Trim()), positive_, ReadInt2(split[1].Trim()));
                 }))
             {
-                dict.Add(position, (positive, door));
+                if (!dict.ContainsKey(position))
+                    dict.Add(position, new List<(bool, Int2)>());
+                dict[position].Add((positive, door));
             }
             return dict;
         }

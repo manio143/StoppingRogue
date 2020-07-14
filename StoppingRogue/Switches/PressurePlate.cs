@@ -9,28 +9,33 @@ namespace StoppingRogue.Switches
     /// </summary>
     public class PressurePlate : AsyncScript
     {
+        private bool pressed = false;
         public override async Task Execute()
         {
             var physics = Entity.Get<RigidbodyComponent>();
             var switchComp = Entity.Get<SwitchComponent>();
 
-            if(physics.Collisions.Count > 0)
-            {
-                // it was initiated with something on it (i.e. Box on PressurePlate)
-                await physics.CollisionEnded();
-                switchComp.Switch();
-                // TODO switch sound
-            }
-
             while (true)
             {
-                await physics.NewCollision();
-                switchComp.Switch();
-                // TODO switch sound
-
-                await physics.CollisionEnded();
-                switchComp.Switch();
-                // TODO switch sound
+                if(physics.Collisions.Count > 0)
+                {
+                    if(!pressed)
+                    {
+                        pressed = true;
+                        switchComp.Switch();
+                        // TODO switch sound
+                    }
+                }
+                else
+                {
+                    if (pressed)
+                    {
+                        pressed = false;
+                        switchComp.Switch();
+                        // TODO switch sound
+                    }
+                }
+                await Script.NextFrame();
             }
         }
     }
