@@ -220,6 +220,28 @@ namespace StoppingRogue
         public void CreateLevelSelection()
         {
             var root = (LevelSelection.RootElement as Panel).Children.Last() as Panel;
+            while (root.Children.Count < NumberOfLevels)
+            {
+                var goodButton = root.Children.First() as Button;
+                var goodText = goodButton.Content as TextBlock;
+                root.Children.Add(new Button
+                {
+                    Content = new TextBlock
+                    {
+                        Font = goodText.Font,
+                        TextSize = goodText.TextSize,
+                        TextAlignment = goodText.TextAlignment,
+                        HorizontalAlignment = goodText.HorizontalAlignment,
+                        VerticalAlignment = goodText.VerticalAlignment,
+                    },
+                    NotPressedImage = new SpriteFromSheet { Sheet = UISheet },
+                    MouseOverImage = new SpriteFromSheet { Sheet = UISheet },
+                    PressedImage = new SpriteFromSheet { Sheet = UISheet, CurrentFrame = 12 },
+                    Width = goodButton.Width,
+                    Height = goodButton.Height,
+                    Margin = goodButton.Margin,
+                });
+            }
             for (int i = 0; i < NumberOfLevels; i++)
             {
                 var button = root.Children[i] as Button;
