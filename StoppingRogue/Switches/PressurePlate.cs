@@ -15,8 +15,11 @@ namespace StoppingRogue.Switches
             var physics = Entity.Get<RigidbodyComponent>();
             var switchComp = Entity.Get<SwitchComponent>();
 
+            pressed = physics.Collisions.Count > 0;
+
             while (true)
             {
+                await Script.NextFrame();
                 if(physics.Collisions.Count > 0)
                 {
                     if(!pressed)
@@ -35,7 +38,6 @@ namespace StoppingRogue.Switches
                         // TODO switch sound
                     }
                 }
-                await Script.NextFrame();
             }
         }
     }

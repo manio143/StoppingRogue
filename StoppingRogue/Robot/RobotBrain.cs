@@ -35,8 +35,6 @@ namespace StoppingRogue.Robot
                 // so if it's Nop, just don't broadcast
                 if (action != Levels.Action.Nop)
                     ActionController.Broadcast(action, user: false);
-
-                IncrementIndex();
             }
         }
 
@@ -61,7 +59,9 @@ namespace StoppingRogue.Robot
             }
             else
             {
-                return actions[index];
+                var action = actions[index];
+                IncrementIndex(); // only increase index if not random
+                return action;
             }
         }
 

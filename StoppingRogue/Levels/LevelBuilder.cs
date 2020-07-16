@@ -62,6 +62,9 @@ namespace StoppingRogue.Levels
                 {
                     var tile = level.Tiles[col, line];
 
+                    if (tile == TileType.None)
+                        continue; // don't create entities for none tiles
+
                     if (tile == TileType.PressurePlateWithBox)
                     {
                         // The only tile that describes two entities

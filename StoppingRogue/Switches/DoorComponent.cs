@@ -2,6 +2,7 @@
 using Stride.Core.Mathematics;
 using Stride.Physics;
 using Stride.Rendering.Sprites;
+using System.Diagnostics;
 
 namespace StoppingRogue.Switches
 {
@@ -15,16 +16,10 @@ namespace StoppingRogue.Switches
         /// </summary>
         public void Open()
         {
+            Debug.WriteLine($"Open {Entity.Name}");
+
             var rb = Entity.Get<RigidbodyComponent>();
-            rb.ColliderShapes.Clear();
-            rb.ColliderShapes.Add(new BoxColliderShapeDesc()
-            {
-                Is2D = true,
-                Size = new Vector3(0.45f, 0.70f, 0),
-                LocalOffset = new Vector3(0, 0.35f, 0),
-            });
-            rb.CollisionGroup = CollisionFilterGroups.SensorTrigger;
-            rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter;
+            rb.Enabled = false;
 
             var sprite = Entity.Get<SpriteComponent>().SpriteProvider as SpriteFromSheet;
             sprite.CurrentFrame = 13;
@@ -38,15 +33,10 @@ namespace StoppingRogue.Switches
         /// </summary>
         public void Close()
         {
+            Debug.WriteLine($"Close {Entity.Name}");
+
             var rb = Entity.Get<RigidbodyComponent>();
-            rb.ColliderShapes.Clear();
-            rb.ColliderShapes.Add(new BoxColliderShapeDesc()
-            {
-                Is2D = true,
-                Size = new Vector3(0.45f, 0.45f, 0),
-            });
-            rb.CollisionGroup = CollisionFilterGroups.DefaultFilter;
-            rb.CanCollideWith = CollisionFilterGroupFlags.DefaultFilter | CollisionFilterGroupFlags.SensorTrigger;
+            rb.Enabled = true;
 
             var sprite = Entity.Get<SpriteComponent>().SpriteProvider as SpriteFromSheet;
             sprite.CurrentFrame = 12;
