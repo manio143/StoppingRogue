@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace StoppingRogue.Levels
 {
@@ -60,22 +59,21 @@ namespace StoppingRogue.Levels
         }
 
         /// <summary>
-        /// Reads switch mapping in format "IpI[;IpI]", where I is Int2, p is +/- boolean.
+        /// Reads switch mapping in format "I+I[;I+I]", where I is Int2.
         /// </summary>
-        /// <example>(0,0)+(3,5);(10,4)-(8,2)</example>
-        private static Dictionary<Int2, List<(bool, Int2)>> ReadSwitchLogic(string v)
+        /// <example>(0,0)+(3,5);(10,4)+(8,2)</example>
+        private static Dictionary<Int2, List<Int2>> ReadSwitchLogic(string v)
         {
-            var dict = new Dictionary<Int2, List<(bool, Int2)>>();
-            foreach(var (position,positive,door) in v.Split(";", StringSplitOptions.RemoveEmptyEntries).Select(s => {
+            var dict = new Dictionary<Int2, List<Int2>>();
+            foreach(var (position,door) in v.Split(";", StringSplitOptions.RemoveEmptyEntries).Select(s => {
                 s = s.Trim();
-                var positive_ = s.Contains('+');
-                var split = positive_ ? s.Split('+') : s.Split('-');
-                return (ReadInt2(split[0].Trim()), positive_, ReadInt2(split[1].Trim()));
+                var split = s.Split('+');
+                return (ReadInt2(split[0].Trim()), ReadInt2(split[1].Trim()));
                 }))
             {
                 if (!dict.ContainsKey(position))
-                    dict.Add(position, new List<(bool, Int2)>());
-                dict[position].Add((positive, door));
+                    dict.Add(position, new List<Int2>());
+                dict[position].Add(door);
             }
             return dict;
         }

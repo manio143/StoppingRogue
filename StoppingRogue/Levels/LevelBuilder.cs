@@ -51,7 +51,7 @@ namespace StoppingRogue.Levels
             var scene = new Scene();
 
             // Create collections to later link switches with doors
-            var switchSetups = new List<(Entity, bool, Int2)>();
+            var switchSetups = new List<(Entity, Int2)>();
             var doors = new Dictionary<Int2, Entity>();
 
             // out params have to be initialized
@@ -105,30 +105,30 @@ namespace StoppingRogue.Levels
             return scene;
         }
 
-        private static void ConnectSwitchesToDoors(List<(Entity, bool, Int2)> switchSetups, Dictionary<Int2, Entity> doors)
+        private static void ConnectSwitchesToDoors(List<(Entity, Int2)> switchSetups, Dictionary<Int2, Entity> doors)
         {
-            foreach (var (swe, pos, dp) in switchSetups)
+            foreach (var (swe, dp) in switchSetups)
             {
                 var swit = swe.Get<SwitchComponent>() ?? throw new InvalidDataException();
 
                 var door = doors[dp].Get<DoorComponent>() ?? throw new InvalidDataException();
 
-                swit.Doors.Add((pos, door));
+                swit.Doors.Add(door);
             }
         }
 
         /// <summary>
         /// Checks if the entity is on the switch mapping and populates <paramref name="switchSetups"/> and <paramref name="doors"/> accordingly.
         /// </summary>
-        private static void TryAddSwitchOrDoor(Level level, List<(Entity, bool, Int2)> switchSetups, Dictionary<Int2, Entity> doors, int line, int col, Entity entity)
+        private static void TryAddSwitchOrDoor(Level level, List<(Entity, Int2)> switchSetups, Dictionary<Int2, Entity> doors, int line, int col, Entity entity)
         {
             var vec = new Int2(col, line);
             if (level.SwitchMapping.ContainsKey(vec))
             {
                 var dops = level.SwitchMapping[vec];
-                switchSetups.AddRange(dops.Select(dp => (entity, dp.Item1, dp.Item2)));
+                switchSetups.AddRange(dops.Select(dp => (entity, dp)));
             }
-            else if (level.SwitchMapping.Any(kvp => kvp.Value.Any(dp => dp.Item2 == vec)))
+            else if (level.SwitchMapping.Any(kvp => kvp.Value.Any(dp => dp == vec)))
             {
                 doors.Add(vec, entity);
             }
