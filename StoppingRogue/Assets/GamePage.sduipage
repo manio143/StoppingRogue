@@ -137,6 +137,7 @@ Hierarchy:
                 MaximumDepth: 3.4028235E+38
                 Children:
                     8d507f8099dacab3a7d35d97737ac7b0: !StackPanel ref!! edcad1d8-f434-4de0-8f7e-8245161b4e96
+                    bc1f6a7fec1cfc45d850246c1ff67faa: !TextBlock ref!! 57d3c55c-3c8a-478b-af1e-cabd7f65d6e7
                     8f6acf4687939e181127aaf6b24820f2: !TextBlock ref!! 6f412b07-c710-4b8b-9380-0091c478ad25
                     1a5d6abb617c9b55659440fa2218ffe0: !StackPanel ref!! cf191b43-3ec9-4a6f-8ebd-3f3c751aab76
                 RowDefinitions: {}
@@ -161,6 +162,20 @@ Hierarchy:
                     5f0ba8c9358900035e8d1dd067decb12: !ToggleButton ref!! 3ccbbc15-5164-4454-bdee-948a3bf6422e
                     0c595377358999f2ba45ff361300acda: !TextBlock ref!! 60c7196d-097c-416f-81a9-19956a90e8f4
                 Orientation: Horizontal
+        -   UIElement: !TextBlock
+                Id: 57d3c55c-3c8a-478b-af1e-cabd7f65d6e7
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Center
+                VerticalAlignment: Bottom
+                Margin: {Bottom: 20.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: '[R] - Restart'
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 30.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
         -   UIElement: !ImageElement
                 Id: 5d57225c-d636-4fbd-8781-52740129a370
                 DependencyProperties: {}

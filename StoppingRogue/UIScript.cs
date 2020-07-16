@@ -89,6 +89,14 @@ namespace StoppingRogue
         public override void Update()
         {
             DebugHacks();
+            if(Input.IsKeyPressed(Stride.Input.Keys.R))
+            {
+                foreach (var entity in Entity.Scene.Children[0].Entities)
+                    entity.Scene = null;
+                Entity.Scene.Children.RemoveAt(0);
+
+                Loader.LoadLevel(currentLevel + 1);
+            }
             if (state == UIState.InGame)
             {
                 var timeLeft = TurnSystem.RemainingTime;
@@ -141,8 +149,8 @@ namespace StoppingRogue
 
                     var grid = GamePage.RootElement as Grid;
                     var actions = ((grid.Children[0] as Panel).Children[0] as Panel).Children.Cast<Border>().ToArray();
-                    var timer = grid.Children[1] as TextBlock;
-                    var taskEntries = ((grid.Children[2] as Panel).Children.Skip(1).Select(c => ((c as Panel).Children[0] as ToggleButton, (c as Panel).Children[1] as TextBlock))).ToArray();
+                    var timer = grid.Children[2] as TextBlock;
+                    var taskEntries = ((grid.Children.Last() as Panel).Children.Skip(1).Select(c => ((c as Panel).Children[0] as ToggleButton, (c as Panel).Children[1] as TextBlock))).ToArray();
 
                     timer.Text = timeLeft.ToString("mm\\:ss");
 

@@ -3,6 +3,8 @@ using Stride.Core.Mathematics;
 using Stride.Physics;
 using Stride.Rendering.Sprites;
 using System.Diagnostics;
+using SharpDX.XInput;
+using System.Transactions;
 
 namespace StoppingRogue.Switches
 {
@@ -12,11 +14,25 @@ namespace StoppingRogue.Switches
     public class DoorComponent : ScriptComponent
     {
         /// <summary>
+        /// True if door is opened.
+        /// </summary>
+        public bool OpenedState { get; internal set; }
+
+        public void OpenClose()
+        {
+            if (OpenedState)
+                Close();
+            else
+                Open();
+        }
+
+        /// <summary>
         /// Open door - set sensor collision and opened sprite.
         /// </summary>
         public void Open()
         {
             Debug.WriteLine($"Open {Entity.Name}");
+            OpenedState = true;
 
             var rb = Entity.Get<RigidbodyComponent>();
             rb.Enabled = false;
@@ -34,6 +50,7 @@ namespace StoppingRogue.Switches
         public void Close()
         {
             Debug.WriteLine($"Close {Entity.Name}");
+            OpenedState = false;
 
             var rb = Entity.Get<RigidbodyComponent>();
             rb.Enabled = true;

@@ -32,11 +32,7 @@ namespace StoppingRogue.Switches
             State = !State;
             foreach (var (positive, door) in Doors)
             {
-                var change = positive ? State : !State;
-                if (change)
-                    door.Open();
-                else
-                    door.Close();
+                door.OpenClose();
             }
         }
     }
