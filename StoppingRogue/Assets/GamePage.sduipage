@@ -139,6 +139,7 @@ Hierarchy:
                     8d507f8099dacab3a7d35d97737ac7b0: !StackPanel ref!! edcad1d8-f434-4de0-8f7e-8245161b4e96
                     bc1f6a7fec1cfc45d850246c1ff67faa: !TextBlock ref!! 57d3c55c-3c8a-478b-af1e-cabd7f65d6e7
                     8f6acf4687939e181127aaf6b24820f2: !TextBlock ref!! 6f412b07-c710-4b8b-9380-0091c478ad25
+                    77c5d590a52ce37f2d679b70e6affbb2: !TextBlock ref!! ded6e0e0-8008-419c-b783-51af5b103d90
                     1a5d6abb617c9b55659440fa2218ffe0: !StackPanel ref!! cf191b43-3ec9-4a6f-8ebd-3f3c751aab76
                 RowDefinitions: {}
                 ColumnDefinitions:
@@ -441,6 +442,21 @@ Hierarchy:
                 Text: 'Tasks:'
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
                 TextSize: 30.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: ded6e0e0-8008-419c-b783-51af5b103d90
+                DependencyProperties:
+                    427cd157f59bd6019f1461fcf3df30e4~GridBase.ColumnPropertyKey: 2
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Right
+                VerticalAlignment: Bottom
+                Margin: {Right: 5.0, Bottom: 5.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: Created by Marian Dziubiak
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
                 TextColor: {R: 240, G: 240, B: 240, A: 255}
         -   UIElement: !Border
                 Id: e7a9594f-b666-4948-9e33-c5613205dd75

@@ -17,12 +17,8 @@ Hierarchy:
                 MaximumWidth: 3.4028235E+38
                 MaximumHeight: 3.4028235E+38
                 MaximumDepth: 3.4028235E+38
-                Text: >
-                    Complete the tasks before robot takes over completely. The robot can execute one of 4 actions:    
-                    - Move                    [WASD]
-                    - Grab/Release               [H]
-                    - Shoot Laser                [L]
-                    - Turn Light on/off          [F]
+                Text: |+
+                    Complete the tasks before robot takes over completely. The robot can execute one of 4 actions:     - Move                    [WASD] - Grab/Release               [H] - Shoot Laser                [L] - Turn Light on/off          [F]
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
                 TextSize: 20.0
                 TextColor: {R: 240, G: 240, B: 240, A: 255}
@@ -32,8 +28,8 @@ Hierarchy:
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
                 DrawLayerNumber: 2
-                Height: 50
-                Margin: {Left: 10, Right: 10}
+                Height: 50.0
+                Margin: {Left: 10.0, Right: 10.0}
                 Content: !TextBlock ref!! d4f98105-e352-441c-a17f-49c22cc572d3
                 PressedImage: !SpriteFromSheet
                     Sheet: 0803c17a-aded-410a-9bf4-9d7b506e167a:UISprites
@@ -53,6 +49,7 @@ Hierarchy:
                 MaximumHeight: 3.4028235E+38
                 MaximumDepth: 3.4028235E+38
                 Children:
+                    f3b5eaf75db022eb69a1259dc41c4f70: !TextBlock ref!! f8e292be-7ff5-4b4e-95a8-fe2b7d62a144
                     324f5f0fa239f0f8e3c8e1ca9d4b582d: !TextBlock ref!! 460f360d-d4f4-4e5d-9f7e-04cadb2e99e1
                     27896a9399dec0db1a8f1f1b23820121: !TextBlock ref!! 362fb220-0027-41f1-8e14-6cd4c2b969de
                     cf6263009e21e743bbe049c8353f1fbd: !StackPanel ref!! 55503298-3a64-4038-9e6d-e50b3e686de6
@@ -60,7 +57,7 @@ Hierarchy:
                 Id: 460f360d-d4f4-4e5d-9f7e-04cadb2e99e1
                 DependencyProperties: {}
                 BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
-                Margin: {Top: 50.0, Bottom: 30.0}
+                Margin: {Top: 15.0, Bottom: 30.0}
                 MaximumWidth: 3.4028235E+38
                 MaximumHeight: 3.4028235E+38
                 MaximumDepth: 3.4028235E+38
@@ -89,6 +86,21 @@ Hierarchy:
                 VerticalAlignment: Center
                 Margin: {}
                 Text: Click me!
+                Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
+                TextSize: 20.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+        -   UIElement: !TextBlock
+                Id: f8e292be-7ff5-4b4e-95a8-fe2b7d62a144
+                DependencyProperties:
+                    427cd157f59bd6019f1461fcf3df30e4~GridBase.ColumnPropertyKey: 2
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Right
+                VerticalAlignment: Bottom
+                Margin: {Top: 5.0, Right: 5.0}
+                MaximumWidth: 3.4028235E+38
+                MaximumHeight: 3.4028235E+38
+                MaximumDepth: 3.4028235E+38
+                Text: Created by Marian Dziubiak
                 Font: c90f3988-0544-4cbe-993f-13af7d9c23c6:StrideDefaultFont
                 TextSize: 20.0
                 TextColor: {R: 240, G: 240, B: 240, A: 255}
