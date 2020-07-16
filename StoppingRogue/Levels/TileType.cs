@@ -46,6 +46,8 @@ namespace StoppingRogue.Levels
         PressurePlate,
         [TileChar('J')]
         PressurePlateWithBox,
+        [TileChar('j')]
+        PressurePlateWithMetalBox,
         [TileChar('F')]
         StepOnSwitch,
 

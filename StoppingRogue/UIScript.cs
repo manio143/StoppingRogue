@@ -156,6 +156,8 @@ namespace StoppingRogue
                         taskEntries[i].Item1.Parent.Visibility = Visibility.Visible;
                         taskEntries[i].Item1.State = tasks[i].Completed ? ToggleState.Checked : ToggleState.UnChecked;
                         taskEntries[i].Item2.Text = TaskText(tasks[i].Type);
+                        taskEntries[i].Item2.WrapText = true;
+                        taskEntries[i].Item2.Width = 350;
                     }
 
                     UpdateActions(actions[0], ActionType.Movement, nextUserAction, nextRobotAction, 0);
@@ -273,6 +275,18 @@ namespace StoppingRogue
                 }
             }
             firstInit = false;
+
+            // All levels have been passed
+            if(completedLevels == NumberOfLevels && !(root.Children.Last() is TextBlock))
+            {
+                root.Children.Add(new TextBlock
+                {
+                    Font = Content.Load<SpriteFont>("StrideDefaultFont"),
+                    Text = "You did it!",
+                    TextSize = 15,
+                    TextAlignment = TextAlignment.Center,
+                });
+            }
         }
 
         /// <summary>

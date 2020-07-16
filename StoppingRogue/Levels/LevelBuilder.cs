@@ -65,11 +65,14 @@ namespace StoppingRogue.Levels
                     if (tile == TileType.None)
                         continue; // don't create entities for none tiles
 
-                    if (tile == TileType.PressurePlateWithBox)
+                    if (tile == TileType.PressurePlateWithBox
+                        || tile == TileType.PressurePlateWithMetalBox)
                     {
-                        // The only tile that describes two entities
+                        // The tile that describes two entities
                         var plate = InitializeEntity(line, col, TileType.PressurePlate);
-                        var box = InitializeEntity(line, col, TileType.WoodBox);
+                        var boxTile = tile == TileType.PressurePlateWithBox
+                            ? TileType.WoodBox : TileType.MetalBox;
+                        var box = InitializeEntity(line, col, boxTile);
 
                         scene.Entities.Add(plate);
                         scene.Entities.Add(box);
