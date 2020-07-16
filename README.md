@@ -5,15 +5,15 @@ It's a 2D game created for the GTMK Game Jam 2020. The theme was Out of Control.
 Game created with the [Stride](//stride3d.net/) Game Engine.
 
 ## Download and play
-_**TODO**: Itch + instructions_
+https://manio143.itch.io/stopping-the-rogue
 
 ## Learn more
 The code is well documented and it shouldn't take you too long to figure out what is going on.
 
-You can also watch my development process: _**TODO**: [Youtube](#)_.
+You can also watch my development process: [Part 1](https://www.youtube.com/watch?v=p85IZNJkxUE), [Part 2](https://www.youtube.com/watch?v=_3VNb0KrXxM).
 
 ## Screenshots
-_**TODO**: One image with 4 parts - menu, game result, laser being shot, light on a switch_
+![Screenshots](screenshots.png)
 
 ## Game design doc
 
