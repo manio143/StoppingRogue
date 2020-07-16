@@ -96,6 +96,7 @@ namespace StoppingRogue
                 Entity.Scene.Children.RemoveAt(0);
 
                 Loader.LoadLevel(currentLevel + 1);
+                PopulateTasks();
             }
             if (state == UIState.InGame)
             {

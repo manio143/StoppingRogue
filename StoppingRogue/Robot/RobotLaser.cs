@@ -1,4 +1,5 @@
-﻿using Stride.Core;
+﻿using Stride.Audio;
+using Stride.Core;
 using Stride.Core.Mathematics;
 using Stride.Engine;
 using Stride.Graphics;
@@ -18,6 +19,8 @@ namespace StoppingRogue.Robot
         /// Sprite sheet for the laser sprite.
         /// </summary>
         public SpriteSheet itemSpriteSheet;
+
+        public SoundInstance laserSound;
 
         /// <summary>
         /// Create a projectile that moves in <paramref name="direction"/>.
@@ -52,7 +55,7 @@ namespace StoppingRogue.Robot
 
             Entity.AddChild(projectile);
 
-            //TODO play sound
+            laserSound?.Play();
         }
     }
 }

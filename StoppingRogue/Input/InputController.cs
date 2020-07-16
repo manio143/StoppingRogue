@@ -1,5 +1,6 @@
 ﻿using StoppingRogue.Levels;
 using StoppingRogue.Turns;
+using Stride.Audio;
 using Stride.Engine;
 using Stride.Input;
 using System.Linq;
@@ -21,6 +22,11 @@ namespace StoppingRogue.Input
         /// User selected action to be broadcast on the next turn.
         /// </summary>
         public Action NextAction { get; private set; }
+
+        /// <summary>
+        /// Played when player tries an unavailable action.
+        /// </summary>
+        public Sound MistakeSound { get; set; }
 
         /// <summary>
         /// Currently pressed key.
@@ -56,7 +62,8 @@ namespace StoppingRogue.Input
 
         private async Task ProcessInput()
         {
-            while(true)
+            var mistake = MistakeSound?.CreateInstance();
+            while (true)
             {
                 await Script.NextFrame();
 
@@ -65,7 +72,7 @@ namespace StoppingRogue.Input
                 
                 if (!userActions.Contains(GetAction().GetActionType()))
                 {
-                    // TODO: play mistake sound
+                    mistake?.Play();
                     downKey = null;
                 }
                 

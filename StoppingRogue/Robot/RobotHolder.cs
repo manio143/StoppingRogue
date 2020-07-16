@@ -7,6 +7,7 @@ using StoppingRogue.Destructable;
 using System.Diagnostics;
 using StoppingRogue.Tasks;
 using StoppingRogue.Items;
+using Stride.Audio;
 
 namespace StoppingRogue.Robot
 {
@@ -17,6 +18,8 @@ namespace StoppingRogue.Robot
     {
         private PhysicsComponent physics;
         private Entity grabbedEntity;
+        public SoundInstance grabSound;
+        public SoundInstance releaseSound;
 
         /// <summary>
         /// Is robot holding something?
@@ -59,6 +62,8 @@ namespace StoppingRogue.Robot
                 // attach to the robot
                 Entity.AddChild(clone);
 
+                grabSound?.Play();
+
                 grabbedEntity = clone;
             }
             else
@@ -95,6 +100,8 @@ namespace StoppingRogue.Robot
                 Entity.RemoveChild(grabbedEntity);
                 // clone it to avoid physics system disaster
                 grabbedEntity = grabbedEntity.Clone();
+
+                releaseSound?.Play();
 
                 // cloning cannot preserve events, so recreate destructable on wood box
                 var destr = grabbedEntity.Get<DestructableComponent>();

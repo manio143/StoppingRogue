@@ -1,0 +1,9 @@
+!Sound
+Id: beb4b5e0-f970-4bc8-b947-3ba6094db4d3
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../../Resources/grab.ogg
+SampleRate: 48000
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

@@ -1,4 +1,5 @@
-﻿using Stride.Core;
+﻿using Stride.Audio;
+using Stride.Core;
 using Stride.Engine;
 using Stride.Engine.Design;
 using Stride.Rendering.Sprites;
@@ -36,6 +37,8 @@ namespace StoppingRogue.Tasks
 
                     // change frame to signal activation
                     (Entity.GetParent().Get<SpriteComponent>().SpriteProvider as SpriteFromSheet).CurrentFrame = 26;
+
+                    switchSound?.Play();
                 }
             }
         }
@@ -44,6 +47,7 @@ namespace StoppingRogue.Tasks
         /// Associated task.
         /// </summary>
         public TaskComponent taskComponent;
+        public SoundInstance switchSound;
         private bool active;
     }
 }

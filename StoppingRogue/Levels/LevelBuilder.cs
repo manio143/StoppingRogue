@@ -4,6 +4,7 @@ using StoppingRogue.Robot;
 using StoppingRogue.Switches;
 using StoppingRogue.Tasks;
 using StoppingRogue.Turns;
+using Stride.Audio;
 using Stride.Core.Mathematics;
 using Stride.Engine;
 using Stride.Graphics;
@@ -26,6 +27,7 @@ namespace StoppingRogue.Levels
         private SpriteSheet environmentSheet;
         private SpriteSheet robotSheet;
         private SpriteSheet itemSheet;
+        private Sounds sounds;
 
         /// <summary>
         /// Initializes new builder.
@@ -33,11 +35,12 @@ namespace StoppingRogue.Levels
         /// <param name="environmentSheet">Environment tiles</param>
         /// <param name="robotSheet">Robot sprites</param>
         /// <param name="itemSheet">Item sprites</param>
-        public LevelBuilder(SpriteSheet environmentSheet, SpriteSheet robotSheet, SpriteSheet itemSheet, ActionController actionController)
+        public LevelBuilder(SpriteSheet environmentSheet, SpriteSheet robotSheet, SpriteSheet itemSheet, Sounds sounds)
         {
             this.environmentSheet = environmentSheet;
             this.robotSheet = robotSheet;
             this.itemSheet = itemSheet;
+            this.sounds = sounds;
         }
 
         /// <summary>
@@ -189,10 +192,14 @@ namespace StoppingRogue.Levels
                 var rc = entity.GetOrCreate<RobotController>();
                 var rl = entity.GetOrCreate<RobotLight>();
                 var rls = entity.GetOrCreate<RobotLaser>();
-                entity.GetOrCreate<RobotHolder>();
+                var rh = entity.GetOrCreate<RobotHolder>();
                 
                 rl.robotSpriteSheet = robotSheet;
+                rl.lightSound = sounds.LightSound.CreateInstance();
                 rls.itemSpriteSheet = itemSheet;
+                rls.laserSound = sounds.LaserSound.CreateInstance();
+                rh.grabSound = sounds.GrabSound.CreateInstance();
+                rh.releaseSound = sounds.ReleaseSound.CreateInstance();
             }
             if (HasCollider(tile))
             {
@@ -237,6 +244,8 @@ namespace StoppingRogue.Levels
             if (tile == TileType.Door || tile == TileType.OpenedDoor)
             {
                 var door = entity.GetOrCreate<DoorComponent>();
+                door.doorSound = sounds.DoorSound.CreateInstance();
+                door.OpenedState = tile == TileType.OpenedDoor;
             }
             if (tile == TileType.LightSwitchWall)
             {
@@ -257,6 +266,7 @@ namespace StoppingRogue.Levels
 
                 task.Type = TaskType.SwitchLightOn;
                 ls.taskComponent = task;
+                ls.switchSound = sounds.SwitchSound.CreateInstance();
                 entity.AddChild(switchEntity);
             }
             if (IsItem(tile))
@@ -280,6 +290,7 @@ namespace StoppingRogue.Levels
             if (IsDestructible(tile))
             {
                 var destr = entity.GetOrCreate<DestructableComponent>();
+                destr.breakSound = sounds.BreakSound.CreateInstance();
 
                 var expl = entity.GetOrCreate<ExplosionComponent>();
                 destr.OnDestruct += expl.Explode;
@@ -340,6 +351,7 @@ namespace StoppingRogue.Levels
                 var slot = entity.GetOrCreate<SlotComponent>();
                 slot.taskComponent = task;
                 slot.ItemType = tile == TileType.SlotForBox ? Item.MetalBox : Item.CutPipe;
+                slot.slotSound = sounds.SlotSound.CreateInstance();
             }
         }
 

@@ -29,6 +29,16 @@ Hierarchy:
                         Items: 4904f18f-4e8b-48bb-a1a3-ca4693cc922e:Items
                         Camera: ref!! e8f5aef6-e815-4a0b-855e-db9ca1f39792
                         UIScript: ref!! 43553b8e-7eb3-4705-8a7a-2e7dc65ba310
+                        SoundLibrary:
+                            DoorSound: f03a1fbb-9340-404b-8a12-b40e566bf377:Sounds/door
+                            GrabSound: beb4b5e0-f970-4bc8-b947-3ba6094db4d3:Sounds/grab
+                            ReleaseSound: ad5271c1-8406-4f6f-8213-c2b72a55eb9c:Sounds/release
+                            SwitchSound: c349b0e9-35ac-4a07-9b52-a31e947a5878:Sounds/switch
+                            LaserSound: c460d69d-ef06-4aa9-8857-18dac06eb8f1:Sounds/laser
+                            MistakeSound: e495d635-44f4-42ab-aedd-e29c2e2027c6:Sounds/mistake
+                            BreakSound: 6a92e92c-12e5-4dae-82cd-fa6014fb1928:Sounds/break
+                            LightSound: b7d10a85-ca26-41d2-8076-3a3e10a4a1fb:Sounds/light
+                            SlotSound: 8a884c55-657f-4877-a27d-fa4850cb26dd:Sounds/slot
         -   Entity:
                 Id: 11a5df00-f50d-4773-8cc6-e9d380220f41
                 Name: Skybox light

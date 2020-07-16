@@ -5,6 +5,7 @@ using Stride.Rendering.Sprites;
 using System.Diagnostics;
 using SharpDX.XInput;
 using System.Transactions;
+using Stride.Audio;
 
 namespace StoppingRogue.Switches
 {
@@ -13,6 +14,8 @@ namespace StoppingRogue.Switches
     /// </summary>
     public class DoorComponent : ScriptComponent
     {
+        public SoundInstance doorSound;
+
         /// <summary>
         /// True if door is opened.
         /// </summary>
@@ -40,7 +43,7 @@ namespace StoppingRogue.Switches
             var sprite = Entity.Get<SpriteComponent>().SpriteProvider as SpriteFromSheet;
             sprite.CurrentFrame = 13;
 
-            //TODO door sound
+            doorSound?.Play();
 
         }
 
@@ -58,7 +61,7 @@ namespace StoppingRogue.Switches
             var sprite = Entity.Get<SpriteComponent>().SpriteProvider as SpriteFromSheet;
             sprite.CurrentFrame = 12;
             
-            //TODO door sound
+            doorSound?.Play();
         }
     }
 }

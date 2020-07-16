@@ -1,4 +1,5 @@
-﻿using Stride.Core;
+﻿using Stride.Audio;
+using Stride.Core;
 using Stride.Engine;
 using System;
 
@@ -15,11 +16,14 @@ namespace StoppingRogue.Destructable
         /// </summary>
         public event Action OnDestruct;
 
+        public SoundInstance breakSound;
+
         /// <summary>
         /// Invokes <see cref="OnDestruct"/> event.
         /// </summary>
         public void Destruct()
         {
+            breakSound?.Play();
             OnDestruct?.Invoke();
         }
     }

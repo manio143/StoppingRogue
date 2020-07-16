@@ -26,7 +26,6 @@ namespace StoppingRogue.Switches
                     {
                         pressed = true;
                         switchComp.Switch();
-                        // TODO switch sound
                     }
                 }
                 else
@@ -35,7 +34,6 @@ namespace StoppingRogue.Switches
                     {
                         pressed = false;
                         switchComp.Switch();
-                        // TODO switch sound
                     }
                 }
             }
@@ -54,7 +52,6 @@ namespace StoppingRogue.Switches
 
             await physics.NewCollision();
             switchComp.Switch();
-            // TODO switch sound
         }
     }
 }

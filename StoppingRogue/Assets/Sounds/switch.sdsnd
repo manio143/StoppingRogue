@@ -1,0 +1,9 @@
+!Sound
+Id: c349b0e9-35ac-4a07-9b52-a31e947a5878
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../../Resources/switch.ogg
+SampleRate: 48000
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

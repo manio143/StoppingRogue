@@ -1,0 +1,9 @@
+!Sound
+Id: e495d635-44f4-42ab-aedd-e29c2e2027c6
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../../Resources/mistake.ogg
+SampleRate: 96000
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

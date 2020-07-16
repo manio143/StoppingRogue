@@ -1,0 +1,8 @@
+!Sound
+Id: f03a1fbb-9340-404b-8a12-b40e566bf377
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../../Resources/door.ogg
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

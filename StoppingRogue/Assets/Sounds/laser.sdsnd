@@ -1,0 +1,8 @@
+!Sound
+Id: c460d69d-ef06-4aa9-8857-18dac06eb8f1
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../../Resources/laser.ogg
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

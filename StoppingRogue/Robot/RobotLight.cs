@@ -1,4 +1,5 @@
-﻿using Stride.Core.Mathematics;
+﻿using Stride.Audio;
+using Stride.Core.Mathematics;
 using Stride.Engine;
 using Stride.Graphics;
 using Stride.Physics;
@@ -16,6 +17,8 @@ namespace StoppingRogue.Robot
         /// Sprite sheet for the light sprite.
         /// </summary>
         public SpriteSheet robotSpriteSheet;
+
+        public SoundInstance lightSound;
 
         private Entity lightEntity;
         private SpriteComponent lightSprite;
@@ -59,6 +62,7 @@ namespace StoppingRogue.Robot
             lightSprite.Enabled = !lightSprite.Enabled;
             lightPhysics.Enabled = !lightPhysics.Enabled;
             this.EnabledState = !EnabledState;
+            lightSound?.Play();
         }
 
         /// <summary>

@@ -1,0 +1,9 @@
+!Sound
+Id: ad5271c1-8406-4f6f-8213-c2b72a55eb9c
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../../Resources/release.ogg
+SampleRate: 48000
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

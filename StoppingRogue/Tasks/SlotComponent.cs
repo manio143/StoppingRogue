@@ -1,4 +1,5 @@
 ﻿using StoppingRogue.Items;
+using Stride.Audio;
 using Stride.Core;
 using Stride.Engine;
 using Stride.Rendering.Sprites;
@@ -17,6 +18,8 @@ namespace StoppingRogue.Tasks
         /// </summary>
         public TaskComponent taskComponent;
 
+        public SoundInstance slotSound;
+
         /// <summary>
         /// Type of accepted item.
         /// </summary>
@@ -34,6 +37,7 @@ namespace StoppingRogue.Tasks
             
             taskComponent.Completed = true;
             (Entity.Get<SpriteComponent>().SpriteProvider as SpriteFromSheet).CurrentFrame = ItemType == Item.CutPipe ? 28 : 27;
+            slotSound?.Play();
         }
 
         private void VerifyConsistency()

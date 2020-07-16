@@ -1,0 +1,8 @@
+!Sound
+Id: b7d10a85-ca26-41d2-8076-3a3e10a4a1fb
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../../Resources/light.ogg
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

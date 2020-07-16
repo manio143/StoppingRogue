@@ -1,0 +1,8 @@
+!Sound
+Id: 6a92e92c-12e5-4dae-82cd-fa6014fb1928
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../../Resources/break.ogg
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

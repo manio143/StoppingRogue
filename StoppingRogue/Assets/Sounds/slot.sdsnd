@@ -1,0 +1,8 @@
+!Sound
+Id: 8a884c55-657f-4877-a27d-fa4850cb26dd
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file ../../Resources/slot.ogg
+CompressionRatio: 15
+StreamFromDisk: false
+Spatialized: false

@@ -17,6 +17,7 @@ namespace StoppingRogue.Levels
         public SpriteSheet Items { get; set; }
         public CameraComponent Camera { get; set; }
         public UIScript UIScript { get; set; }
+        public Sounds SoundLibrary { get; set; }
 
         private Level level;
 
@@ -30,7 +31,7 @@ namespace StoppingRogue.Levels
                 level = LevelReader.Read(stream);
 
             var actionController = Entity.GetOrCreate<ActionController>();
-            var builder = new LevelBuilder(Environment, Robot, Items, actionController);
+            var builder = new LevelBuilder(Environment, Robot, Items, SoundLibrary);
 
             var scene = builder.Build(level, out var robot);
             this.Entity.Scene.Children.Add(scene);
@@ -43,6 +44,7 @@ namespace StoppingRogue.Levels
 
             var inputController = Entity.GetOrCreate<InputController>();
             inputController.userActions = level.UserActions;
+            inputController.MistakeSound = SoundLibrary.MistakeSound;
 
             Camera.Entity.Get<RobotCameraFollower>().Robot = robot;
 
